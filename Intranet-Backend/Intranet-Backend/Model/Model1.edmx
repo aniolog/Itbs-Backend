@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ITPRUEB_NModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="snemple">
+          <Key>
+            <PropertyRef Name="cod_emp" />
+          </Key>
+          <Property Name="cod_emp" Type="char" MaxLength="17" Nullable="false" />
+          <Property Name="nombres" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="apellidos" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="ci" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="pasaporte" Type="varchar" MaxLength="12" />
+          <Property Name="rif" Type="char" MaxLength="16" />
+          <Property Name="lib_militar" Type="char" MaxLength="16" />
+          <Property Name="profesion" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="nivel_acad" Type="int" Nullable="false" />
+          <Property Name="nac" Type="int" Nullable="false" />
+          <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="edo_civ" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="correo_e" Type="varchar" MaxLength="60" />
+          <Property Name="status" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="co_cont" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="fecha_nac" Type="smalldatetime" Nullable="false" />
+          <Property Name="lugar_nac" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_ing" Type="smalldatetime" Nullable="false" />
+          <Property Name="fecha_egr" Type="smalldatetime" />
+          <Property Name="tip_egr" Type="char" MaxLength="2" />
+          <Property Name="motivo" Type="varchar(max)" />
+          <Property Name="telefono" Type="varchar" MaxLength="100" />
+          <Property Name="direccion" Type="varchar(max)" />
+          <Property Name="co_depart" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="co_ubicacion" Type="char" MaxLength="8" />
+          <Property Name="co_ban" Type="char" MaxLength="8" />
+          <Property Name="co_cargo" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="foto" Type="image" />
+          <Property Name="des_foto" Type="varchar" MaxLength="200" />
+          <Property Name="cta_banc" Type="varchar" MaxLength="60" />
+          <Property Name="dis_cen" Type="xml" />
+          <Property Name="cod_cta" Type="char" MaxLength="6" />
+          <Property Name="co_ingr" Type="char" MaxLength="20" />
+          <Property Name="cod_ben" Type="char" MaxLength="10" />
+          <Property Name="cod_caja" Type="char" MaxLength="6" />
+          <Property Name="forma_pag" Type="char" MaxLength="2" />
+          <Property Name="cod_suc" Type="char" MaxLength="6" />
+          <Property Name="avisar_a" Type="varchar" MaxLength="60" />
+          <Property Name="telf_contact" Type="varchar" MaxLength="100" />
+          <Property Name="dir_contact" Type="varchar(max)" />
+          <Property Name="cod_candi" Type="char" MaxLength="12" />
+          <Property Name="carnet" Type="varchar" MaxLength="32" />
+          <Property Name="supervisor" Type="char" MaxLength="17" />
+          <Property Name="sindicalizado" Type="bit" Nullable="false" />
+          <Property Name="uniformes" Type="bit" Nullable="false" />
+          <Property Name="vehiculo" Type="bit" Nullable="false" />
+          <Property Name="talla_zap" Type="varchar" MaxLength="8" />
+          <Property Name="talla_pant" Type="varchar" MaxLength="8" />
+          <Property Name="talla_camisa" Type="varchar" MaxLength="8" />
+          <Property Name="talla_casco" Type="varchar" MaxLength="8" />
+          <Property Name="talla_otro1" Type="varchar" MaxLength="8" />
+          <Property Name="talla_otro2" Type="varchar" MaxLength="8" />
+          <Property Name="licencia" Type="varchar" MaxLength="12" />
+          <Property Name="grado_lic" Type="int" />
+          <Property Name="co_ban1" Type="char" MaxLength="8" />
+          <Property Name="cta_banc1" Type="varchar" MaxLength="60" />
+          <Property Name="cta_fecing1" Type="smalldatetime" />
+          <Property Name="tipo_cta1" Type="char" MaxLength="4" />
+          <Property Name="co_ban2" Type="char" MaxLength="8" />
+          <Property Name="cta_banc2" Type="varchar" MaxLength="60" />
+          <Property Name="cta_fecing2" Type="smalldatetime" />
+          <Property Name="tipo_cta2" Type="char" MaxLength="4" />
+          <Property Name="co_ban3" Type="char" MaxLength="8" />
+          <Property Name="cta_banc3" Type="varchar" MaxLength="60" />
+          <Property Name="cta_fecing3" Type="smalldatetime" />
+          <Property Name="tipo_cta3" Type="char" MaxLength="4" />
+          <Property Name="co_ban4" Type="char" MaxLength="8" />
+          <Property Name="cta_banc4" Type="varchar" MaxLength="60" />
+          <Property Name="cta_fecing4" Type="smalldatetime" />
+          <Property Name="cod_empresa" Type="varchar" MaxLength="60" />
+          <Property Name="fuero_sindic" Type="bit" Nullable="false" />
+          <Property Name="peso" Type="decimal" Precision="11" Scale="3" Nullable="false" />
+          <Property Name="estatura" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="zurdo" Type="bit" Nullable="false" />
+          <Property Name="grupo_sang" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="alergico_a" Type="varchar(max)" />
+          <Property Name="enfermedades" Type="varchar(max)" />
+          <Property Name="discapacitado" Type="bit" Nullable="false" />
+          <Property Name="co_cert" Type="varchar" MaxLength="12" />
+          <Property Name="clasificacion" Type="char" MaxLength="4" />
+          <Property Name="tratamiento" Type="varchar(max)" />
+          <Property Name="fecha_exp" Type="smalldatetime" />
+          <Property Name="fecha_venc" Type="smalldatetime" />
+          <Property Name="tipo_discapac" Type="char" MaxLength="4" />
+          <Property Name="observaciones" Type="varchar(max)" />
+          <Property Name="co_asegurado" Type="varchar" MaxLength="12" />
+          <Property Name="condicion" Type="varchar" MaxLength="4" />
+          <Property Name="rep_segindust" Type="bit" Nullable="false" />
+          <Property Name="co_repsegind" Type="varchar" MaxLength="12" />
+          <Property Name="tipo_mintra" Type="int" Nullable="false" />
+          <Property Name="ocupacion" Type="varchar" MaxLength="4" />
+          <Property Name="cert_aptitud" Type="varchar" MaxLength="16" />
+          <Property Name="perm_menor" Type="varchar" MaxLength="16" />
+          <Property Name="estado" Type="varchar" MaxLength="20" />
+          <Property Name="municipio" Type="varchar" MaxLength="20" />
+          <Property Name="parroquia" Type="varchar" MaxLength="20" />
+          <Property Name="ubicacion" Type="varchar" MaxLength="20" />
+          <Property Name="tipo_cont" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="campo1" Type="varchar" MaxLength="60" />
+          <Property Name="campo2" Type="varchar" MaxLength="60" />
+          <Property Name="campo3" Type="varchar" MaxLength="60" />
+          <Property Name="campo4" Type="varchar" MaxLength="60" />
+          <Property Name="campo5" Type="varchar" MaxLength="60" />
+          <Property Name="campo6" Type="varchar" MaxLength="60" />
+          <Property Name="campo7" Type="varchar" MaxLength="60" />
+          <Property Name="campo8" Type="varchar" MaxLength="60" />
+          <Property Name="co_us_in" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="fe_us_in" Type="datetime" Nullable="false" />
+          <Property Name="co_us_mo" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="fe_us_mo" Type="datetime" Nullable="false" />
+          <Property Name="trasnfe" Type="char" MaxLength="1" />
+          <Property Name="revisado" Type="char" MaxLength="1" />
+          <Property Name="validador" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="nombre_completo" Type="varchar" MaxLength="122" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="snferiado">
+          <Key>
+            <PropertyRef Name="co_fecha" />
+            <PropertyRef Name="co_calen" />
+            <PropertyRef Name="fecha" />
+          </Key>
+          <Property Name="co_fecha" Type="int" Nullable="false" />
+          <Property Name="co_calen" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="fecha" Type="smalldatetime" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <Association Name="FK_snemple_snemple">
+          <End Role="snemple" Type="Self.snemple" Multiplicity="0..1" />
+          <End Role="snemple1" Type="Self.snemple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="snemple">
+              <PropertyRef Name="cod_emp" />
+            </Principal>
+            <Dependent Role="snemple1">
+              <PropertyRef Name="supervisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITPRUEB_NModelStoreContainer">
+          <EntitySet Name="snemple" EntityType="Self.snemple" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="snferiado" EntityType="Self.snferiado" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_snemple_snemple" Association="Self.FK_snemple_snemple">
+            <End Role="snemple" EntitySet="snemple" />
+            <End Role="snemple1" EntitySet="snemple" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ITPRUEB_NModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="snemple">
+          <Key>
+            <PropertyRef Name="cod_emp" />
+          </Key>
+          <Property Name="cod_emp" Type="String" MaxLength="17" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nombres" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidos" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ci" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="pasaporte" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="rif" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="lib_militar" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="profesion" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nivel_acad" Type="Int32" Nullable="false" />
+          <Property Name="nac" Type="Int32" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="edo_civ" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="correo_e" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="co_cont" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fecha_nac" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="lugar_nac" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_ing" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha_egr" Type="DateTime" Precision="0" />
+          <Property Name="tip_egr" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="motivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="co_depart" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="co_ubicacion" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="co_ban" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="co_cargo" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="des_foto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="cta_banc" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="dis_cen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cod_cta" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="co_ingr" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="cod_ben" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="cod_caja" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="forma_pag" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="cod_suc" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="avisar_a" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="telf_contact" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dir_contact" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cod_candi" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="carnet" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="supervisor" Type="String" MaxLength="17" FixedLength="true" Unicode="false" />
+          <Property Name="sindicalizado" Type="Boolean" Nullable="false" />
+          <Property Name="uniformes" Type="Boolean" Nullable="false" />
+          <Property Name="vehiculo" Type="Boolean" Nullable="false" />
+          <Property Name="talla_zap" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="talla_pant" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="talla_camisa" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="talla_casco" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="talla_otro1" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="talla_otro2" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="licencia" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="grado_lic" Type="Int32" />
+          <Property Name="co_ban1" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="cta_banc1" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="cta_fecing1" Type="DateTime" Precision="0" />
+          <Property Name="tipo_cta1" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="co_ban2" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="cta_banc2" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="cta_fecing2" Type="DateTime" Precision="0" />
+          <Property Name="tipo_cta2" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="co_ban3" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="cta_banc3" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="cta_fecing3" Type="DateTime" Precision="0" />
+          <Property Name="tipo_cta3" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="co_ban4" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="cta_banc4" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="cta_fecing4" Type="DateTime" Precision="0" />
+          <Property Name="cod_empresa" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="fuero_sindic" Type="Boolean" Nullable="false" />
+          <Property Name="peso" Type="Decimal" Precision="11" Scale="3" Nullable="false" />
+          <Property Name="estatura" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="zurdo" Type="Boolean" Nullable="false" />
+          <Property Name="grupo_sang" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="alergico_a" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="enfermedades" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="discapacitado" Type="Boolean" Nullable="false" />
+          <Property Name="co_cert" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="clasificacion" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="tratamiento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_exp" Type="DateTime" Precision="0" />
+          <Property Name="fecha_venc" Type="DateTime" Precision="0" />
+          <Property Name="tipo_discapac" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="co_asegurado" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="condicion" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="rep_segindust" Type="Boolean" Nullable="false" />
+          <Property Name="co_repsegind" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_mintra" Type="Int32" Nullable="false" />
+          <Property Name="ocupacion" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="cert_aptitud" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="perm_menor" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="parroquia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ubicacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_cont" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="campo1" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo2" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo3" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo4" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo5" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo6" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo7" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo8" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="co_us_in" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fe_us_in" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="co_us_mo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fe_us_mo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="trasnfe" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="revisado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="validador" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="nombre_completo" Type="String" MaxLength="122" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="snemple1" Relationship="Self.FK_snemple_snemple" FromRole="snemple" ToRole="snemple1" />
+          <NavigationProperty Name="snemple2" Relationship="Self.FK_snemple_snemple" FromRole="snemple1" ToRole="snemple" />
+        </EntityType>
+        <EntityType Name="snferiado">
+          <Key>
+            <PropertyRef Name="co_fecha" />
+            <PropertyRef Name="co_calen" />
+            <PropertyRef Name="fecha" />
+          </Key>
+          <Property Name="co_fecha" Type="Int32" Nullable="false" />
+          <Property Name="co_calen" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_snemple_snemple">
+          <End Role="snemple" Type="Self.snemple" Multiplicity="0..1" />
+          <End Role="snemple1" Type="Self.snemple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="snemple">
+              <PropertyRef Name="cod_emp" />
+            </Principal>
+            <Dependent Role="snemple1">
+              <PropertyRef Name="supervisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITPRUEB_NEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="snemple" EntityType="Self.snemple" />
+          <EntitySet Name="snferiado" EntityType="Self.snferiado" />
+          <AssociationSet Name="FK_snemple_snemple" Association="Self.FK_snemple_snemple">
+            <End Role="snemple" EntitySet="snemple" />
+            <End Role="snemple1" EntitySet="snemple" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ITPRUEB_NModelStoreContainer" CdmEntityContainer="ITPRUEB_NEntities">
+          <EntitySetMapping Name="snemple">
+            <EntityTypeMapping TypeName="ITPRUEB_NModel.snemple">
+              <MappingFragment StoreEntitySet="snemple">
+                <ScalarProperty Name="cod_emp" ColumnName="cod_emp" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="ci" ColumnName="ci" />
+                <ScalarProperty Name="pasaporte" ColumnName="pasaporte" />
+                <ScalarProperty Name="rif" ColumnName="rif" />
+                <ScalarProperty Name="lib_militar" ColumnName="lib_militar" />
+                <ScalarProperty Name="profesion" ColumnName="profesion" />
+                <ScalarProperty Name="nivel_acad" ColumnName="nivel_acad" />
+                <ScalarProperty Name="nac" ColumnName="nac" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="edo_civ" ColumnName="edo_civ" />
+                <ScalarProperty Name="correo_e" ColumnName="correo_e" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="co_cont" ColumnName="co_cont" />
+                <ScalarProperty Name="fecha_nac" ColumnName="fecha_nac" />
+                <ScalarProperty Name="lugar_nac" ColumnName="lugar_nac" />
+                <ScalarProperty Name="fecha_ing" ColumnName="fecha_ing" />
+                <ScalarProperty Name="fecha_egr" ColumnName="fecha_egr" />
+                <ScalarProperty Name="tip_egr" ColumnName="tip_egr" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="co_depart" ColumnName="co_depart" />
+                <ScalarProperty Name="co_ubicacion" ColumnName="co_ubicacion" />
+                <ScalarProperty Name="co_ban" ColumnName="co_ban" />
+                <ScalarProperty Name="co_cargo" ColumnName="co_cargo" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="des_foto" ColumnName="des_foto" />
+                <ScalarProperty Name="cta_banc" ColumnName="cta_banc" />
+                <ScalarProperty Name="dis_cen" ColumnName="dis_cen" />
+                <ScalarProperty Name="cod_cta" ColumnName="cod_cta" />
+                <ScalarProperty Name="co_ingr" ColumnName="co_ingr" />
+                <ScalarProperty Name="cod_ben" ColumnName="cod_ben" />
+                <ScalarProperty Name="cod_caja" ColumnName="cod_caja" />
+                <ScalarProperty Name="forma_pag" ColumnName="forma_pag" />
+                <ScalarProperty Name="cod_suc" ColumnName="cod_suc" />
+                <ScalarProperty Name="avisar_a" ColumnName="avisar_a" />
+                <ScalarProperty Name="telf_contact" ColumnName="telf_contact" />
+                <ScalarProperty Name="dir_contact" ColumnName="dir_contact" />
+                <ScalarProperty Name="cod_candi" ColumnName="cod_candi" />
+                <ScalarProperty Name="carnet" ColumnName="carnet" />
+                <ScalarProperty Name="supervisor" ColumnName="supervisor" />
+                <ScalarProperty Name="sindicalizado" ColumnName="sindicalizado" />
+                <ScalarProperty Name="uniformes" ColumnName="uniformes" />
+                <ScalarProperty Name="vehiculo" ColumnName="vehiculo" />
+                <ScalarProperty Name="talla_zap" ColumnName="talla_zap" />
+                <ScalarProperty Name="talla_pant" ColumnName="talla_pant" />
+                <ScalarProperty Name="talla_camisa" ColumnName="talla_camisa" />
+                <ScalarProperty Name="talla_casco" ColumnName="talla_casco" />
+                <ScalarProperty Name="talla_otro1" ColumnName="talla_otro1" />
+                <ScalarProperty Name="talla_otro2" ColumnName="talla_otro2" />
+                <ScalarProperty Name="licencia" ColumnName="licencia" />
+                <ScalarProperty Name="grado_lic" ColumnName="grado_lic" />
+                <ScalarProperty Name="co_ban1" ColumnName="co_ban1" />
+                <ScalarProperty Name="cta_banc1" ColumnName="cta_banc1" />
+                <ScalarProperty Name="cta_fecing1" ColumnName="cta_fecing1" />
+                <ScalarProperty Name="tipo_cta1" ColumnName="tipo_cta1" />
+                <ScalarProperty Name="co_ban2" ColumnName="co_ban2" />
+                <ScalarProperty Name="cta_banc2" ColumnName="cta_banc2" />
+                <ScalarProperty Name="cta_fecing2" ColumnName="cta_fecing2" />
+                <ScalarProperty Name="tipo_cta2" ColumnName="tipo_cta2" />
+                <ScalarProperty Name="co_ban3" ColumnName="co_ban3" />
+                <ScalarProperty Name="cta_banc3" ColumnName="cta_banc3" />
+                <ScalarProperty Name="cta_fecing3" ColumnName="cta_fecing3" />
+                <ScalarProperty Name="tipo_cta3" ColumnName="tipo_cta3" />
+                <ScalarProperty Name="co_ban4" ColumnName="co_ban4" />
+                <ScalarProperty Name="cta_banc4" ColumnName="cta_banc4" />
+                <ScalarProperty Name="cta_fecing4" ColumnName="cta_fecing4" />
+                <ScalarProperty Name="cod_empresa" ColumnName="cod_empresa" />
+                <ScalarProperty Name="fuero_sindic" ColumnName="fuero_sindic" />
+                <ScalarProperty Name="peso" ColumnName="peso" />
+                <ScalarProperty Name="estatura" ColumnName="estatura" />
+                <ScalarProperty Name="zurdo" ColumnName="zurdo" />
+                <ScalarProperty Name="grupo_sang" ColumnName="grupo_sang" />
+                <ScalarProperty Name="alergico_a" ColumnName="alergico_a" />
+                <ScalarProperty Name="enfermedades" ColumnName="enfermedades" />
+                <ScalarProperty Name="discapacitado" ColumnName="discapacitado" />
+                <ScalarProperty Name="co_cert" ColumnName="co_cert" />
+                <ScalarProperty Name="clasificacion" ColumnName="clasificacion" />
+                <ScalarProperty Name="tratamiento" ColumnName="tratamiento" />
+                <ScalarProperty Name="fecha_exp" ColumnName="fecha_exp" />
+                <ScalarProperty Name="fecha_venc" ColumnName="fecha_venc" />
+                <ScalarProperty Name="tipo_discapac" ColumnName="tipo_discapac" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="co_asegurado" ColumnName="co_asegurado" />
+                <ScalarProperty Name="condicion" ColumnName="condicion" />
+                <ScalarProperty Name="rep_segindust" ColumnName="rep_segindust" />
+                <ScalarProperty Name="co_repsegind" ColumnName="co_repsegind" />
+                <ScalarProperty Name="tipo_mintra" ColumnName="tipo_mintra" />
+                <ScalarProperty Name="ocupacion" ColumnName="ocupacion" />
+                <ScalarProperty Name="cert_aptitud" ColumnName="cert_aptitud" />
+                <ScalarProperty Name="perm_menor" ColumnName="perm_menor" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="parroquia" ColumnName="parroquia" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="tipo_cont" ColumnName="tipo_cont" />
+                <ScalarProperty Name="campo1" ColumnName="campo1" />
+                <ScalarProperty Name="campo2" ColumnName="campo2" />
+                <ScalarProperty Name="campo3" ColumnName="campo3" />
+                <ScalarProperty Name="campo4" ColumnName="campo4" />
+                <ScalarProperty Name="campo5" ColumnName="campo5" />
+                <ScalarProperty Name="campo6" ColumnName="campo6" />
+                <ScalarProperty Name="campo7" ColumnName="campo7" />
+                <ScalarProperty Name="campo8" ColumnName="campo8" />
+                <ScalarProperty Name="co_us_in" ColumnName="co_us_in" />
+                <ScalarProperty Name="fe_us_in" ColumnName="fe_us_in" />
+                <ScalarProperty Name="co_us_mo" ColumnName="co_us_mo" />
+                <ScalarProperty Name="fe_us_mo" ColumnName="fe_us_mo" />
+                <ScalarProperty Name="trasnfe" ColumnName="trasnfe" />
+                <ScalarProperty Name="revisado" ColumnName="revisado" />
+                <ScalarProperty Name="validador" ColumnName="validador" />
+                <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="snferiado">
+            <EntityTypeMapping TypeName="ITPRUEB_NModel.snferiado">
+              <MappingFragment StoreEntitySet="snferiado">
+                <ScalarProperty Name="co_fecha" ColumnName="co_fecha" />
+                <ScalarProperty Name="co_calen" ColumnName="co_calen" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
