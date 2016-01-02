@@ -40,6 +40,7 @@ namespace Backend.Logic
         /// <param name="Cert"></param>
         /// <returns></returns>
         public Boolean InsertCertificado(Model.Certificado Cert) {
+            Cert.User = (new Logic.LogicUser()).GetUser(Cert.User.Correo);
             return this.MyDao.Insert(Cert);
         }
         

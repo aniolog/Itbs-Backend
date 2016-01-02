@@ -11,8 +11,18 @@ namespace Backend.Controllers
     public class CertificadosController : ApiController
     {
         [Route("{ItbsEmail}")]
-        public Boolean Get() {
-            throw new IntranetException.ItbsException(HttpStatusCode.BadGateway,"dasdasdasdas");
+        public IQueryable<Model.Certificado> Get([FromUri] string ItbsEmail) {
+           Logic.LogicCertificado MyLogic = new Backend.Logic.LogicCertificado();
+            return MyLogic.GetCertificados(ItbsEmail);
         }
+        
+        [Route("create")]
+        public Boolean Post([FromBody] Model.Certificado Cert){
+            Logic.LogicCertificado MyLogic = new Backend.Logic.LogicCertificado();
+            return MyLogic.InsertCertificado(Cert);
+        }
+        
+
+
     }
 }
