@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Backend.Logic
 {
+
     public class LogicEstudio
     {
         /// <summary>
@@ -25,7 +26,7 @@ namespace Backend.Logic
         /// </summary>
         /// <param name="Correo"></param>
         /// <returns></returns>
-        public List<Model.Estudio> GetStudys(String Correo) {
+        public IQueryable<Model.Estudio> GetStudys(String Correo) {
             return this.MyDao.GetByPK(Correo);
         }
 
@@ -35,6 +36,7 @@ namespace Backend.Logic
         /// <param name="Study"></param>
         /// <returns></returns>
         public Boolean InsertStudy(Model.Estudio Study) {
+            Study.User = (new Logic.LogicUser()).GetUser(Study.User.Correo);
             return this.MyDao.Insert(Study);
         }
 

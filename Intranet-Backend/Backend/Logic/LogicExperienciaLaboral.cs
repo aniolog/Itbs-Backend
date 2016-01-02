@@ -25,7 +25,7 @@ namespace Backend.Logic
         /// </summary>
         /// <param name="Correo"></param>
         /// <returns></returns>
-        public List<Model.ExprecienciaLaboral> GetExperience(String Correo)
+        public IQueryable<Model.ExprecienciaLaboral> GetExperience(String Correo)
         {
             return this.MyDao.GetByPK(Correo);
         }
@@ -37,6 +37,7 @@ namespace Backend.Logic
         /// <returns></returns>
         public Boolean InsertExperience(Model.ExprecienciaLaboral Experience)
         {
+            Experience.User = (new Logic.LogicUser()).GetUser(Experience.User.Correo);
             return this.MyDao.Insert(Experience);
         }
     }
