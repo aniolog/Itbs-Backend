@@ -53,12 +53,6 @@ namespace Backend.Dao
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        public abstract dynamic GetAll(int Page,int Size);
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="PK"></param>
         /// <returns></returns>
         public abstract dynamic GetByPK(String PrimaryKey);

@@ -61,20 +61,20 @@ namespace Backend.IntranetException {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El usuario no posee ningun certificados asociado.
-        /// </summary>
-        internal static string Sin_certificados {
-            get {
-                return ResourceManager.GetString("Sin_certificados", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ususario no existe verifique sus credenciales.
         /// </summary>
         internal static string UsuarioInexistente {
             get {
                 return ResourceManager.GetString("UsuarioInexistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario debe ser obligatorio.
+        /// </summary>
+        internal static string UsuarioInvalido {
+            get {
+                return ResourceManager.GetString("UsuarioInvalido", resourceCulture);
             }
         }
     }

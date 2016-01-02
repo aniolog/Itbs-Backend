@@ -45,17 +45,6 @@ namespace Backend.Dao
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Page"></param>
-        /// <param name="Size"></param>
-        /// <returns></returns>
-        public override dynamic GetAll(int Page, int Size)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="PrimaryKey"></param>
         /// <returns></returns>
         public override dynamic GetByPK(string PrimaryKey)

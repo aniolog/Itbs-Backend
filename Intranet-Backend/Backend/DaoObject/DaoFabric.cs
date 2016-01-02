@@ -43,7 +43,6 @@ namespace Backend.Dao
         /// </summary>
         static public Dao getDaoExperienciaLaboral() { return new DaoExperienciaLaboral(); }
         
-
         /// <summary>
         /// 
         /// </summary>

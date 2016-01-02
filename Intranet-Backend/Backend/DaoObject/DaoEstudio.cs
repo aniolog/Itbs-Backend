@@ -43,17 +43,6 @@ namespace Backend.Dao
         }
 
         /// <summary>
-        /// Metodo no implementado
-        /// </summary>
-        /// <param name="Page"></param>
-        /// <param name="Size"></param>
-        /// <returns></returns>
-        public override dynamic GetAll(int Page, int Size)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Metodo encargado de devolver los niveles de estudio del empleado
         /// </summary>
         /// <param name="PrimaryKey">Correo ITBS del empleado</param>

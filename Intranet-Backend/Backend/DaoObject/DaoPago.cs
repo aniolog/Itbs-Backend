@@ -22,11 +22,6 @@ namespace Backend.Dao
             throw new NotImplementedException();
         }
 
-        public override dynamic GetAll(int Page, int Size)
-        {
-            throw new NotImplementedException();
-        }
-
         public override dynamic GetByPK(string PrimaryKey)
         {
             throw new NotImplementedException();

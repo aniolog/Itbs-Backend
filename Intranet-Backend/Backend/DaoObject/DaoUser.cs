@@ -40,18 +40,8 @@ namespace Backend.Dao
         /// <returns></returns>
         public override dynamic GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Page"></param>
-        /// <param name="Size"></param>
-        /// <returns></returns>
-        public override dynamic GetAll(int Page, int Size)
-        {
-            throw new NotImplementedException();
+            var User = from user in this.context.UserSet select user;
+            return User;
         }
 
         /// <summary>
@@ -66,15 +56,6 @@ namespace Backend.Dao
                 throw new IntranetException.ItbsException(HttpStatusCode.NotFound,IntranetException.ExceptionResource.UsuarioInexistente);
             }
             return User.First(); 
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public override int HowMany()
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>

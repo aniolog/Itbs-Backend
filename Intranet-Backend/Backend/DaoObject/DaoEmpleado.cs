@@ -46,18 +46,6 @@ namespace Backend.Dao
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Page"></param>
-        /// <param name="Size"></param>
-        /// <returns></returns>
-        public override dynamic GetAll(int Page, int Size)
-        {
-            var Empleados = from empleados in context.snemple select empleados;
-            return Empleados;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="PrimaryKey"></param>
         /// <returns></returns>
         public override dynamic GetByPK(string PrimaryKey)

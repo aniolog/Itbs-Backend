@@ -43,17 +43,6 @@ namespace Backend.Dao
         }
 
         /// <summary>
-        /// Metodo no implementado
-        /// </summary>
-        /// <param name="Page"></param>
-        /// <param name="Size"></param>
-        /// <returns></returns>
-        public override dynamic GetAll(int Page, int Size)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Metodo encargado de devolver la lista de certificados de un empleado especifico
         /// </summary>
         /// <param name="PrimaryKey">Clave del empleado al cual se le quiere obtener sus certificados</param>

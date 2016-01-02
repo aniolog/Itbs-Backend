@@ -44,17 +44,6 @@ namespace Backend.Dao
         }
 
         /// <summary>
-        /// Metodo (Paginado) encargado de devolver los dias feriado registrados en profit
-        /// </summary>
-        /// <param name="Page">Numero de la pagina</param>
-        /// <param name="Size">Tamano de la pagina</param>
-        /// <returns>Lista con todos los dias feriados</returns>
-        public override dynamic GetAll(int Page, int Size)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Metodo no implementado
         /// </summary>
         /// <param name="PrimaryKey"></param>

@@ -28,9 +28,6 @@ namespace Backend.Logic
         /// <returns></returns>
         public IQueryable<Model.Certificado> GetCertificados(String UserEmail) {
             IQueryable<Model.Certificado> Result = this.MyDao.GetByPK(UserEmail);
-            if (Result.Count() == 0) {
-                throw new IntranetException.ItbsException(HttpStatusCode.NoContent,IntranetException.ExceptionResource.Sin_certificados);
-            }
             return Result;
         }
 
@@ -40,6 +37,9 @@ namespace Backend.Logic
         /// <param name="Cert"></param>
         /// <returns></returns>
         public Boolean InsertCertificado(Model.Certificado Cert) {
+            if (Cert.User == null) {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,IntranetException.ExceptionResource.UsuarioInvalido);
+            }
             Cert.User = (new Logic.LogicUser()).GetUser(Cert.User.Correo);
             return this.MyDao.Insert(Cert);
         }
