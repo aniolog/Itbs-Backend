@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Backend.Logic
@@ -38,6 +39,10 @@ namespace Backend.Logic
         /// <returns></returns>
         public Boolean InsertCurso(Model.Curso Course)
         {
+            if (Course.User == null)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioInvalido);
+            }
             Course.User = (new Logic.LogicUser()).GetUser(Course.User.Correo);
             return this.MyDao.Insert(Course);
         }

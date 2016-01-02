@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Backend.Logic
@@ -36,6 +37,10 @@ namespace Backend.Logic
         /// <param name="Study"></param>
         /// <returns></returns>
         public Boolean InsertStudy(Model.Estudio Study) {
+            if (Study.User == null)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioInvalido);
+            }
             Study.User = (new Logic.LogicUser()).GetUser(Study.User.Correo);
             return this.MyDao.Insert(Study);
         }

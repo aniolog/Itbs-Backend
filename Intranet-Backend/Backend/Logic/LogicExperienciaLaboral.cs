@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Backend.Logic
@@ -37,6 +38,10 @@ namespace Backend.Logic
         /// <returns></returns>
         public Boolean InsertExperience(Model.ExprecienciaLaboral Experience)
         {
+            if (Experience.User == null)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioInvalido);
+            }
             Experience.User = (new Logic.LogicUser()).GetUser(Experience.User.Correo);
             return this.MyDao.Insert(Experience);
         }

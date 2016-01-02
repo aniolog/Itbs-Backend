@@ -46,15 +46,6 @@ namespace Backend.Logic
             return this.MyDao.GetAll();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Page"></param>
-        /// <param name="Size"></param>
-        /// <returns></returns>
-        public List<Model.snemple> GetAllGetAllEmpleados(int Page,int Size) {
-            return this.MyDao.GetAll(Page,Size);
-        }
 
         /// <summary>
         /// 

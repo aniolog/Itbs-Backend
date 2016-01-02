@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Backend.Logic
@@ -20,6 +21,10 @@ namespace Backend.Logic
         }
 
         public Boolean InsetVacationRequest(Model.SolicitudVacaciones Request) {
+            if (Request.User == null)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioInvalido);
+            }
             return this.MyDao.Insert(Request);
         }
 
