@@ -47,7 +47,7 @@
     <Property Name="Fecha" Type="datetime" Nullable="false" />
     <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
     <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CursosSet">
     <Key>
@@ -57,7 +57,7 @@
     <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="EstudioSet">
     <Key>
@@ -68,7 +68,7 @@
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Ano_Finalizacion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ExprecienciaLaboralSet">
     <Key>
@@ -78,7 +78,7 @@
     <Property Name="CantidadAnos" Type="smallint" Nullable="false" />
     <Property Name="Desempeno" Type="nvarchar(max)" Nullable="false" />
     <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="SolicitudVacacionesSet">
     <Key>
@@ -88,7 +88,7 @@
     <Property Name="Fecha_Inicio" Type="datetime" Nullable="false" />
     <Property Name="Duracion" Type="smallint" Nullable="false" />
     <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RolSet1">
     <Key>
@@ -110,7 +110,7 @@
     <Property Name="Usename" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Foto" Type="nvarchar(max)" Nullable="true" />
     <Property Name="CorreoPersonal" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Rol_Id" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="UserEstudio">
@@ -267,7 +267,7 @@
           <Property Name="Usename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CorreoPersonal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Id" Type="String" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Estudio" Relationship="itbsModel.UserEstudio" FromRole="User" ToRole="Estudio" />
           <NavigationProperty Name="ExprecienciaLaboral" Relationship="itbsModel.UserExprecienciaLaboral" FromRole="User" ToRole="ExprecienciaLaboral" />
           <NavigationProperty Name="Certificado" Relationship="itbsModel.UserCertificado" FromRole="User" ToRole="Certificado" />

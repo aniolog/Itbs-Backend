@@ -58,6 +58,11 @@ namespace Backend.Dao
             return User.First(); 
         }
 
+        public override int HowMany()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -65,11 +70,19 @@ namespace Backend.Dao
         /// <returns></returns>
         public override bool Insert(object obj)
         {
+
+            try
+            {
                 Model.User NewUser = ((Model.User)obj);
                 this.context.UserSet.Add(NewUser);
                 this.context.SaveChanges();
                 return true;
-          
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException e)
+            {
+                return false;
+            }
+
         }
 
         /// <summary>

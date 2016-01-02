@@ -61,6 +61,33 @@ namespace Backend.IntranetException {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El Rol que ingreso es invalido.
+        /// </summary>
+        internal static string RolInexistente {
+            get {
+                return ResourceManager.GetString("RolInexistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rol debe ser obligatorio.
+        /// </summary>
+        internal static string RolInvalido {
+            get {
+                return ResourceManager.GetString("RolInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La direccion de correo electronico de Itbs que ingreso ya esta en uso.
+        /// </summary>
+        internal static string UsuarioExistente {
+            get {
+                return ResourceManager.GetString("UsuarioExistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ususario no existe verifique sus credenciales.
         /// </summary>
         internal static string UsuarioInexistente {

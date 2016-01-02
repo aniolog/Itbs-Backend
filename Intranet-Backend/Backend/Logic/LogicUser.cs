@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Backend.Logic
@@ -29,7 +30,23 @@ namespace Backend.Logic
         /// <param name="NewUser"></param>
         /// <returns></returns>
         public Boolean InsertUser(Model.User NewUser) {
-            return this.Dao.Insert(NewUser);
+
+            
+                if (NewUser.Rol == null)
+                {
+                    throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.RolInvalido);
+                }
+
+                var Rol = (new Logic.LogicRol()).GetRol(NewUser.Rol.Nombre);
+                if (Rol.Count() == 0)
+                {
+                    throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.RolInexistente);
+                }
+                NewUser.Rol = Rol.First();
+                return this.Dao.Insert(NewUser);
+            
+           
+            
         }
 
         /// <summary>
@@ -39,6 +56,15 @@ namespace Backend.Logic
         /// <returns></returns>
         public Model.User GetUser(String UserEmail) {
             return this.Dao.GetByPK(UserEmail);
+        }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+        public IQueryable<Model.User> GetUsers()
+        {
+            return this.Dao.GetAll();
         }
 
         /// <summary>

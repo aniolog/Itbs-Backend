@@ -31,7 +31,7 @@ namespace Backend.Model
         public string Usename { get; set; }
         public string Foto { get; set; }
         public string CorreoPersonal { get; set; }
-        public string Id { get; set; }
+        public int Id { get; set; }
     
         public virtual ICollection<Estudio> Estudio { get; set; }
         public virtual ICollection<ExprecienciaLaboral> ExprecienciaLaboral { get; set; }

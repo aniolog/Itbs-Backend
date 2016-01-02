@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/29/2015 17:34:46
--- Generated from EDMX file: C:\Users\alozano\Desktop\ASP\Intranet-Backend\Intranet-Backend\Model\intranet.edmx
+-- Date Created: 01/02/2016 16:22:12
+-- Generated from EDMX file: C:\Users\alozano\Desktop\ASP\Itbs-Backend\Intranet-Backend\Backend\Model\intranet.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -73,7 +73,7 @@ CREATE TABLE [dbo].[CertificadoSet] (
     [Fecha] datetime  NOT NULL,
     [Url] nvarchar(max)  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
-    [User_Id] nvarchar(max)  NOT NULL
+    [User_Id] int  NOT NULL
 );
 GO
 
@@ -83,7 +83,7 @@ CREATE TABLE [dbo].[CursosSet] (
     [Titulo] nvarchar(max)  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
-    [User_Id] nvarchar(max)  NOT NULL
+    [User_Id] int  NOT NULL
 );
 GO
 
@@ -94,7 +94,7 @@ CREATE TABLE [dbo].[EstudioSet] (
     [Descripcion] nvarchar(max)  NOT NULL,
     [Ano_Finalizacion] nvarchar(max)  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
-    [User_Id] nvarchar(max)  NOT NULL
+    [User_Id] int  NOT NULL
 );
 GO
 
@@ -104,7 +104,7 @@ CREATE TABLE [dbo].[ExprecienciaLaboralSet] (
     [CantidadAnos] smallint  NOT NULL,
     [Desempeno] nvarchar(max)  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
-    [User_Id] nvarchar(max)  NOT NULL
+    [User_Id] int  NOT NULL
 );
 GO
 
@@ -114,7 +114,7 @@ CREATE TABLE [dbo].[SolicitudVacacionesSet] (
     [Fecha_Inicio] datetime  NOT NULL,
     [Duracion] smallint  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
-    [User_Id] nvarchar(max)  NOT NULL
+    [User_Id] int  NOT NULL
 );
 GO
 
@@ -135,7 +135,7 @@ CREATE TABLE [dbo].[UserSet] (
     [Usename] nvarchar(max)  NOT NULL,
     [Foto] nvarchar(max)  NULL,
     [CorreoPersonal] nvarchar(max)  NULL,
-    [Id] nvarchar(max)  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Rol_Id] nvarchar(max)  NOT NULL
 );
 GO
