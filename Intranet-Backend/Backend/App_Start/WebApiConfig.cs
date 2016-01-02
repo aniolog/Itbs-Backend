@@ -11,7 +11,7 @@ namespace Backend
     {
         public static void Register(HttpConfiguration config)
         {
-
+            config.Filters.Add(new IntranetException.ExceptionFilter());
             // Web API routes
             config.MapHttpAttributeRoutes();
 

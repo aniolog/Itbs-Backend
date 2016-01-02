@@ -17,14 +17,23 @@ namespace Backend.Logic
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            try
+            {
+                context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+                var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                Model.User UserAuth = (new LogicUser()).GetUser(context.UserName);
+                identity.AddClaim(new Claim("sub", context.UserName));
+                identity.AddClaim(new Claim("role", "user"));
 
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
-
-            context.Validated(identity);
-
+                context.Validated(identity);
+            }
+            catch (IntranetException.ItbsException e)
+            {
+                return;
+            }
+            catch (Exception e) {
+                return; 
+            }
         }
     }
 }

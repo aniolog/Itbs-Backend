@@ -120,4 +120,7 @@
   <data name="Sin_certificados" xml:space="preserve">
     <value>El usuario no posee ningun certificados asociado</value>
   </data>
+  <data name="UsuarioInexistente" xml:space="preserve">
+    <value>Ususario no existe verifique sus credenciales</value>
+  </data>
 </root>

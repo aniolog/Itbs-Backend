@@ -68,5 +68,14 @@ namespace Backend.IntranetException {
                 return ResourceManager.GetString("Sin_certificados", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ususario no existe verifique sus credenciales.
+        /// </summary>
+        internal static string UsuarioInexistente {
+            get {
+                return ResourceManager.GetString("UsuarioInexistente", resourceCulture);
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Backend.Dao
@@ -61,7 +62,10 @@ namespace Backend.Dao
         public override dynamic GetByPK(string PrimaryKey)
         {
             var User = from user in this.context.UserSet where user.Correo.Equals(PrimaryKey) select user;
-            return User; 
+            if (User.Count() < 1) {
+                throw new IntranetException.ItbsException(HttpStatusCode.NotFound,IntranetException.ExceptionResource.UsuarioInexistente);
+            }
+            return User.First(); 
         }
 
         /// <summary>
