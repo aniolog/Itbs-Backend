@@ -25,7 +25,7 @@ namespace Backend.Logic
         /// </summary>
         /// <param name="UserEmail"></param>
         /// <returns></returns>
-        public List<Model.Curso> GetCursos(String UserEmail)
+        public IQueryable<Model.Curso> GetCursos(String UserEmail)
         {
             return this.MyDao.GetByPK(UserEmail);
 
@@ -38,6 +38,7 @@ namespace Backend.Logic
         /// <returns></returns>
         public Boolean InsertCurso(Model.Curso Course)
         {
+            Course.User = (new Logic.LogicUser()).GetUser(Course.User.Correo);
             return this.MyDao.Insert(Course);
         }
     }
