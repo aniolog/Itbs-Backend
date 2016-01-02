@@ -7,7 +7,12 @@ using System.Web.Http;
 
 namespace Backend.Controllers
 {
+    [RoutePrefix("api/certificados")]
     public class CertificadosController : ApiController
     {
+        [Route("{ItbsEmail}")]
+        public Boolean Get() {
+            throw new IntranetException.ItbsException(HttpStatusCode.BadGateway,"dasdasdasdas");
+        }
     }
 }
