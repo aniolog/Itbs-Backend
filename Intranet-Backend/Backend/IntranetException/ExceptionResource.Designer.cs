@@ -61,6 +61,15 @@ namespace Backend.IntranetException {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ususario no existe, verifique el correo electronico.
+        /// </summary>
+        internal static string EmpleadoInexistente {
+            get {
+                return ResourceManager.GetString("EmpleadoInexistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El Rol que ingreso es invalido.
         /// </summary>
         internal static string RolInexistente {
@@ -88,7 +97,7 @@ namespace Backend.IntranetException {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ususario no existe verifique sus credenciales.
+        ///   Looks up a localized string similar to Ususario no existe, verifique sus credenciales.
         /// </summary>
         internal static string UsuarioInexistente {
             get {

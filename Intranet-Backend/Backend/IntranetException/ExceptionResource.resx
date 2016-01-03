@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmpleadoInexistente" xml:space="preserve">
+    <value>Ususario no existe, verifique el correo electronico</value>
+    <comment>Status Code: BadRequest</comment>
+  </data>
   <data name="RolInexistente" xml:space="preserve">
     <value>El Rol que ingreso es invalido</value>
     <comment>Status Code: BadRequest</comment>
@@ -130,7 +134,7 @@
     <comment>Status Code: BadRequest</comment>
   </data>
   <data name="UsuarioInexistente" xml:space="preserve">
-    <value>Ususario no existe verifique sus credenciales</value>
+    <value>Ususario no existe, verifique sus credenciales</value>
     <comment>Status Code: NotFound</comment>
   </data>
   <data name="UsuarioInvalido" xml:space="preserve">

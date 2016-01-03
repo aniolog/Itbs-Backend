@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Backend.Logic
@@ -25,7 +26,7 @@ namespace Backend.Logic
         /// </summary>
         /// <param name="Correo"></param>
         /// <returns></returns>
-        public Model.snemple GetEmpleado(String Correo) {
+        public IQueryable<Model.snemple> GetEmpleado(String Correo) {
             return this.MyDao.GetByPK(Correo);
         }
 
@@ -35,6 +36,12 @@ namespace Backend.Logic
         /// <param name="Employee"></param>
         /// <returns></returns>
         public Boolean ModifyEmpleado(Model.snemple Employee) {
+            if (Employee.correo_e == null) {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,IntranetException.ExceptionResource.EmpleadoInexistente);
+            }
+            if (this.GetEmpleado(Employee.correo_e).Count()<1) {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.EmpleadoInexistente);
+            }
             return MyDao.Update(Employee);
         }
 
@@ -42,7 +49,7 @@ namespace Backend.Logic
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<Model.snemple> GetAllEmpleados() {
+        public IQueryable<Model.snemple> GetAllEmpleados() {
             return this.MyDao.GetAll();
         }
 

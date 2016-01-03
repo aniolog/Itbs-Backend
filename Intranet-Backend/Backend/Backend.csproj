@@ -196,6 +196,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CertificadosController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EstudiosController.cs" />
     <Compile Include="Controllers\ExperienciaLaboralController.cs" />
     <Compile Include="Controllers\SolicitudDeVacacionesController.cs" />
