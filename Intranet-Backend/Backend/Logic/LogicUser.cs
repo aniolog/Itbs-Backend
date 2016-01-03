@@ -36,7 +36,11 @@ namespace Backend.Logic
                 {
                     throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.RolInvalido);
                 }
-
+                var Auth = (new Logic.LogicUser()).GetUser(NewUser.Correo);
+                if (Auth!= null)
+                {
+                    throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioExistente);
+                }
                 var Rol = (new Logic.LogicRol()).GetRol(NewUser.Rol.Nombre);
                 if (Rol.Count() == 0)
                 {
@@ -73,6 +77,21 @@ namespace Backend.Logic
         /// <param name="User"></param>
         /// <returns></returns>
         public Boolean ModifyUser(Model.User User) {
+            if (User.Rol == null)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.RolInvalido);
+            }
+            var Auth = (new Logic.LogicUser()).GetUser(User.Correo);
+            if (Auth == null)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioInexistente);
+            }
+            var Rol = (new Logic.LogicRol()).GetRol(User.Rol.Nombre);
+            if (Rol.Count() == 0)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.RolInexistente);
+            }
+            User.Rol = Rol.First();
             return this.Dao.Update(User);
         }
 

@@ -42,7 +42,12 @@ namespace Backend.Logic
             {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioInvalido);
             }
-            Experience.User = (new Logic.LogicUser()).GetUser(Experience.User.Correo);
+            var User = (new Logic.LogicUser()).GetUser(Experience.User.Correo);
+            if (User == null)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.NotFound, IntranetException.ExceptionResource.UsuarioInexistente);
+            }
+            Experience.User =User;
             return this.MyDao.Insert(Experience);
         }
     }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -22,6 +23,9 @@ namespace Backend.Logic
                 context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 Model.User UserAuth = (new LogicUser()).GetUser(context.UserName);
+                if (UserAuth == null) {
+                    throw new IntranetException.ItbsException(HttpStatusCode.NotFound, IntranetException.ExceptionResource.UsuarioInexistente);
+                }
                 identity.AddClaim(new Claim("sub", context.UserName));
                 identity.AddClaim(new Claim("role", "user"));
 

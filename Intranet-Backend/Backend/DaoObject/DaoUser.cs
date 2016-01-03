@@ -53,7 +53,7 @@ namespace Backend.Dao
         {
             var User = from user in this.context.UserSet where user.Correo.Equals(PrimaryKey) select user;
             if (User.Count() < 1) {
-                throw new IntranetException.ItbsException(HttpStatusCode.NotFound,IntranetException.ExceptionResource.UsuarioInexistente);
+               return null;
             }
             return User.First(); 
         }
@@ -94,11 +94,15 @@ namespace Backend.Dao
         {
             try {
                 Model.User UpdateUser = (Model.User)Obj;
-                var User = from user in this.context.UserSet where user.Correo.Equals(UpdateUser.Correo) select user;
+                var User = from user in this.context.UserSet where user.Correo==UpdateUser.Correo select user;
                 Model.User ModifyUser=User.First();
                 ModifyUser.AnoVehiculo = UpdateUser.AnoVehiculo;
                 ModifyUser.ColorVehiculo = UpdateUser.ColorVehiculo;
                 ModifyUser.ModeloVehiculo = UpdateUser.ModeloVehiculo;
+                ModifyUser.Foto = UpdateUser.Foto;
+                ModifyUser.CorreoPersonal = UpdateUser.CorreoPersonal;
+                ModifyUser.PlacaVehiculo = UpdateUser.PlacaVehiculo;
+                ModifyUser.Rol = UpdateUser.Rol;
                 this.context.SaveChanges();
                 return true;
             }

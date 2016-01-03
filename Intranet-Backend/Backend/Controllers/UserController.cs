@@ -32,5 +32,12 @@ namespace Backend.Controllers
             Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
             return MyLogic.InsertUser(NewUser);
         }
+
+        [Route("update")]
+        public Boolean Put([FromBody]Model.User NewUser)
+        {
+            Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
+            return MyLogic.ModifyUser(NewUser);
+        }
     }
 }

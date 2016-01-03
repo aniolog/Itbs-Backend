@@ -40,7 +40,11 @@ namespace Backend.Logic
             if (Cert.User == null) {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,IntranetException.ExceptionResource.UsuarioInvalido);
             }
-            Cert.User = (new Logic.LogicUser()).GetUser(Cert.User.Correo);
+            var User= (new Logic.LogicUser()).GetUser(Cert.User.Correo);
+            if (User == null) {
+                throw new IntranetException.ItbsException(HttpStatusCode.NotFound, IntranetException.ExceptionResource.UsuarioInexistente);
+            }
+            Cert.User = User;
             return this.MyDao.Insert(Cert);
         }
         

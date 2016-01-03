@@ -41,7 +41,12 @@ namespace Backend.Logic
             {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioInvalido);
             }
-            Study.User = (new Logic.LogicUser()).GetUser(Study.User.Correo);
+            var User = (new Logic.LogicUser()).GetUser(Study.User.Correo);
+            if (User == null)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.NotFound, IntranetException.ExceptionResource.UsuarioInexistente);
+            }
+            Study.User = User;
             return this.MyDao.Insert(Study);
         }
 
