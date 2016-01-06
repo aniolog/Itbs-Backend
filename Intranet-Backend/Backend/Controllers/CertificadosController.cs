@@ -10,10 +10,10 @@ namespace Backend.Controllers
     [RoutePrefix("api/certificados")]
     public class CertificadosController : ApiController
     {
-        [Route("{ItbsEmail}")]
-        public IQueryable<Model.Certificado> Get([FromUri] string ItbsEmail) {
+        [Route("{email}/")]
+        public IQueryable<Model.Certificado> Get([FromUri] string email) {
            Logic.LogicCertificado MyLogic = new Backend.Logic.LogicCertificado();
-            return MyLogic.GetCertificados(ItbsEmail);
+            return MyLogic.GetCertificados(email);
         }
         
         [Route("create")]

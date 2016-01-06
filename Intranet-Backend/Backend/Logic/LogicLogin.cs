@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,7 @@ namespace Backend.Logic
         {
             try
             {
+
                 context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 Model.User UserAuth = (new LogicUser()).GetUser(context.UserName);

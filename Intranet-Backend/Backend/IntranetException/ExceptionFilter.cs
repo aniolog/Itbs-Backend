@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http.Filters;
 
@@ -19,13 +20,16 @@ namespace Backend.IntranetException
                 var Excep = ((ItbsException)actionExecutedContext.Exception);
                 var Status = Excep.Code;
                 var Message = Excep.Message;
-                
 
-                
-                 HttpResponseMessage response = new HttpResponseMessage(Status)
-                 {
-                     Content = new StringContent(Message),
-                     ReasonPhrase = Message
+
+
+                HttpResponseMessage response = new HttpResponseMessage(Status)
+                {
+                    Content = new ObjectContent<Model_Rest.Error>(
+                             new Model_Rest.Error(Status,Message),
+                               new JsonMediaTypeFormatter(),
+                               "application/json"),
+                  
                  };
 
 
