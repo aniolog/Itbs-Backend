@@ -10,6 +10,8 @@ namespace Backend.Controllers
     [RoutePrefix("api/usuarios")]
     public class UserController : ApiController
     {
+        [Authorize(Roles = "Administrador")]
+        [Queryable]
         [Route("{ItbsEmail}")]
         public IQueryable<Model.User> Get([FromUri] string ItbsEmail)
         {
@@ -18,21 +20,22 @@ namespace Backend.Controllers
             returner.Add(MyLogic.GetUser(ItbsEmail));
             return returner.AsQueryable();
         }
-
+        [Authorize(Roles = "Administrador")]
+        [Queryable]
         [Route("")]
         public IQueryable<Model.User> Get()
         {
             Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
             return MyLogic.GetUsers();
         }
-
+        [Authorize(Roles = "Administrador")]
         [Route("create")]
         public Boolean Post([FromBody]Model.User NewUser)
         {
             Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
             return MyLogic.InsertUser(NewUser);
         }
-
+        [Authorize(Roles = "Administrador")]
         [Route("update")]
         public Boolean Put([FromBody]Model.User NewUser)
         {

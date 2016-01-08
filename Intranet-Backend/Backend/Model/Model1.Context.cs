@@ -27,5 +27,6 @@ namespace Backend.Model
     
         public DbSet<snemple> snemple { get; set; }
         public DbSet<snferiado> snferiado { get; set; }
+        public DbSet<sncargo> sncargo { get; set; }
     }
 }

@@ -28,7 +28,7 @@ namespace Backend
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/login"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(10),
                 Provider = new Logic.LogicLogin()
             };
 

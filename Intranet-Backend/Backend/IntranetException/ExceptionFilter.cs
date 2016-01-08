@@ -37,6 +37,28 @@ namespace Backend.IntranetException
 
                 actionExecutedContext.Response = response;
             }
+            else if (actionExecutedContext.Exception is Exception)
+            {
+
+                var Excep = (actionExecutedContext.Exception);
+                var Message = Excep.Message;
+
+
+
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
+                {
+                    Content = new ObjectContent<Model_Rest.Error>(
+                             new Model_Rest.Error(HttpStatusCode.InternalServerError, Message),
+                               new JsonMediaTypeFormatter(),
+                               "application/json"),
+
+                };
+
+
+                //Create the Error Response
+
+                actionExecutedContext.Response = response;
+            }
 
         }
 

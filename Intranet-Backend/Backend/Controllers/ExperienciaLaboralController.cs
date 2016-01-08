@@ -10,6 +10,8 @@ namespace Backend.Controllers
     [RoutePrefix("api/experiencia")]
     public class ExperienciaLaboralController : ApiController
     {
+        [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
+        [Queryable]
         [Route("{ItbsEmail}")]
         public IQueryable<Model.ExprecienciaLaboral> Get([FromUri] string ItbsEmail)
         {
@@ -17,6 +19,7 @@ namespace Backend.Controllers
             return MyLogic.GetExperience(ItbsEmail);
         }
 
+        [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
         [Route("create")]
         public Boolean Post([FromBody] Model.ExprecienciaLaboral Experience)
         {

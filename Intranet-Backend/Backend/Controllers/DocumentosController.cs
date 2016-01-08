@@ -10,31 +10,14 @@ namespace Backend.Controllers
     [RoutePrefix("api/documentos")]
     public class DocumentosController : ApiController
     {
+        [Authorize(Roles ="Administrador")]
         [Route("cv")]
-        public Boolean Post([FromBody] Model.User User)
+        public string Post([FromBody] Model_Rest.CtRequest Request)
         {
-            var htmlContent = String.Format("<body>" + User.Correo + "</body>",
-            DateTime.Now);
-            var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
-            var pdfBytes = htmlToPdf.GeneratePdf(htmlContent);
-            System.IO.FileStream _FileStream =
-            new System.IO.FileStream(@"C:\Users\alozano\Desktop\cv.pdf", System.IO.FileMode.Create, System.IO.FileAccess.Write);
-            _FileStream.Write(pdfBytes, 0, pdfBytes.Length);
-            _FileStream.Close(); 
-            return true;
+         
+            return (new Logic.LogicDocumentos()).CreateConstanciaTrabajo(Request.EmpleadoCorreo, Request.JefeCorreo);
         }
-        /*
-        [Route("{ItbsEmail}")]
-        public byte[] CV([FromUri]string ItbsEmail) {
-            var htmlContent = String.Format("<body>"+ ItbsEmail + "</body>",
-             DateTime.Now);
-            var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
-            var pdfBytes = htmlToPdf.GeneratePdf(htmlContent);
-            System.IO.FileStream _FileStream =
-            new System.IO.FileStream(@"C:\Users\alozano\Desktop\cv.pdf", System.IO.FileMode.Create,System.IO.FileAccess.Write);
-            _FileStream.Write(pdfBytes, 0, pdfBytes.Length);
-            _FileStream.Close();
-            return pdfBytes;*/
+      
     }
     
 }

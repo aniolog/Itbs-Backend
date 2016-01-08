@@ -8,6 +8,9 @@
         <EntityTypeShape EntityType="ITPRUEB_NModel.snemple" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ITPRUEB_NModel.snferiado" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="ITPRUEB_NModel.FK_snemple_snemple" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ITPRUEB_NModel.sncargo" Width="1.5" PointX="0.75" PointY="25.75" />
+        <AssociationConnector Association="ITPRUEB_NModel.FK_sncargo_sncargo" />
+        <AssociationConnector Association="ITPRUEB_NModel.FK_snemple_sncargo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

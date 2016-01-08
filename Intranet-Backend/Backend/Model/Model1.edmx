@@ -4,7 +4,43 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ITPRUEB_NModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ITPRUEB_NModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sncargo">
+          <Key>
+            <PropertyRef Name="co_cargo" />
+          </Key>
+          <Property Name="co_cargo" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="des_cargo" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="co_ocupacion" Type="char" MaxLength="8" />
+          <Property Name="co_depart" Type="char" MaxLength="12" />
+          <Property Name="depende_de" Type="char" MaxLength="8" />
+          <Property Name="direcc_confianza" Type="bit" Nullable="false" />
+          <Property Name="sueldo_sug" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="num_trab_sug" Type="int" Nullable="false" />
+          <Property Name="func_general" Type="varchar(max)" />
+          <Property Name="func_especifica" Type="varchar(max)" />
+          <Property Name="requisitos" Type="varchar(max)" />
+          <Property Name="comentarios" Type="varchar(max)" />
+          <Property Name="riesgo" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="clasif_riesgo" Type="varchar(max)" />
+          <Property Name="lesiones" Type="varchar(max)" />
+          <Property Name="prevenciones" Type="varchar(max)" />
+          <Property Name="campo1" Type="varchar" MaxLength="60" />
+          <Property Name="campo2" Type="varchar" MaxLength="60" />
+          <Property Name="campo3" Type="varchar" MaxLength="60" />
+          <Property Name="campo4" Type="varchar" MaxLength="60" />
+          <Property Name="campo5" Type="varchar" MaxLength="60" />
+          <Property Name="campo6" Type="varchar" MaxLength="60" />
+          <Property Name="campo7" Type="varchar" MaxLength="60" />
+          <Property Name="campo8" Type="varchar" MaxLength="60" />
+          <Property Name="co_us_in" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="fe_us_in" Type="datetime" Nullable="false" />
+          <Property Name="co_us_mo" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="fe_us_mo" Type="datetime" Nullable="false" />
+          <Property Name="trasnfe" Type="char" MaxLength="1" />
+          <Property Name="revisado" Type="char" MaxLength="1" />
+          <Property Name="validador" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="snemple">
           <Key>
             <PropertyRef Name="cod_emp" />
@@ -135,6 +171,30 @@
           <Property Name="fecha" Type="smalldatetime" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="60" />
         </EntityType>
+        <Association Name="FK_sncargo_sncargo">
+          <End Role="sncargo" Type="Self.sncargo" Multiplicity="0..1" />
+          <End Role="sncargo1" Type="Self.sncargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sncargo">
+              <PropertyRef Name="co_cargo" />
+            </Principal>
+            <Dependent Role="sncargo1">
+              <PropertyRef Name="depende_de" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snemple_sncargo">
+          <End Role="sncargo" Type="Self.sncargo" Multiplicity="1" />
+          <End Role="snemple" Type="Self.snemple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sncargo">
+              <PropertyRef Name="co_cargo" />
+            </Principal>
+            <Dependent Role="snemple">
+              <PropertyRef Name="co_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_snemple_snemple">
           <End Role="snemple" Type="Self.snemple" Multiplicity="0..1" />
           <End Role="snemple1" Type="Self.snemple" Multiplicity="*" />
@@ -148,15 +208,23 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ITPRUEB_NModelStoreContainer">
+          <EntitySet Name="sncargo" EntityType="Self.sncargo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="snemple" EntityType="Self.snemple" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="snferiado" EntityType="Self.snferiado" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_sncargo_sncargo" Association="Self.FK_sncargo_sncargo">
+            <End Role="sncargo" EntitySet="sncargo" />
+            <End Role="sncargo1" EntitySet="sncargo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snemple_sncargo" Association="Self.FK_snemple_sncargo">
+            <End Role="sncargo" EntitySet="sncargo" />
+            <End Role="snemple" EntitySet="snemple" />
+          </AssociationSet>
           <AssociationSet Name="FK_snemple_snemple" Association="Self.FK_snemple_snemple">
             <End Role="snemple" EntitySet="snemple" />
             <End Role="snemple1" EntitySet="snemple" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ITPRUEB_NModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -280,6 +348,7 @@
           <Property Name="nombre_completo" Type="String" MaxLength="122" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="snemple1" Relationship="Self.FK_snemple_snemple" FromRole="snemple" ToRole="snemple1" />
           <NavigationProperty Name="snemple2" Relationship="Self.FK_snemple_snemple" FromRole="snemple1" ToRole="snemple" />
+          <NavigationProperty Name="sncargo" Relationship="ITPRUEB_NModel.FK_snemple_sncargo" FromRole="snemple" ToRole="sncargo" />
         </EntityType>
         <EntityType Name="snferiado">
           <Key>
@@ -311,7 +380,79 @@
             <End Role="snemple" EntitySet="snemple" />
             <End Role="snemple1" EntitySet="snemple" />
           </AssociationSet>
+          <EntitySet Name="sncargo" EntityType="ITPRUEB_NModel.sncargo" />
+          <AssociationSet Name="FK_sncargo_sncargo" Association="ITPRUEB_NModel.FK_sncargo_sncargo">
+            <End Role="sncargo" EntitySet="sncargo" />
+            <End Role="sncargo1" EntitySet="sncargo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_snemple_sncargo" Association="ITPRUEB_NModel.FK_snemple_sncargo">
+            <End Role="sncargo" EntitySet="sncargo" />
+            <End Role="snemple" EntitySet="snemple" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sncargo">
+          <Key>
+            <PropertyRef Name="co_cargo" />
+          </Key>
+          <Property Name="co_cargo" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="des_cargo" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="co_ocupacion" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="co_depart" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="depende_de" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="direcc_confianza" Type="Boolean" Nullable="false" />
+          <Property Name="sueldo_sug" Type="Decimal" Nullable="false" Precision="11" Scale="2" />
+          <Property Name="num_trab_sug" Type="Int32" Nullable="false" />
+          <Property Name="func_general" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="func_especifica" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="requisitos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="riesgo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="clasif_riesgo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="lesiones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prevenciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="campo1" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo2" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo3" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo4" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo5" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo6" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo7" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campo8" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="co_us_in" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="fe_us_in" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="co_us_mo" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="fe_us_mo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="trasnfe" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="revisado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="validador" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="sncargo1" Relationship="ITPRUEB_NModel.FK_sncargo_sncargo" FromRole="sncargo" ToRole="sncargo1" />
+          <NavigationProperty Name="sncargo2" Relationship="ITPRUEB_NModel.FK_sncargo_sncargo" FromRole="sncargo1" ToRole="sncargo" />
+          <NavigationProperty Name="snemple" Relationship="ITPRUEB_NModel.FK_snemple_sncargo" FromRole="sncargo" ToRole="snemple" />
+        </EntityType>
+        <Association Name="FK_sncargo_sncargo">
+          <End Type="ITPRUEB_NModel.sncargo" Role="sncargo" Multiplicity="0..1" />
+          <End Type="ITPRUEB_NModel.sncargo" Role="sncargo1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sncargo">
+              <PropertyRef Name="co_cargo" />
+            </Principal>
+            <Dependent Role="sncargo1">
+              <PropertyRef Name="depende_de" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_snemple_sncargo">
+          <End Type="ITPRUEB_NModel.sncargo" Role="sncargo" Multiplicity="1" />
+          <End Type="ITPRUEB_NModel.snemple" Role="snemple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sncargo">
+              <PropertyRef Name="co_cargo" />
+            </Principal>
+            <Dependent Role="snemple">
+              <PropertyRef Name="co_cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -445,6 +586,43 @@
                 <ScalarProperty Name="co_calen" ColumnName="co_calen" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sncargo">
+            <EntityTypeMapping TypeName="ITPRUEB_NModel.sncargo">
+              <MappingFragment StoreEntitySet="sncargo">
+                <ScalarProperty Name="validador" ColumnName="validador" />
+                <ScalarProperty Name="revisado" ColumnName="revisado" />
+                <ScalarProperty Name="trasnfe" ColumnName="trasnfe" />
+                <ScalarProperty Name="fe_us_mo" ColumnName="fe_us_mo" />
+                <ScalarProperty Name="co_us_mo" ColumnName="co_us_mo" />
+                <ScalarProperty Name="fe_us_in" ColumnName="fe_us_in" />
+                <ScalarProperty Name="co_us_in" ColumnName="co_us_in" />
+                <ScalarProperty Name="campo8" ColumnName="campo8" />
+                <ScalarProperty Name="campo7" ColumnName="campo7" />
+                <ScalarProperty Name="campo6" ColumnName="campo6" />
+                <ScalarProperty Name="campo5" ColumnName="campo5" />
+                <ScalarProperty Name="campo4" ColumnName="campo4" />
+                <ScalarProperty Name="campo3" ColumnName="campo3" />
+                <ScalarProperty Name="campo2" ColumnName="campo2" />
+                <ScalarProperty Name="campo1" ColumnName="campo1" />
+                <ScalarProperty Name="prevenciones" ColumnName="prevenciones" />
+                <ScalarProperty Name="lesiones" ColumnName="lesiones" />
+                <ScalarProperty Name="clasif_riesgo" ColumnName="clasif_riesgo" />
+                <ScalarProperty Name="riesgo" ColumnName="riesgo" />
+                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+                <ScalarProperty Name="requisitos" ColumnName="requisitos" />
+                <ScalarProperty Name="func_especifica" ColumnName="func_especifica" />
+                <ScalarProperty Name="func_general" ColumnName="func_general" />
+                <ScalarProperty Name="num_trab_sug" ColumnName="num_trab_sug" />
+                <ScalarProperty Name="sueldo_sug" ColumnName="sueldo_sug" />
+                <ScalarProperty Name="direcc_confianza" ColumnName="direcc_confianza" />
+                <ScalarProperty Name="depende_de" ColumnName="depende_de" />
+                <ScalarProperty Name="co_depart" ColumnName="co_depart" />
+                <ScalarProperty Name="co_ocupacion" ColumnName="co_ocupacion" />
+                <ScalarProperty Name="des_cargo" ColumnName="des_cargo" />
+                <ScalarProperty Name="co_cargo" ColumnName="co_cargo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

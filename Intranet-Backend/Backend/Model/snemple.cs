@@ -136,5 +136,6 @@ namespace Backend.Model
     
         public virtual ICollection<snemple> snemple1 { get; set; }
         public virtual snemple snemple2 { get; set; }
+        public virtual sncargo sncargo { get; set; }
     }
 }

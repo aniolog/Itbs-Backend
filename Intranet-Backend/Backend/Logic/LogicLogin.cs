@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
@@ -29,9 +30,16 @@ namespace Backend.Logic
                 if (UserAuth == null) {
                     throw new IntranetException.ItbsException(HttpStatusCode.NotFound, IntranetException.ExceptionResource.UsuarioInexistente);
                 }
-                identity.AddClaim(new Claim("sub", context.UserName));
-                identity.AddClaim(new Claim("role", "user"));
 
+                var Logic = new Logic.LdapLogic(null);
+                if (!(Logic.IsAuthenticated(null, UserAuth.Usename, context.Password))) {
+                    return;
+                }
+                identity.AddClaim(new Claim(ClaimTypes.Role, UserAuth.Rol.Nombre));
+                /*                
+            identity.AddClaim(new Claim("sub", context.UserName));
+            identity.AddClaim(new Claim("role", "user"));
+            */
                 context.Validated(identity);
             }
             catch (IntranetException.ItbsException e)
