@@ -30,16 +30,13 @@ namespace Backend.Logic
                 if (UserAuth == null) {
                     throw new IntranetException.ItbsException(HttpStatusCode.NotFound, IntranetException.ExceptionResource.UsuarioInexistente);
                 }
-
+                /*
                 var Logic = new Logic.LdapLogic(null);
                 if (!(Logic.IsAuthenticated(null, UserAuth.Usename, context.Password))) {
                     return;
-                }
+                }*/
+                identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
                 identity.AddClaim(new Claim(ClaimTypes.Role, UserAuth.Rol.Nombre));
-                /*                
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
-            */
                 context.Validated(identity);
             }
             catch (IntranetException.ItbsException e)

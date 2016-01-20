@@ -20,11 +20,40 @@ namespace Backend.Logic
           return  this.MyDao.GetByPK(Email);
         }
 
-        public Boolean InsetVacationRequest(Model.SolicitudVacaciones Request) {
+        public Boolean InsertVacationRequest(Model.SolicitudVacaciones Request) {
+            Logic.LogicDiaFeriado DiasFeriadosLogic = new Logic.LogicDiaFeriado();
+            DateTime Fecha_Fin = Request.Fecha_Inicio;
+            DateTime Fecha_Ingreso = (new LogicEmpleado())
+                .GetEmpleado(Request.User.Correo).First().fecha_ing; 
+
             if (Request.User == null)
             {
-                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioInvalido);
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,
+                    IntranetException.ExceptionResource.UsuarioInvalido);
             }
+
+            if (Request.Fecha_Inicio<=DateTime.Now) {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, 
+                    IntranetException.ExceptionResource.FechaInicioInvalida);
+            }
+
+            if (Request.Duracion <= 0) {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, 
+                    IntranetException.ExceptionResource.FechaInicioInvalida);
+            }
+
+            while (DiasFeriadosLogic.isFeriado(Request.Fecha_Inicio)) {
+                Request.Fecha_Inicio=Request.Fecha_Inicio.AddDays(1);
+            }
+
+            for (int Arreglo = 0; Arreglo < Request.Duracion; Arreglo++) {
+                Fecha_Fin = Fecha_Fin.AddDays(1);
+                while (DiasFeriadosLogic.isFeriado(Fecha_Fin))
+                {
+                    Fecha_Fin = Fecha_Fin.AddDays(1);
+                }
+            }
+
             return this.MyDao.Insert(Request);
         }
 

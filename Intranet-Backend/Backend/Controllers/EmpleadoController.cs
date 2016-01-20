@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
+using System.Web;
 using System.Web.Http;
 
 namespace Backend.Controllers
@@ -10,6 +12,16 @@ namespace Backend.Controllers
     [RoutePrefix("api/empleados")]
     public class EmpleadoController : ApiController
     {
+
+        [Queryable]
+        [Route("perfil")]
+        [Authorize]
+        public IQueryable<Model.snemple> GetProfile()
+        {
+            Logic.LogicEmpleado MyLogic = new Backend.Logic.LogicEmpleado();
+            return MyLogic.GetEmpleado(HttpContext.Current.User.Identity.Name);
+        }
+        
         [Authorize(Roles = "Administrador")]
         [Queryable]
         [Route("{ItbsEmail}")]
@@ -18,6 +30,7 @@ namespace Backend.Controllers
             Logic.LogicEmpleado MyLogic = new Backend.Logic.LogicEmpleado();
             return MyLogic.GetEmpleado(ItbsEmail);
         }
+
         [Authorize(Roles = "Administrador")]
         [Queryable]
         [Route("")]
@@ -26,7 +39,8 @@ namespace Backend.Controllers
             Logic.LogicEmpleado MyLogic = new Backend.Logic.LogicEmpleado();
             return MyLogic.GetAllEmpleados();
         }
-        [Authorize(Roles = "Administrador")]
+
+        [Authorize]
         [Route("update")]
         public Boolean Put([FromBody]Model.snemple Employee)
         {

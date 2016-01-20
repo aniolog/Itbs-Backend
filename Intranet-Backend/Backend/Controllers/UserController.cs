@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
+using System.Web;
 using System.Web.Http;
 
 namespace Backend.Controllers
@@ -35,12 +37,24 @@ namespace Backend.Controllers
             Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
             return MyLogic.InsertUser(NewUser);
         }
-        [Authorize(Roles = "Administrador")]
+        [Authorize]
         [Route("update")]
         public Boolean Put([FromBody]Model.User NewUser)
         {
             Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
             return MyLogic.ModifyUser(NewUser);
         }
+
+        [Queryable]
+        [Route("perfil")]
+        [Authorize]
+        public IQueryable<Model.User> GetProfile()
+            {
+            Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
+            List<Model.User> returner = new List<Model.User>();
+            returner.Add(MyLogic.GetUser(HttpContext.Current.User.Identity.Name));
+            return returner.AsQueryable();
+          }
+        
     }
 }

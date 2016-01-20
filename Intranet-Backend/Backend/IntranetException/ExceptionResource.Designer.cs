@@ -61,11 +61,29 @@ namespace Backend.IntranetException {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La cantidad de dias debe ser mayor a 0.
+        /// </summary>
+        internal static string DuracionInvalida {
+            get {
+                return ResourceManager.GetString("DuracionInvalida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ususario no existe, verifique el correo electronico.
         /// </summary>
         internal static string EmpleadoInexistente {
             get {
                 return ResourceManager.GetString("EmpleadoInexistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La fecha de incio de la solicitud de vacaciones es invalida.
+        /// </summary>
+        internal static string FechaInicioInvalida {
+            get {
+                return ResourceManager.GetString("FechaInicioInvalida", resourceCulture);
             }
         }
         
@@ -102,6 +120,15 @@ namespace Backend.IntranetException {
         internal static string UsuarioInexistente {
             get {
                 return ResourceManager.GetString("UsuarioInexistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El correo de usuario no se encuentra en uso por ningun usuario de Profit.
+        /// </summary>
+        internal static string UsuarioInexistenteProfit {
+            get {
+                return ResourceManager.GetString("UsuarioInexistenteProfit", resourceCulture);
             }
         }
         

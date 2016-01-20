@@ -46,7 +46,13 @@ namespace Backend.Logic
                 {
                     throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.RolInexistente);
                 }
-                NewUser.Rol = Rol.First();
+                var Empleado = (new Logic.LogicEmpleado()).GetEmpleado(NewUser.Correo);
+                if (Empleado.Count() == 0)
+                {
+                    throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, IntranetException.ExceptionResource.UsuarioInexistenteProfit);
+                }
+
+            NewUser.Rol = Rol.First();
                 return this.Dao.Insert(NewUser);
             
            
