@@ -39,7 +39,7 @@ namespace Backend.Dao
         /// <returns></returns>
         public override dynamic GetAll()
         {
-            var Empleados = from empleados in context.snemple select empleados;
+            var Empleados = from empleados in context.snemple where empleados.fecha_egr == null select empleados;
             return Empleados;
         }
 

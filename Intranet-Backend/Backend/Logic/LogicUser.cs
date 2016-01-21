@@ -101,5 +101,29 @@ namespace Backend.Logic
             return this.Dao.Update(User);
         }
 
+
+        public List<string> NotInUserEmail() {
+            List<string> result = new List<string>();
+            Logic.LogicEmpleado EmpLogic = new LogicEmpleado();
+            Logic.LogicUser UsLogic = new LogicUser();
+
+            List<Model.snemple> EmpList = EmpLogic.GetAllEmpleados().ToList();
+            List<Model.User> UsList = UsLogic.GetUsers().ToList();
+
+            foreach (var emp in EmpList) {
+                var exist = false;
+                foreach (var us in UsList) {
+                    if (us.Correo == emp.correo_e) {
+                        exist = true;
+                    }
+
+                }
+                if (!(exist)) {
+                    result.Add(emp.correo_e);
+                }
+            }
+            return result;
+        }
+
     }
 }

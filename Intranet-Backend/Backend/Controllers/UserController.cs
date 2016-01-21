@@ -39,10 +39,27 @@ namespace Backend.Controllers
         }
         [Authorize]
         [Route("update")]
-        public Boolean Put([FromBody]Model.User NewUser)
+        public Boolean Put([FromBody]Model_Rest.UserEmpleado Request)
         {
-            Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
-            return MyLogic.ModifyUser(NewUser);
+            Model.User UpdateUser = new Model.User();
+            Logic.LogicUser UserLogic = new Backend.Logic.LogicUser();
+            UpdateUser.Correo = Request.correo_e;
+            UpdateUser.ModeloVehiculo = Request.ModeloVehiculo;
+            UpdateUser.AnoVehiculo = Request.AnoVehiculo;
+            UpdateUser.ColorVehiculo = Request.ColorVehiculo;
+            UpdateUser.PlacaVehiculo = Request.PlacaVehiculo;
+            UpdateUser.CorreoPersonal = Request.CorreoPersonal;
+            UpdateUser.Rol = Request.rol;
+          
+
+            Model.snemple UpdateEmployee= new Model.snemple();
+            UpdateEmployee.correo_e = Request.correo_e;
+            UpdateEmployee.avisar_a = Request.avisar_a;
+            UpdateEmployee.telf_contact = Request.telf_contact;
+            UpdateEmployee.direccion = Request.direccion;
+            UpdateEmployee.telefono = Request.telefono;
+            Logic.LogicEmpleado EmployeeLogic = new Backend.Logic.LogicEmpleado();
+            return UserLogic.ModifyUser(UpdateUser) && EmployeeLogic.ModifyEmpleado(UpdateEmployee) ;
         }
 
         [Queryable]
@@ -55,6 +72,18 @@ namespace Backend.Controllers
             returner.Add(MyLogic.GetUser(HttpContext.Current.User.Identity.Name));
             return returner.AsQueryable();
           }
-        
+
+        [Route("emailnotinuse")]
+        [Authorize(Roles = "Administrador")]
+        public List<string> GetNotInUseEmail()
+        {
+            Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
+            return MyLogic.NotInUserEmail();
+            
+        }
+
+
+
+
     }
 }

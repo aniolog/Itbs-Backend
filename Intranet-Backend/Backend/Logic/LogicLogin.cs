@@ -35,6 +35,7 @@ namespace Backend.Logic
                 if (!(Logic.IsAuthenticated(null, UserAuth.Usename, context.Password))) {
                     return;
                 }*/
+
                 identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
                 identity.AddClaim(new Claim(ClaimTypes.Role, UserAuth.Rol.Nombre));
                 context.Validated(identity);

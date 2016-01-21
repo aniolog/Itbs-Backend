@@ -262,7 +262,7 @@
     <Compile Include="Logic\LogicUser.cs" />
     <Compile Include="Logic\UtilFunctions.cs" />
     <Compile Include="Model-Rest\CtRequest.cs" />
-    <Compile Include="Model-Rest\Empleado.cs" />
+    <Compile Include="Model-Rest\UserEmpleado.cs" />
     <Compile Include="Model-Rest\Error.cs" />
     <Compile Include="Model\Certificado.cs">
       <DependentUpon>intranet.tt</DependentUpon>
