@@ -51,6 +51,10 @@
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -139,6 +143,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
       <Private>True</Private>
@@ -187,17 +192,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\intranet.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>intranet.edmx</DependentUpon>
-      <LastGenOutput>intranet.Context.cs</LastGenOutput>
-    </Content>
     <Content Include="Model\Intranet.edmx.sql" />
-    <Content Include="Model\intranet.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>intranet.edmx</DependentUpon>
-      <LastGenOutput>intranet.cs</LastGenOutput>
-    </Content>
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -208,9 +203,173 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Model\Modelbackup.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Modelbackup.Context.cs</LastGenOutput>
+      <DependentUpon>Modelbackup.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\Modelbackup.edmx.sql" />
+    <Content Include="Model\Modelbackup.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Modelbackup.cs</LastGenOutput>
+      <DependentUpon>Modelbackup.edmx</DependentUpon>
+    </Content>
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.addWorklogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.DefaultServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.getServiceRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.listActivitiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.listAttachmentsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.listCommunicationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.listRelatedConfigurationItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.listRelatedTicketsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.listServiceRequestsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.listSLAComplianceLevelsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.listWorklogsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.logServiceRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.relateAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.relateConfigurationItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.relateTicketResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.sendCommunicationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.unrelateAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.unrelateConfigurationItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.unrelateTicketResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.updateAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.updateServiceRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapServiceRequest\Backend.CSMSoapServiceRequest.updateWorklogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Model\Modelbackup.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Modelbackup.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model\Modelbackup.edmx.diagram">
+      <DependentUpon>Modelbackup.edmx</DependentUpon>
+    </Content>
+    <None Include="Service References\CSMSoapServiceRequest\configuration91.svcinfo" />
+    <None Include="Service References\CSMSoapServiceRequest\configuration.svcinfo" />
+    <None Include="Service References\CSMSoapServiceRequest\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.addWorklogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.DefaultServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.getMatchingTicketIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.getTicketResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.listActivitiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.listAttachmentsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.listCommunicationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.listCustomFieldsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.listRelatedConfigurationItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.listRelatedTicketsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.listSLAComplianceLevelsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.listTicketsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.listWorklogsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.relateAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.relateConfigurationItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.relateTicketResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.searchAllTicketsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.sendCommunicationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.unrelateAttachmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.unrelateConfigurationItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.unrelateTicketResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\CSMSoapTicket\Backend.CSMSoapTicket.updateWorklogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\CSMSoapTicket\configuration91.svcinfo" />
+    <None Include="Service References\CSMSoapTicket\configuration.svcinfo" />
+    <None Include="Service References\CSMSoapTicket\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -220,6 +379,7 @@
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EstudiosController.cs" />
     <Compile Include="Controllers\ExperienciaLaboralController.cs" />
+    <Compile Include="Controllers\FotoController.cs" />
     <Compile Include="Controllers\SolicitudDeVacacionesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DaoObject\Dao.cs" />
@@ -265,31 +425,16 @@
     <Compile Include="Model-Rest\UserEmpleado.cs" />
     <Compile Include="Model-Rest\Error.cs" />
     <Compile Include="Model\Certificado.cs">
-      <DependentUpon>intranet.tt</DependentUpon>
+      <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Curso.cs">
-      <DependentUpon>intranet.tt</DependentUpon>
+      <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Estudio.cs">
-      <DependentUpon>intranet.tt</DependentUpon>
+      <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ExprecienciaLaboral.cs">
-      <DependentUpon>intranet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\intranet.Context.cs">
-      <DependentUpon>intranet.Context.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Model\intranet.cs">
-      <DependentUpon>intranet.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Model\intranet.Designer.cs">
-      <DependentUpon>intranet.edmx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Model1.Context.cs">
       <DependentUpon>Model1.Context.tt</DependentUpon>
@@ -306,8 +451,26 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Model\Modelbackup.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelbackup.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Modelbackup.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelbackup.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Modelbackup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelbackup.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Proyectos.cs">
+      <DependentUpon>Modelbackup.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Rol.cs">
-      <DependentUpon>intranet.tt</DependentUpon>
+      <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sncargo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -319,25 +482,28 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SolicitudVacaciones.cs">
-      <DependentUpon>intranet.tt</DependentUpon>
+      <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs">
-      <DependentUpon>intranet.tt</DependentUpon>
+      <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CSMSoapServiceRequest\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CSMSoapTicket\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="Model\intranet.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>intranet.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Model\intranet.edmx.diagram">
-      <DependentUpon>intranet.edmx</DependentUpon>
     </Content>
     <EntityDeploy Include="Model\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -346,6 +512,8 @@
     <Content Include="Model\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Service References\CSMSoapServiceRequest\ServiceRequest1.wsdl" />
+    <None Include="Service References\CSMSoapTicket\Ticket.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -368,6 +536,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LogicResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CSMSoapServiceRequest\" />
+    <WCFMetadataStorage Include="Service References\CSMSoapTicket\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

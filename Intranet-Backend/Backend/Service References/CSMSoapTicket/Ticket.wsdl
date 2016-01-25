@@ -1,0 +1,1298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax267="http://beans.webservice.appservices.core.inteqnet.com/xsd" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ns="http://wrappers.webservice.appservices.core.inteqnet.com" xmlns:ax269="http://beans.webservice.components.inteqnet.com/xsd" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="http://wrappers.webservice.appservices.core.inteqnet.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>Ticket</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema xmlns:ax271="http://beans.webservice.components.inteqnet.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://beans.webservice.appservices.core.inteqnet.com/xsd">
+      <xs:import namespace="http://beans.webservice.components.inteqnet.com/xsd" />
+      <xs:complexType name="Credentials">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="authorizationToken" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sliceToken" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ExtendedSettings">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="responseFormat" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TicketSearchOptions">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax271:Bean">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="affected_ci_names" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="assigned_to_group_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="assigned_to_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="case_id" type="xs:int" />
+              <xs:element minOccurs="0" name="ccti_category" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ccti_class" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ccti_item" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ccti_type" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="created_by_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="custom_attributes" nillable="true" type="ax267:CustomAttribute" />
+              <xs:element minOccurs="0" name="end_closed_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="end_created_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="end_modified_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="last_closed_by_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="person1_alt_phone" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="person1_e_mail" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="person1_lvl1_org_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="person1_lvl2_org_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="person1_lvl3_org_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="related_ci_names" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="requester_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="start_closed_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="start_created_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="start_modified_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_description" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_details" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_id" type="xs:int" />
+              <xs:element minOccurs="0" name="ticket_impact" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_importance" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_priority" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_reason_code" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_source" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_status" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_type" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_urgency" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="CustomAttribute">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax271:Bean">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="attribute_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="attribute_value" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Worklog">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax271:Bean">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="item_id" type="xs:int" />
+              <xs:element minOccurs="0" name="row_id" type="xs:int" />
+              <xs:element minOccurs="0" name="ticket_identifier" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="ticket_type" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="work_actual_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="work_created_by" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="work_created_by_contact_id" type="xs:int" />
+              <xs:element minOccurs="0" name="work_created_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="work_description" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="work_modified_by" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="work_modified_by_contact_id" type="xs:int" />
+              <xs:element minOccurs="0" name="work_modified_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="work_time_spent" type="xs:int" />
+              <xs:element minOccurs="0" name="work_type" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="work_type_code" type="xs:int" />
+              <xs:element minOccurs="0" name="work_view_type" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Communication">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax271:Bean">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="comm_body" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_compose_message_on_send" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_created_by" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_created_by_id" type="xs:int" />
+              <xs:element minOccurs="0" name="comm_created_date" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_delivery_status" type="xs:int" />
+              <xs:element minOccurs="0" name="comm_reply_to" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_reply_to_name" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_sendbcc" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_sendcc" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_sendto" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_subject" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_template_id" type="xs:int" />
+              <xs:element minOccurs="0" name="comm_trace_log" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_type" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" name="comm_type_mask" type="xs:int" />
+              <xs:element minOccurs="0" name="fb_form_notification_id" type="xs:int" />
+              <xs:element minOccurs="0" name="item_id" type="xs:int" />
+              <xs:element minOccurs="0" name="row_id" type="xs:int" />
+              <xs:element minOccurs="0" name="sched_task_id" type="xs:int" />
+              <xs:element minOccurs="0" name="ticket_identifier" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://beans.webservice.components.inteqnet.com/xsd">
+      <xs:complexType name="DefaultServiceResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="errors" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="notes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="resourceName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="responseBean" nillable="true" type="ax269:Bean" />
+          <xs:element minOccurs="0" name="responseFormat" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="responseStatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="responseText" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="statusCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="statusMessage" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="warnings" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Bean">
+        <xs:sequence />
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ax270="http://beans.webservice.components.inteqnet.com/xsd" xmlns:ax268="http://beans.webservice.appservices.core.inteqnet.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://wrappers.webservice.appservices.core.inteqnet.com">
+      <xs:import namespace="http://beans.webservice.appservices.core.inteqnet.com/xsd" />
+      <xs:import namespace="http://beans.webservice.components.inteqnet.com/xsd" />
+      <xs:element name="listRelatedTickets">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listRelatedTicketsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relateTicket">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="parentTicketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="relateTicketIdentifier" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relateTicketResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="unrelateTicket">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="parentTicketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="relateTicketIdentifier" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="unrelateTicketResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listTickets">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="searchText" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listTicketsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="searchAllTickets">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketSearchOptionsBean" nillable="true" type="ax268:TicketSearchOptions" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="searchAllTicketsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMatchingTicketID">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketSearchOptionsBean" nillable="true" type="ax268:TicketSearchOptions" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMatchingTicketIDResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listCustomFields">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketType" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listCustomFieldsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listWorklogs">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="searchText" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listWorklogsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addWorklog">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="workglogBean" nillable="true" type="ax268:Worklog" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addWorklogResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="updateWorklog">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="workglogBean" nillable="true" type="ax268:Worklog" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="updateWorklogResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listCommunications">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="searchText" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listCommunicationsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendCommunication">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="commBean" nillable="true" type="ax268:Communication" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendCommunicationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listAttachments">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listAttachmentsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relateAttachment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="attachmentId" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relateAttachmentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="unrelateAttachment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="attachmentId" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="unrelateAttachmentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listRelatedConfigurationItems">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listRelatedConfigurationItemsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relateConfigurationItem">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="configurationItemId" type="xs:int" />
+            <xs:element minOccurs="0" name="configurationItemIdentifier" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="relateConfigurationItemResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="unrelateConfigurationItem">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="configurationItemId" type="xs:int" />
+            <xs:element minOccurs="0" name="configurationItemIdentifier" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="unrelateConfigurationItemResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listSLAComplianceLevels">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="searchText" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listSLAComplianceLevelsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getTicket">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getTicketResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listActivities">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="credentials" nillable="true" type="ax268:Credentials" />
+            <xs:element minOccurs="0" name="extendedSettings" nillable="true" type="ax268:ExtendedSettings" />
+            <xs:element minOccurs="0" name="ticketIdentifier" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="searchText" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="listActivitiesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax270:DefaultServiceResponse" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="listRelatedTicketsRequest">
+    <wsdl:part name="parameters" element="ns:listRelatedTickets" />
+  </wsdl:message>
+  <wsdl:message name="listRelatedTicketsResponse">
+    <wsdl:part name="parameters" element="ns:listRelatedTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="listWorklogsRequest">
+    <wsdl:part name="parameters" element="ns:listWorklogs" />
+  </wsdl:message>
+  <wsdl:message name="listWorklogsResponse">
+    <wsdl:part name="parameters" element="ns:listWorklogsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMatchingTicketIDRequest">
+    <wsdl:part name="parameters" element="ns:getMatchingTicketID" />
+  </wsdl:message>
+  <wsdl:message name="getMatchingTicketIDResponse">
+    <wsdl:part name="parameters" element="ns:getMatchingTicketIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="listAttachmentsRequest">
+    <wsdl:part name="parameters" element="ns:listAttachments" />
+  </wsdl:message>
+  <wsdl:message name="listAttachmentsResponse">
+    <wsdl:part name="parameters" element="ns:listAttachmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="unrelateConfigurationItemRequest">
+    <wsdl:part name="parameters" element="ns:unrelateConfigurationItem" />
+  </wsdl:message>
+  <wsdl:message name="unrelateConfigurationItemResponse">
+    <wsdl:part name="parameters" element="ns:unrelateConfigurationItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendCommunicationRequest">
+    <wsdl:part name="parameters" element="ns:sendCommunication" />
+  </wsdl:message>
+  <wsdl:message name="sendCommunicationResponse">
+    <wsdl:part name="parameters" element="ns:sendCommunicationResponse" />
+  </wsdl:message>
+  <wsdl:message name="listTicketsRequest">
+    <wsdl:part name="parameters" element="ns:listTickets" />
+  </wsdl:message>
+  <wsdl:message name="listTicketsResponse">
+    <wsdl:part name="parameters" element="ns:listTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="listCommunicationsRequest">
+    <wsdl:part name="parameters" element="ns:listCommunications" />
+  </wsdl:message>
+  <wsdl:message name="listCommunicationsResponse">
+    <wsdl:part name="parameters" element="ns:listCommunicationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="unrelateTicketRequest">
+    <wsdl:part name="parameters" element="ns:unrelateTicket" />
+  </wsdl:message>
+  <wsdl:message name="unrelateTicketResponse">
+    <wsdl:part name="parameters" element="ns:unrelateTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="addWorklogRequest">
+    <wsdl:part name="parameters" element="ns:addWorklog" />
+  </wsdl:message>
+  <wsdl:message name="addWorklogResponse">
+    <wsdl:part name="parameters" element="ns:addWorklogResponse" />
+  </wsdl:message>
+  <wsdl:message name="relateAttachmentRequest">
+    <wsdl:part name="parameters" element="ns:relateAttachment" />
+  </wsdl:message>
+  <wsdl:message name="relateAttachmentResponse">
+    <wsdl:part name="parameters" element="ns:relateAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchAllTicketsRequest">
+    <wsdl:part name="parameters" element="ns:searchAllTickets" />
+  </wsdl:message>
+  <wsdl:message name="searchAllTicketsResponse">
+    <wsdl:part name="parameters" element="ns:searchAllTicketsResponse" />
+  </wsdl:message>
+  <wsdl:message name="unrelateAttachmentRequest">
+    <wsdl:part name="parameters" element="ns:unrelateAttachment" />
+  </wsdl:message>
+  <wsdl:message name="unrelateAttachmentResponse">
+    <wsdl:part name="parameters" element="ns:unrelateAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateWorklogRequest">
+    <wsdl:part name="parameters" element="ns:updateWorklog" />
+  </wsdl:message>
+  <wsdl:message name="updateWorklogResponse">
+    <wsdl:part name="parameters" element="ns:updateWorklogResponse" />
+  </wsdl:message>
+  <wsdl:message name="listSLAComplianceLevelsRequest">
+    <wsdl:part name="parameters" element="ns:listSLAComplianceLevels" />
+  </wsdl:message>
+  <wsdl:message name="listSLAComplianceLevelsResponse">
+    <wsdl:part name="parameters" element="ns:listSLAComplianceLevelsResponse" />
+  </wsdl:message>
+  <wsdl:message name="relateConfigurationItemRequest">
+    <wsdl:part name="parameters" element="ns:relateConfigurationItem" />
+  </wsdl:message>
+  <wsdl:message name="relateConfigurationItemResponse">
+    <wsdl:part name="parameters" element="ns:relateConfigurationItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="listCustomFieldsRequest">
+    <wsdl:part name="parameters" element="ns:listCustomFields" />
+  </wsdl:message>
+  <wsdl:message name="listCustomFieldsResponse">
+    <wsdl:part name="parameters" element="ns:listCustomFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="listRelatedConfigurationItemsRequest">
+    <wsdl:part name="parameters" element="ns:listRelatedConfigurationItems" />
+  </wsdl:message>
+  <wsdl:message name="listRelatedConfigurationItemsResponse">
+    <wsdl:part name="parameters" element="ns:listRelatedConfigurationItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="relateTicketRequest">
+    <wsdl:part name="parameters" element="ns:relateTicket" />
+  </wsdl:message>
+  <wsdl:message name="relateTicketResponse">
+    <wsdl:part name="parameters" element="ns:relateTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="listActivitiesRequest">
+    <wsdl:part name="parameters" element="ns:listActivities" />
+  </wsdl:message>
+  <wsdl:message name="listActivitiesResponse">
+    <wsdl:part name="parameters" element="ns:listActivitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTicketRequest">
+    <wsdl:part name="parameters" element="ns:getTicket" />
+  </wsdl:message>
+  <wsdl:message name="getTicketResponse">
+    <wsdl:part name="parameters" element="ns:getTicketResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TicketPortType">
+    <wsdl:operation name="listRelatedTickets">
+      <wsdl:input wsaw:Action="urn:listRelatedTickets" message="ns:listRelatedTicketsRequest" />
+      <wsdl:output wsaw:Action="urn:listRelatedTicketsResponse" message="ns:listRelatedTicketsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listWorklogs">
+      <wsdl:input wsaw:Action="urn:listWorklogs" message="ns:listWorklogsRequest" />
+      <wsdl:output wsaw:Action="urn:listWorklogsResponse" message="ns:listWorklogsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getMatchingTicketID">
+      <wsdl:input wsaw:Action="urn:getMatchingTicketID" message="ns:getMatchingTicketIDRequest" />
+      <wsdl:output wsaw:Action="urn:getMatchingTicketIDResponse" message="ns:getMatchingTicketIDResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listAttachments">
+      <wsdl:input wsaw:Action="urn:listAttachments" message="ns:listAttachmentsRequest" />
+      <wsdl:output wsaw:Action="urn:listAttachmentsResponse" message="ns:listAttachmentsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="unrelateConfigurationItem">
+      <wsdl:input wsaw:Action="urn:unrelateConfigurationItem" message="ns:unrelateConfigurationItemRequest" />
+      <wsdl:output wsaw:Action="urn:unrelateConfigurationItemResponse" message="ns:unrelateConfigurationItemResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendCommunication">
+      <wsdl:input wsaw:Action="urn:sendCommunication" message="ns:sendCommunicationRequest" />
+      <wsdl:output wsaw:Action="urn:sendCommunicationResponse" message="ns:sendCommunicationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listTickets">
+      <wsdl:input wsaw:Action="urn:listTickets" message="ns:listTicketsRequest" />
+      <wsdl:output wsaw:Action="urn:listTicketsResponse" message="ns:listTicketsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listCommunications">
+      <wsdl:input wsaw:Action="urn:listCommunications" message="ns:listCommunicationsRequest" />
+      <wsdl:output wsaw:Action="urn:listCommunicationsResponse" message="ns:listCommunicationsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="unrelateTicket">
+      <wsdl:input wsaw:Action="urn:unrelateTicket" message="ns:unrelateTicketRequest" />
+      <wsdl:output wsaw:Action="urn:unrelateTicketResponse" message="ns:unrelateTicketResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="addWorklog">
+      <wsdl:input wsaw:Action="urn:addWorklog" message="ns:addWorklogRequest" />
+      <wsdl:output wsaw:Action="urn:addWorklogResponse" message="ns:addWorklogResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="relateAttachment">
+      <wsdl:input wsaw:Action="urn:relateAttachment" message="ns:relateAttachmentRequest" />
+      <wsdl:output wsaw:Action="urn:relateAttachmentResponse" message="ns:relateAttachmentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="searchAllTickets">
+      <wsdl:input wsaw:Action="urn:searchAllTickets" message="ns:searchAllTicketsRequest" />
+      <wsdl:output wsaw:Action="urn:searchAllTicketsResponse" message="ns:searchAllTicketsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="unrelateAttachment">
+      <wsdl:input wsaw:Action="urn:unrelateAttachment" message="ns:unrelateAttachmentRequest" />
+      <wsdl:output wsaw:Action="urn:unrelateAttachmentResponse" message="ns:unrelateAttachmentResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="updateWorklog">
+      <wsdl:input wsaw:Action="urn:updateWorklog" message="ns:updateWorklogRequest" />
+      <wsdl:output wsaw:Action="urn:updateWorklogResponse" message="ns:updateWorklogResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listSLAComplianceLevels">
+      <wsdl:input wsaw:Action="urn:listSLAComplianceLevels" message="ns:listSLAComplianceLevelsRequest" />
+      <wsdl:output wsaw:Action="urn:listSLAComplianceLevelsResponse" message="ns:listSLAComplianceLevelsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="relateConfigurationItem">
+      <wsdl:input wsaw:Action="urn:relateConfigurationItem" message="ns:relateConfigurationItemRequest" />
+      <wsdl:output wsaw:Action="urn:relateConfigurationItemResponse" message="ns:relateConfigurationItemResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listCustomFields">
+      <wsdl:input wsaw:Action="urn:listCustomFields" message="ns:listCustomFieldsRequest" />
+      <wsdl:output wsaw:Action="urn:listCustomFieldsResponse" message="ns:listCustomFieldsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listRelatedConfigurationItems">
+      <wsdl:input wsaw:Action="urn:listRelatedConfigurationItems" message="ns:listRelatedConfigurationItemsRequest" />
+      <wsdl:output wsaw:Action="urn:listRelatedConfigurationItemsResponse" message="ns:listRelatedConfigurationItemsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="relateTicket">
+      <wsdl:input wsaw:Action="urn:relateTicket" message="ns:relateTicketRequest" />
+      <wsdl:output wsaw:Action="urn:relateTicketResponse" message="ns:relateTicketResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="listActivities">
+      <wsdl:input wsaw:Action="urn:listActivities" message="ns:listActivitiesRequest" />
+      <wsdl:output wsaw:Action="urn:listActivitiesResponse" message="ns:listActivitiesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <wsdl:input wsaw:Action="urn:getTicket" message="ns:getTicketRequest" />
+      <wsdl:output wsaw:Action="urn:getTicketResponse" message="ns:getTicketResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TicketSoap11Binding" type="ns:TicketPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="listRelatedTickets">
+      <soap:operation soapAction="urn:listRelatedTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMatchingTicketID">
+      <soap:operation soapAction="urn:getMatchingTicketID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listWorklogs">
+      <soap:operation soapAction="urn:listWorklogs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listAttachments">
+      <soap:operation soapAction="urn:listAttachments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unrelateConfigurationItem">
+      <soap:operation soapAction="urn:unrelateConfigurationItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendCommunication">
+      <soap:operation soapAction="urn:sendCommunication" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listTickets">
+      <soap:operation soapAction="urn:listTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listCommunications">
+      <soap:operation soapAction="urn:listCommunications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unrelateTicket">
+      <soap:operation soapAction="urn:unrelateTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addWorklog">
+      <soap:operation soapAction="urn:addWorklog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relateAttachment">
+      <soap:operation soapAction="urn:relateAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchAllTickets">
+      <soap:operation soapAction="urn:searchAllTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unrelateAttachment">
+      <soap:operation soapAction="urn:unrelateAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateWorklog">
+      <soap:operation soapAction="urn:updateWorklog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listSLAComplianceLevels">
+      <soap:operation soapAction="urn:listSLAComplianceLevels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relateConfigurationItem">
+      <soap:operation soapAction="urn:relateConfigurationItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listCustomFields">
+      <soap:operation soapAction="urn:listCustomFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listRelatedConfigurationItems">
+      <soap:operation soapAction="urn:listRelatedConfigurationItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relateTicket">
+      <soap:operation soapAction="urn:relateTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listActivities">
+      <soap:operation soapAction="urn:listActivities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <soap:operation soapAction="urn:getTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TicketSoap12Binding" type="ns:TicketPortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="listRelatedTickets">
+      <soap12:operation soapAction="urn:listRelatedTickets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMatchingTicketID">
+      <soap12:operation soapAction="urn:getMatchingTicketID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listWorklogs">
+      <soap12:operation soapAction="urn:listWorklogs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listAttachments">
+      <soap12:operation soapAction="urn:listAttachments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unrelateConfigurationItem">
+      <soap12:operation soapAction="urn:unrelateConfigurationItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendCommunication">
+      <soap12:operation soapAction="urn:sendCommunication" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listTickets">
+      <soap12:operation soapAction="urn:listTickets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listCommunications">
+      <soap12:operation soapAction="urn:listCommunications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unrelateTicket">
+      <soap12:operation soapAction="urn:unrelateTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addWorklog">
+      <soap12:operation soapAction="urn:addWorklog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relateAttachment">
+      <soap12:operation soapAction="urn:relateAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchAllTickets">
+      <soap12:operation soapAction="urn:searchAllTickets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unrelateAttachment">
+      <soap12:operation soapAction="urn:unrelateAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateWorklog">
+      <soap12:operation soapAction="urn:updateWorklog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listSLAComplianceLevels">
+      <soap12:operation soapAction="urn:listSLAComplianceLevels" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relateConfigurationItem">
+      <soap12:operation soapAction="urn:relateConfigurationItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listCustomFields">
+      <soap12:operation soapAction="urn:listCustomFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listRelatedConfigurationItems">
+      <soap12:operation soapAction="urn:listRelatedConfigurationItems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relateTicket">
+      <soap12:operation soapAction="urn:relateTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listActivities">
+      <soap12:operation soapAction="urn:listActivities" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <soap12:operation soapAction="urn:getTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TicketHttpBinding" type="ns:TicketPortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="listRelatedTickets">
+      <http:operation location="Ticket/listRelatedTickets" />
+      <wsdl:input>
+        <mime:content part="listRelatedTickets" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listRelatedTickets" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMatchingTicketID">
+      <http:operation location="Ticket/getMatchingTicketID" />
+      <wsdl:input>
+        <mime:content part="getMatchingTicketID" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getMatchingTicketID" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listWorklogs">
+      <http:operation location="Ticket/listWorklogs" />
+      <wsdl:input>
+        <mime:content part="listWorklogs" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listWorklogs" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listAttachments">
+      <http:operation location="Ticket/listAttachments" />
+      <wsdl:input>
+        <mime:content part="listAttachments" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listAttachments" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unrelateConfigurationItem">
+      <http:operation location="Ticket/unrelateConfigurationItem" />
+      <wsdl:input>
+        <mime:content part="unrelateConfigurationItem" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="unrelateConfigurationItem" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendCommunication">
+      <http:operation location="Ticket/sendCommunication" />
+      <wsdl:input>
+        <mime:content part="sendCommunication" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="sendCommunication" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listTickets">
+      <http:operation location="Ticket/listTickets" />
+      <wsdl:input>
+        <mime:content part="listTickets" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listTickets" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listCommunications">
+      <http:operation location="Ticket/listCommunications" />
+      <wsdl:input>
+        <mime:content part="listCommunications" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listCommunications" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unrelateTicket">
+      <http:operation location="Ticket/unrelateTicket" />
+      <wsdl:input>
+        <mime:content part="unrelateTicket" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="unrelateTicket" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addWorklog">
+      <http:operation location="Ticket/addWorklog" />
+      <wsdl:input>
+        <mime:content part="addWorklog" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="addWorklog" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relateAttachment">
+      <http:operation location="Ticket/relateAttachment" />
+      <wsdl:input>
+        <mime:content part="relateAttachment" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="relateAttachment" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchAllTickets">
+      <http:operation location="Ticket/searchAllTickets" />
+      <wsdl:input>
+        <mime:content part="searchAllTickets" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="searchAllTickets" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unrelateAttachment">
+      <http:operation location="Ticket/unrelateAttachment" />
+      <wsdl:input>
+        <mime:content part="unrelateAttachment" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="unrelateAttachment" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateWorklog">
+      <http:operation location="Ticket/updateWorklog" />
+      <wsdl:input>
+        <mime:content part="updateWorklog" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="updateWorklog" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listSLAComplianceLevels">
+      <http:operation location="Ticket/listSLAComplianceLevels" />
+      <wsdl:input>
+        <mime:content part="listSLAComplianceLevels" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listSLAComplianceLevels" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relateConfigurationItem">
+      <http:operation location="Ticket/relateConfigurationItem" />
+      <wsdl:input>
+        <mime:content part="relateConfigurationItem" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="relateConfigurationItem" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listCustomFields">
+      <http:operation location="Ticket/listCustomFields" />
+      <wsdl:input>
+        <mime:content part="listCustomFields" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listCustomFields" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listRelatedConfigurationItems">
+      <http:operation location="Ticket/listRelatedConfigurationItems" />
+      <wsdl:input>
+        <mime:content part="listRelatedConfigurationItems" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listRelatedConfigurationItems" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relateTicket">
+      <http:operation location="Ticket/relateTicket" />
+      <wsdl:input>
+        <mime:content part="relateTicket" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="relateTicket" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listActivities">
+      <http:operation location="Ticket/listActivities" />
+      <wsdl:input>
+        <mime:content part="listActivities" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="listActivities" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTicket">
+      <http:operation location="Ticket/getTicket" />
+      <wsdl:input>
+        <mime:content part="getTicket" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="getTicket" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Ticket">
+    <wsdl:port name="TicketHttpSoap11Endpoint" binding="ns:TicketSoap11Binding">
+      <soap:address location="https://sm1s.saas.ca.com/NimsoftServiceDesk/servicedesk/webservices/Ticket.TicketHttpSoap11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TicketHttpSoap12Endpoint" binding="ns:TicketSoap12Binding">
+      <soap12:address location="https://sm1s.saas.ca.com/NimsoftServiceDesk/servicedesk/webservices/Ticket.TicketHttpSoap12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="TicketHttpEndpoint" binding="ns:TicketHttpBinding">
+      <http:address location="https://sm1s.saas.ca.com/NimsoftServiceDesk/servicedesk/webservices/Ticket.TicketHttpEndpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

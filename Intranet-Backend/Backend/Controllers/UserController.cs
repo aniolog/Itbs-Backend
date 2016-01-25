@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
@@ -12,6 +14,8 @@ namespace Backend.Controllers
     [RoutePrefix("api/usuarios")]
     public class UserController : ApiController
     {
+        string root = Path.Combine(@"C:\temp\", "fotos");
+
         [Authorize(Roles = "Administrador")]
         [Queryable]
         [Route("{ItbsEmail}")]
@@ -22,6 +26,7 @@ namespace Backend.Controllers
             returner.Add(MyLogic.GetUser(ItbsEmail));
             return returner.AsQueryable();
         }
+
         [Authorize(Roles = "Administrador")]
         [Queryable]
         [Route("")]
@@ -30,6 +35,7 @@ namespace Backend.Controllers
             Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
             return MyLogic.GetUsers();
         }
+
         [Authorize(Roles = "Administrador")]
         [Route("create")]
         public Boolean Post([FromBody]Model.User NewUser)
@@ -37,6 +43,7 @@ namespace Backend.Controllers
             Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
             return MyLogic.InsertUser(NewUser);
         }
+
         [Authorize]
         [Route("update")]
         public Boolean Put([FromBody]Model_Rest.UserEmpleado Request)
@@ -82,8 +89,7 @@ namespace Backend.Controllers
             
         }
 
-
-
-
+       
+       
     }
 }

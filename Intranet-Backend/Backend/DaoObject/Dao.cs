@@ -15,12 +15,12 @@ namespace Backend.Dao
         /// <summary>
         /// 
         /// </summary>
-        static readonly private Model.itbsEntities  IntranetContextInstance = new Model.itbsEntities();
+        static readonly private Model.ModelbackupContainer  IntranetContextInstance = new Model.ModelbackupContainer();
 
         /// <summary>
         /// 
         /// </summary>
-        public static Model.itbsEntities IntranetContext {
+        public static Model.ModelbackupContainer IntranetContext {
             get {
                return  IntranetContextInstance;
             }

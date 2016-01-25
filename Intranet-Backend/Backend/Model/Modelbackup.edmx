@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Modelbackup.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelbackupStoreContainer">
+    <EntitySet Name="CertificadoSet" EntityType="Modelbackup.Store.CertificadoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CursosSet" EntityType="Modelbackup.Store.CursosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EstudioSet" EntityType="Modelbackup.Store.EstudioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ExprecienciaLaboralSet" EntityType="Modelbackup.Store.ExprecienciaLaboralSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SolicitudVacacionesSet" EntityType="Modelbackup.Store.SolicitudVacacionesSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RolSet1" EntityType="Modelbackup.Store.RolSet1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserSet" EntityType="Modelbackup.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProyectosSet" EntityType="Modelbackup.Store.ProyectosSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserCertificado" Association="Modelbackup.Store.UserCertificado">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Certificado" EntitySet="CertificadoSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserCurso" Association="Modelbackup.Store.UserCurso">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Curso" EntitySet="CursosSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserEstudio" Association="Modelbackup.Store.UserEstudio">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Estudio" EntitySet="EstudioSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserExprecienciaLaboral" Association="Modelbackup.Store.UserExprecienciaLaboral">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="ExprecienciaLaboral" EntitySet="ExprecienciaLaboralSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserSolicitudVacaciones" Association="Modelbackup.Store.UserSolicitudVacaciones">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="SolicitudVacaciones" EntitySet="SolicitudVacacionesSet" />
+    </AssociationSet>
+    <AssociationSet Name="RolUser" Association="Modelbackup.Store.RolUser">
+      <End Role="Rol" EntitySet="RolSet1" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserProyectos" Association="Modelbackup.Store.UserProyectos">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Proyectos" EntitySet="ProyectosSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CertificadoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CursosSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ano_Finalizacion" Type="datetime" Nullable="false" />
+    <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EstudioSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Institucion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ano_Finalizacion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExprecienciaLaboralSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ano_Inicio" Type="datetime" Nullable="false" />
+    <Property Name="Desempeno" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ano_Finalizacion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SolicitudVacacionesSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha_Inicio" Type="datetime" Nullable="false" />
+    <Property Name="Duracion" Type="smallint" Nullable="false" />
+    <Property Name="Ticket_id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolSet1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="nvarchar(max)" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Usename" />
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Correo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ModeloVehiculo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ColorVehiculo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AnoVehiculo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="PlacaVehiculo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Usename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Foto" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CorreoPersonal" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rol_Id" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProyectosSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ano_Inicio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ano_Fin" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Empresa" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UserCertificado">
+    <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="1" />
+    <End Role="Certificado" Type="Modelbackup.Store.CertificadoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usename" />
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Certificado">
+        <PropertyRef Name="User_Usename" />
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCurso">
+    <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="1" />
+    <End Role="Curso" Type="Modelbackup.Store.CursosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usename" />
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Curso">
+        <PropertyRef Name="User_Usename" />
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserEstudio">
+    <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="1" />
+    <End Role="Estudio" Type="Modelbackup.Store.EstudioSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usename" />
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Estudio">
+        <PropertyRef Name="User_Usename" />
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserExprecienciaLaboral">
+    <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="1" />
+    <End Role="ExprecienciaLaboral" Type="Modelbackup.Store.ExprecienciaLaboralSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usename" />
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExprecienciaLaboral">
+        <PropertyRef Name="User_Usename" />
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserSolicitudVacaciones">
+    <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="1" />
+    <End Role="SolicitudVacaciones" Type="Modelbackup.Store.SolicitudVacacionesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usename" />
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SolicitudVacaciones">
+        <PropertyRef Name="User_Usename" />
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RolUser">
+    <End Role="Rol" Type="Modelbackup.Store.RolSet1" Multiplicity="1" />
+    <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Rol_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserProyectos">
+    <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="1" />
+    <End Role="Proyectos" Type="Modelbackup.Store.ProyectosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usename" />
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="User_Usename" />
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Modelbackup" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelbackupContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CertificadoSet" EntityType="Modelbackup.Certificado" />
+          <EntitySet Name="CursosSet" EntityType="Modelbackup.Curso" />
+          <EntitySet Name="EstudioSet" EntityType="Modelbackup.Estudio" />
+          <EntitySet Name="ExprecienciaLaboralSet" EntityType="Modelbackup.ExprecienciaLaboral" />
+          <EntitySet Name="SolicitudVacacionesSet" EntityType="Modelbackup.SolicitudVacaciones" />
+          <EntitySet Name="RolSet1" EntityType="Modelbackup.Rol" />
+          <EntitySet Name="UserSet" EntityType="Modelbackup.User" />
+          <EntitySet Name="ProyectosSet" EntityType="Modelbackup.Proyectos" />
+          <AssociationSet Name="UserCertificado" Association="Modelbackup.UserCertificado">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Certificado" EntitySet="CertificadoSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserCurso" Association="Modelbackup.UserCurso">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Curso" EntitySet="CursosSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserEstudio" Association="Modelbackup.UserEstudio">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Estudio" EntitySet="EstudioSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserExprecienciaLaboral" Association="Modelbackup.UserExprecienciaLaboral">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="ExprecienciaLaboral" EntitySet="ExprecienciaLaboralSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserSolicitudVacaciones" Association="Modelbackup.UserSolicitudVacaciones">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="SolicitudVacaciones" EntitySet="SolicitudVacacionesSet" />
+          </AssociationSet>
+          <AssociationSet Name="RolUser" Association="Modelbackup.RolUser">
+            <End Role="Rol" EntitySet="RolSet1" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserProyectos" Association="Modelbackup.UserProyectos">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Proyectos" EntitySet="ProyectosSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Certificado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Modelbackup.UserCertificado" FromRole="Certificado" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ano_Finalizacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Modelbackup.UserCurso" FromRole="Curso" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Estudio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Institucion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ano_Finalizacion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Modelbackup.UserEstudio" FromRole="Estudio" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ExprecienciaLaboral">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ano_Inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Desempeno" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ano_Finalizacion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Empresa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Modelbackup.UserExprecienciaLaboral" FromRole="ExprecienciaLaboral" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SolicitudVacaciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_Inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Duracion" Type="Int16" Nullable="false" />
+          <Property Name="Ticket_id" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Modelbackup.UserSolicitudVacaciones" FromRole="SolicitudVacaciones" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="Modelbackup.RolUser" FromRole="Rol" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Usename" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModeloVehiculo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ColorVehiculo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnoVehiculo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PlacaVehiculo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Usename" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CorreoPersonal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Certificado" Relationship="Modelbackup.UserCertificado" FromRole="User" ToRole="Certificado" />
+          <NavigationProperty Name="Curso" Relationship="Modelbackup.UserCurso" FromRole="User" ToRole="Curso" />
+          <NavigationProperty Name="Estudio" Relationship="Modelbackup.UserEstudio" FromRole="User" ToRole="Estudio" />
+          <NavigationProperty Name="ExprecienciaLaboral" Relationship="Modelbackup.UserExprecienciaLaboral" FromRole="User" ToRole="ExprecienciaLaboral" />
+          <NavigationProperty Name="SolicitudVacaciones" Relationship="Modelbackup.UserSolicitudVacaciones" FromRole="User" ToRole="SolicitudVacaciones" />
+          <NavigationProperty Name="Rol" Relationship="Modelbackup.RolUser" FromRole="User" ToRole="Rol" />
+          <NavigationProperty Name="Proyectos" Relationship="Modelbackup.UserProyectos" FromRole="User" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ano_Inicio" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ano_Fin" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Empresa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Modelbackup.UserProyectos" FromRole="Proyectos" ToRole="User" />
+        </EntityType>
+        <Association Name="UserCertificado">
+          <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
+          <End Type="Modelbackup.Certificado" Role="Certificado" Multiplicity="*" />
+        </Association>
+        <Association Name="UserCurso">
+          <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
+          <End Type="Modelbackup.Curso" Role="Curso" Multiplicity="*" />
+        </Association>
+        <Association Name="UserEstudio">
+          <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
+          <End Type="Modelbackup.Estudio" Role="Estudio" Multiplicity="*" />
+        </Association>
+        <Association Name="UserExprecienciaLaboral">
+          <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
+          <End Type="Modelbackup.ExprecienciaLaboral" Role="ExprecienciaLaboral" Multiplicity="*" />
+        </Association>
+        <Association Name="UserSolicitudVacaciones">
+          <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
+          <End Type="Modelbackup.SolicitudVacaciones" Role="SolicitudVacaciones" Multiplicity="*" />
+        </Association>
+        <Association Name="RolUser">
+          <End Type="Modelbackup.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="Modelbackup.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="UserProyectos">
+          <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
+          <End Type="Modelbackup.Proyectos" Role="Proyectos" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelbackupStoreContainer" CdmEntityContainer="ModelbackupContainer">
+    <EntitySetMapping Name="CertificadoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelbackup.Certificado)">
+        <MappingFragment StoreEntitySet="CertificadoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CursosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelbackup.Curso)">
+        <MappingFragment StoreEntitySet="CursosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Ano_Finalizacion" ColumnName="Ano_Finalizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstudioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelbackup.Estudio)">
+        <MappingFragment StoreEntitySet="EstudioSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Institucion" ColumnName="Institucion" />
+          <ScalarProperty Name="Ano_Finalizacion" ColumnName="Ano_Finalizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExprecienciaLaboralSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelbackup.ExprecienciaLaboral)">
+        <MappingFragment StoreEntitySet="ExprecienciaLaboralSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ano_Inicio" ColumnName="Ano_Inicio" />
+          <ScalarProperty Name="Desempeno" ColumnName="Desempeno" />
+          <ScalarProperty Name="Ano_Finalizacion" ColumnName="Ano_Finalizacion" />
+          <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SolicitudVacacionesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelbackup.SolicitudVacaciones)">
+        <MappingFragment StoreEntitySet="SolicitudVacacionesSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
+          <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+          <ScalarProperty Name="Ticket_id" ColumnName="Ticket_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolSet1">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelbackup.Rol)">
+        <MappingFragment StoreEntitySet="RolSet1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelbackup.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Usename" ColumnName="Usename" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="ModeloVehiculo" ColumnName="ModeloVehiculo" />
+          <ScalarProperty Name="ColorVehiculo" ColumnName="ColorVehiculo" />
+          <ScalarProperty Name="AnoVehiculo" ColumnName="AnoVehiculo" />
+          <ScalarProperty Name="PlacaVehiculo" ColumnName="PlacaVehiculo" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="CorreoPersonal" ColumnName="CorreoPersonal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProyectosSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelbackup.Proyectos)">
+        <MappingFragment StoreEntitySet="ProyectosSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ano_Inicio" ColumnName="Ano_Inicio" />
+          <ScalarProperty Name="Ano_Fin" ColumnName="Ano_Fin" />
+          <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserCertificado" TypeName="Modelbackup.UserCertificado" StoreEntitySet="CertificadoSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Usename" ColumnName="User_Usename" />
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Certificado">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserCurso" TypeName="Modelbackup.UserCurso" StoreEntitySet="CursosSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Usename" ColumnName="User_Usename" />
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Curso">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserEstudio" TypeName="Modelbackup.UserEstudio" StoreEntitySet="EstudioSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Usename" ColumnName="User_Usename" />
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Estudio">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserExprecienciaLaboral" TypeName="Modelbackup.UserExprecienciaLaboral" StoreEntitySet="ExprecienciaLaboralSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Usename" ColumnName="User_Usename" />
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="ExprecienciaLaboral">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserSolicitudVacaciones" TypeName="Modelbackup.UserSolicitudVacaciones" StoreEntitySet="SolicitudVacacionesSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Usename" ColumnName="User_Usename" />
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="SolicitudVacaciones">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RolUser" TypeName="Modelbackup.RolUser" StoreEntitySet="UserSet">
+      <EndProperty Name="Rol">
+        <ScalarProperty Name="Id" ColumnName="Rol_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Usename" ColumnName="Usename" />
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserProyectos" TypeName="Modelbackup.UserProyectos" StoreEntitySet="ProyectosSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Usename" ColumnName="User_Usename" />
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Proyectos">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

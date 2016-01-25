@@ -13,7 +13,7 @@ namespace Backend.Dao
         /// <summary>
         /// Contexto de la base de datos intranet
         /// </summary>
-        private Model.itbsEntities context;
+        private Model.ModelbackupContainer context;
 
         /// <summary>
         /// Constructor encargado de inicializar el contexto

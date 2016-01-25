@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Xml;
 
 namespace Backend.Logic
 {
@@ -19,6 +21,51 @@ namespace Backend.Logic
         public List<Model.SolicitudVacaciones> GetVacationRequest(String Email) {
           return  this.MyDao.GetByPK(Email);
         }
+
+
+        public  void GetTicket(string ticketID) {
+            HttpWebRequest request = CreateWebRequest();
+            XmlDocument soapEnvelopeXml = new XmlDocument();
+            string xml = System.IO.File.ReadAllText(@"C:\Users\alozano\Desktop\templates\ct.html");
+            xml = xml.Replace("{ID}", ticketID);
+            soapEnvelopeXml.LoadXml(xml);
+
+            using (Stream stream = request.GetRequestStream())
+            {
+                soapEnvelopeXml.Save(stream);
+            }
+
+            using (WebResponse response = request.GetResponse())
+            {
+                using (StreamReader rd = new StreamReader(response.GetResponseStream()))
+                {
+                    string soapResult = rd.ReadToEnd();
+                    Console.WriteLine(soapResult);
+                }
+            }
+
+
+        }
+
+        public void GetTicket2(string ticketID)
+        {
+            
+        }
+
+        public HttpWebRequest CreateWebRequest()
+        {
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(@"http://dev.nl/Rvl.Demo.TestWcfServiceApplication/SoapWebService.asmx");
+            webRequest.Headers.Add(@"SOAP:Action");
+            webRequest.ContentType = "text/xml;charset=\"utf-8\"";
+            webRequest.Accept = "text/xml";
+            webRequest.Method = "POST";
+            return webRequest;
+        }
+
+
+
+
+        /*
 
         public Boolean InsertVacationRequest(Model.SolicitudVacaciones Request) {
             Logic.LogicDiaFeriado DiasFeriadosLogic = new Logic.LogicDiaFeriado();
@@ -55,7 +102,7 @@ namespace Backend.Logic
             }
 
             return this.MyDao.Insert(Request);
-        }
+        }*/
 
     }
 }

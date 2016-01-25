@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/02/2016 16:22:12
+-- Date Created: 01/24/2016 17:23:08
 -- Generated from EDMX file: C:\Users\alozano\Desktop\ASP\Itbs-Backend\Intranet-Backend\Backend\Model\intranet.edmx
 -- --------------------------------------------------
 
@@ -35,6 +35,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_RolUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserSet] DROP CONSTRAINT [FK_RolUser];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserProyectos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProyectosSet] DROP CONSTRAINT [FK_UserProyectos];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -61,6 +64,9 @@ GO
 IF OBJECT_ID(N'[dbo].[UserSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserSet];
 GO
+IF OBJECT_ID(N'[dbo].[ProyectosSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ProyectosSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -70,7 +76,6 @@ GO
 CREATE TABLE [dbo].[CertificadoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Nombre] nvarchar(max)  NOT NULL,
-    [Fecha] datetime  NOT NULL,
     [Url] nvarchar(max)  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
     [User_Id] int  NOT NULL
@@ -81,7 +86,7 @@ GO
 CREATE TABLE [dbo].[CursosSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Titulo] nvarchar(max)  NOT NULL,
-    [Descripcion] nvarchar(max)  NOT NULL,
+    [Ano_Finalizacion] datetime  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
     [User_Id] int  NOT NULL
 );
@@ -91,7 +96,7 @@ GO
 CREATE TABLE [dbo].[EstudioSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Titulo] nvarchar(max)  NOT NULL,
-    [Descripcion] nvarchar(max)  NOT NULL,
+    [Institucion] nvarchar(max)  NOT NULL,
     [Ano_Finalizacion] nvarchar(max)  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
     [User_Id] int  NOT NULL
@@ -101,8 +106,11 @@ GO
 -- Creating table 'ExprecienciaLaboralSet'
 CREATE TABLE [dbo].[ExprecienciaLaboralSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [CantidadAnos] smallint  NOT NULL,
+    [Ano_Inicio] datetime  NOT NULL,
     [Desempeno] nvarchar(max)  NOT NULL,
+    [Ano_Finalizacion] nvarchar(max)  NOT NULL,
+    [Empresa] nvarchar(max)  NOT NULL,
+    [Descripcion] nvarchar(max)  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
     [User_Id] int  NOT NULL
 );
@@ -113,6 +121,7 @@ CREATE TABLE [dbo].[SolicitudVacacionesSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Fecha_Inicio] datetime  NOT NULL,
     [Duracion] smallint  NOT NULL,
+    [Ticket_id] nvarchar(max)  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
     [User_Id] int  NOT NULL
 );
@@ -137,6 +146,18 @@ CREATE TABLE [dbo].[UserSet] (
     [CorreoPersonal] nvarchar(max)  NULL,
     [Id] int IDENTITY(1,1) NOT NULL,
     [Rol_Id] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'ProyectosSet'
+CREATE TABLE [dbo].[ProyectosSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Ano_Inicio] nvarchar(max)  NOT NULL,
+    [Ano_Fin] nvarchar(max)  NOT NULL,
+    [Empresa] nvarchar(max)  NOT NULL,
+    [Descripcion] nvarchar(max)  NOT NULL,
+    [UserUsename] nvarchar(max)  NOT NULL,
+    [UserId] int  NOT NULL
 );
 GO
 
@@ -184,6 +205,12 @@ GO
 ALTER TABLE [dbo].[UserSet]
 ADD CONSTRAINT [PK_UserSet]
     PRIMARY KEY CLUSTERED ([Usename], [Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ProyectosSet'
+ALTER TABLE [dbo].[ProyectosSet]
+ADD CONSTRAINT [PK_ProyectosSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -278,6 +305,21 @@ GO
 CREATE INDEX [IX_FK_RolUser]
 ON [dbo].[UserSet]
     ([Rol_Id]);
+GO
+
+-- Creating foreign key on [UserUsename], [UserId] in table 'ProyectosSet'
+ALTER TABLE [dbo].[ProyectosSet]
+ADD CONSTRAINT [FK_UserProyectos]
+    FOREIGN KEY ([UserUsename], [UserId])
+    REFERENCES [dbo].[UserSet]
+        ([Usename], [Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserProyectos'
+CREATE INDEX [IX_FK_UserProyectos]
+ON [dbo].[ProyectosSet]
+    ([UserUsename], [UserId]);
 GO
 
 -- --------------------------------------------------
