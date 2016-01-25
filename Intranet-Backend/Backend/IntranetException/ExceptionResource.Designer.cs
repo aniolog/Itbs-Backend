@@ -61,11 +61,11 @@ namespace Backend.IntranetException {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La cantidad de dias debe ser mayor a 0.
+        ///   Looks up a localized string similar to Error tratando de obtener el status de la solicitud de vacaciones.
         /// </summary>
-        internal static string DuracionInvalida {
+        internal static string CsmTicketError {
             get {
-                return ResourceManager.GetString("DuracionInvalida", resourceCulture);
+                return ResourceManager.GetString("CsmTicketError", resourceCulture);
             }
         }
         
@@ -75,15 +75,6 @@ namespace Backend.IntranetException {
         internal static string EmpleadoInexistente {
             get {
                 return ResourceManager.GetString("EmpleadoInexistente", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to La fecha de incio de la solicitud de vacaciones es invalida.
-        /// </summary>
-        internal static string FechaInicioInvalida {
-            get {
-                return ResourceManager.GetString("FechaInicioInvalida", resourceCulture);
             }
         }
         

@@ -130,8 +130,8 @@
     <Property Name="Ano_Fin" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Empresa" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="UserUsename" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="UserCertificado">
     <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="1" />
@@ -224,8 +224,8 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Proyectos">
-        <PropertyRef Name="User_Usename" />
-        <PropertyRef Name="User_Id" />
+        <PropertyRef Name="UserUsename" />
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -361,6 +361,8 @@
           <Property Name="Empresa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Modelbackup.UserProyectos" FromRole="Proyectos" ToRole="User" />
+          <Property Name="UserUsename" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="UserCertificado">
           <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
@@ -389,6 +391,16 @@
         <Association Name="UserProyectos">
           <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
           <End Type="Modelbackup.Proyectos" Role="Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Usename" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="UserUsename" />
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -477,6 +489,8 @@
           <ScalarProperty Name="Ano_Fin" ColumnName="Ano_Fin" />
           <ScalarProperty Name="Empresa" ColumnName="Empresa" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="UserUsename" ColumnName="UserUsename" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -531,15 +545,6 @@
       </EndProperty>
       <EndProperty Name="User">
         <ScalarProperty Name="Usename" ColumnName="Usename" />
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="UserProyectos" TypeName="Modelbackup.UserProyectos" StoreEntitySet="ProyectosSet">
-      <EndProperty Name="User">
-        <ScalarProperty Name="Usename" ColumnName="User_Usename" />
-        <ScalarProperty Name="Id" ColumnName="User_Id" />
-      </EndProperty>
-      <EndProperty Name="Proyectos">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

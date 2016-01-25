@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Backend.CACSMSR;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Xml;
 
 namespace Backend.Logic
@@ -23,29 +26,47 @@ namespace Backend.Logic
         }
 
 
-        public  void GetTicket(string ticketID) {
-            HttpWebRequest request = CreateWebRequest();
-            XmlDocument soapEnvelopeXml = new XmlDocument();
-            string xml = System.IO.File.ReadAllText(@"C:\Users\alozano\Desktop\templates\ct.html");
-            xml = xml.Replace("{ID}", ticketID);
-            soapEnvelopeXml.LoadXml(xml);
+        public string GetTicket(string ticketID) {
+            try {
+                var request = new CACSMSR.ServiceRequest();
 
-            using (Stream stream = request.GetRequestStream())
-            {
-                soapEnvelopeXml.Save(stream);
-            }
+                Credentials credentials = new Credentials();
+                ExtendedSettings extParams = new ExtendedSettings();
 
-            using (WebResponse response = request.GetResponse())
-            {
-                using (StreamReader rd = new StreamReader(response.GetResponseStream()))
+                //  ObjectFactory factory = new ObjectFactory();
+
+                // Initialize Credentials (User Name & User Password / Authorization Token & Slice Token)
+                credentials.userName = "wsConnect40121";
+                credentials.userPassword = "Itbs123!";
+
+                // Initialize Extended Settings such as Response Format (XML, JSON)
+                extParams.responseFormat = "JSON";
+
+                // Invoke the GET service
+                DefaultServiceResponse serviceResponse = request.getServiceRequest(credentials, extParams, "100-17");
+
+                // Inspect successful execution of service and retrieve the response text serviceResponse.responseText
+                if (serviceResponse.responseStatus == "OK")
                 {
-                    string soapResult = rd.ReadToEnd();
-                    Console.WriteLine(soapResult);
+
+
+                    var jss = new JavaScriptSerializer();
+                    var table = jss.Deserialize<dynamic>(serviceResponse.responseText);
+                    return table[42];
+
+                } // Retrieve the status code, status message and error messages, in case of failures 
+                else {
+
+                    throw new IntranetException.ItbsException(HttpStatusCode.InternalServerError, IntranetException.ExceptionResource.CsmTicketError + " Razon:"+ serviceResponse.statusMessage);
+                 //   Console.Out.WriteLine("Errors : " + Arrays.asList(serviceResponse.errors.ToString()));
                 }
+            
+        } catch (Exception e) {
+                throw new IntranetException.ItbsException(HttpStatusCode.InternalServerError, IntranetException.ExceptionResource.CsmTicketError + " Razon:" + e.Message);
             }
 
 
-        }
+}
 
         public void GetTicket2(string ticketID)
         {

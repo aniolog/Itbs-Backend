@@ -289,6 +289,10 @@
     <Content Include="Model\Modelbackup.edmx.diagram">
       <DependentUpon>Modelbackup.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Service References\CSMSoapServiceRequest\configuration91.svcinfo" />
     <None Include="Service References\CSMSoapServiceRequest\configuration.svcinfo" />
     <None Include="Service References\CSMSoapServiceRequest\Reference.svcmap">
@@ -420,6 +424,7 @@
     <Compile Include="Logic\LogicRol.cs" />
     <Compile Include="Logic\LogicSolicitudVacaciones.cs" />
     <Compile Include="Logic\LogicUser.cs" />
+    <Compile Include="Logic\SoapInterceptor\TraceExtension.cs" />
     <Compile Include="Logic\UtilFunctions.cs" />
     <Compile Include="Model-Rest\CtRequest.cs" />
     <Compile Include="Model-Rest\UserEmpleado.cs" />
@@ -488,6 +493,11 @@
       <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Service References\CSMSoapServiceRequest\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -499,6 +509,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Web References\CACSMSR\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -514,6 +529,14 @@
     </Content>
     <None Include="Service References\CSMSoapServiceRequest\ServiceRequest1.wsdl" />
     <None Include="Service References\CSMSoapTicket\Ticket.wsdl" />
+    <Content Include="Web References\CACSMSR\DefaultServiceResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\CACSMSR\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\CACSMSR\ServiceRequest.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -543,6 +566,22 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CSMSoapServiceRequest\" />
     <WCFMetadataStorage Include="Service References\CSMSoapTicket\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://sm1s.saas.ca.com/servicedesk/webservices/ServiceRequest%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\CACSMSR\</RelPath>
+      <UpdateFromURL>https://sm1s.saas.ca.com/servicedesk/webservices/ServiceRequest%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Backend_CACSMSR_ServiceRequest</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

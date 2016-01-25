@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/24/2016 19:50:31
+-- Date Created: 01/25/2016 09:28:26
 -- Generated from EDMX file: C:\Users\alozano\Desktop\ASP\Itbs-Backend\Intranet-Backend\Backend\Model\Modelbackup.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,56 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_UserCertificado]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CertificadoSet] DROP CONSTRAINT [FK_UserCertificado];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCurso]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CursosSet] DROP CONSTRAINT [FK_UserCurso];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserEstudio]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EstudioSet] DROP CONSTRAINT [FK_UserEstudio];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserExprecienciaLaboral]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ExprecienciaLaboralSet] DROP CONSTRAINT [FK_UserExprecienciaLaboral];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserSolicitudVacaciones]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[SolicitudVacacionesSet] DROP CONSTRAINT [FK_UserSolicitudVacaciones];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RolUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserSet] DROP CONSTRAINT [FK_RolUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserProyectos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProyectosSet] DROP CONSTRAINT [FK_UserProyectos];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[CertificadoSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CertificadoSet];
+GO
+IF OBJECT_ID(N'[dbo].[CursosSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CursosSet];
+GO
+IF OBJECT_ID(N'[dbo].[EstudioSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EstudioSet];
+GO
+IF OBJECT_ID(N'[dbo].[ExprecienciaLaboralSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ExprecienciaLaboralSet];
+GO
+IF OBJECT_ID(N'[dbo].[SolicitudVacacionesSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SolicitudVacacionesSet];
+GO
+IF OBJECT_ID(N'[dbo].[RolSet1]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RolSet1];
+GO
+IF OBJECT_ID(N'[dbo].[UserSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet];
+GO
+IF OBJECT_ID(N'[dbo].[ProyectosSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ProyectosSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -111,8 +156,8 @@ CREATE TABLE [dbo].[ProyectosSet] (
     [Ano_Fin] nvarchar(max)  NOT NULL,
     [Empresa] nvarchar(max)  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL,
-    [User_Usename] nvarchar(max)  NOT NULL,
-    [User_Id] int  NOT NULL
+    [UserUsename] nvarchar(max)  NOT NULL,
+    [UserId] int  NOT NULL
 );
 GO
 
@@ -262,10 +307,10 @@ ON [dbo].[UserSet]
     ([Rol_Id]);
 GO
 
--- Creating foreign key on [User_Usename], [User_Id] in table 'ProyectosSet'
+-- Creating foreign key on [UserUsename], [UserId] in table 'ProyectosSet'
 ALTER TABLE [dbo].[ProyectosSet]
 ADD CONSTRAINT [FK_UserProyectos]
-    FOREIGN KEY ([User_Usename], [User_Id])
+    FOREIGN KEY ([UserUsename], [UserId])
     REFERENCES [dbo].[UserSet]
         ([Usename], [Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -274,7 +319,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserProyectos'
 CREATE INDEX [IX_FK_UserProyectos]
 ON [dbo].[ProyectosSet]
-    ([User_Usename], [User_Id]);
+    ([UserUsename], [UserId]);
 GO
 
 -- --------------------------------------------------

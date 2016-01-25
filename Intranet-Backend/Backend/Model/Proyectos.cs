@@ -19,6 +19,8 @@ namespace Backend.Model
         public string Ano_Fin { get; set; }
         public string Empresa { get; set; }
         public string Descripcion { get; set; }
+        public string UserUsename { get; set; }
+        public int UserId { get; set; }
     
         public virtual User User { get; set; }
     }

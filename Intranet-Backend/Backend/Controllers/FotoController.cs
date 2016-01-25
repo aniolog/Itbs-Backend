@@ -14,7 +14,7 @@ namespace Backend.Controllers
     public class FotoController : ApiController
     {
 
-        string root = Path.Combine(@"C:\temp\", "fotos");
+        string root = Path.Combine(@"C:\xampp\htdocs\temp", "fotos");
 
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
         [Route("create")]
