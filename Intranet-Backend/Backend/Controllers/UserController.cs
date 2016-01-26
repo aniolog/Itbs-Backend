@@ -32,10 +32,6 @@ namespace Backend.Controllers
         [Route("")]
         public IQueryable<Model.User> Get()
         {
-
-            var Logic = new Logic.LogicSolicitudVacaciones();
-            Logic.GetTicket("s");
-
             Logic.LogicUser MyLogic = new Backend.Logic.LogicUser();
             return MyLogic.GetUsers();
         }

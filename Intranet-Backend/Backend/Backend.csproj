@@ -427,6 +427,7 @@
     <Compile Include="Logic\SoapInterceptor\TraceExtension.cs" />
     <Compile Include="Logic\UtilFunctions.cs" />
     <Compile Include="Model-Rest\CtRequest.cs" />
+    <Compile Include="Model-Rest\SolicitudVacaciones.cs" />
     <Compile Include="Model-Rest\UserEmpleado.cs" />
     <Compile Include="Model-Rest\Error.cs" />
     <Compile Include="Model\Certificado.cs">

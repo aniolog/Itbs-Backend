@@ -49,7 +49,7 @@ namespace Backend.Dao
         /// <returns></returns>
         public override dynamic GetByPK(string PrimaryKey)
         {
-            var Vacaciones = from vacaciones in context.SolicitudVacacionesSet where PrimaryKey.Equals(vacaciones.User.Correo) select vacaciones;
+            var Vacaciones = from vacaciones in context.SolicitudVacacionesSet where vacaciones.User.Correo==PrimaryKey orderby vacaciones.Fecha_Inicio ascending select vacaciones;
             return Vacaciones;
         }
 

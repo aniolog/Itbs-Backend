@@ -17,7 +17,7 @@ namespace Backend.Logic
 
         public LogicSolicitudVacaciones()
         {
-            this.MyDao = Dao.DaoFabric.getDaoSolicitudVacaciones();
+            MyDao = Dao.DaoFabric.getDaoSolicitudVacaciones();
         }
 
 
@@ -25,8 +25,12 @@ namespace Backend.Logic
           return  this.MyDao.GetByPK(Email);
         }
 
-
-        public string GetTicket(string ticketID) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ticketID"></param>
+        /// <returns></returns>
+        private string GetTicketStatus(string ticketID) {
             try {
                 var request = new CACSMSR.ServiceRequest();
 
@@ -43,7 +47,7 @@ namespace Backend.Logic
                 extParams.responseFormat = "JSON";
 
                 // Invoke the GET service
-                DefaultServiceResponse serviceResponse = request.getServiceRequest(credentials, extParams, "100-17");
+                DefaultServiceResponse serviceResponse = request.getServiceRequest(credentials, extParams, ticketID);
 
                 // Inspect successful execution of service and retrieve the response text serviceResponse.responseText
                 if (serviceResponse.responseStatus == "OK")
@@ -52,7 +56,8 @@ namespace Backend.Logic
 
                     var jss = new JavaScriptSerializer();
                     var table = jss.Deserialize<dynamic>(serviceResponse.responseText);
-                    return table[42];
+                    var returner = table[0];
+                    return returner["Reason Code"];
 
                 } // Retrieve the status code, status message and error messages, in case of failures 
                 else {
@@ -68,19 +73,19 @@ namespace Backend.Logic
 
 }
 
-        public void GetTicket2(string ticketID)
-        {
-            
-        }
 
-        public HttpWebRequest CreateWebRequest()
-        {
-            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(@"http://dev.nl/Rvl.Demo.TestWcfServiceApplication/SoapWebService.asmx");
-            webRequest.Headers.Add(@"SOAP:Action");
-            webRequest.ContentType = "text/xml;charset=\"utf-8\"";
-            webRequest.Accept = "text/xml";
-            webRequest.Method = "POST";
-            return webRequest;
+
+        public IQueryable<Model_Rest.SolicitudVacaciones> GetRquests(String Correo) {
+
+            IQueryable<Model.SolicitudVacaciones> requestList=this.MyDao.GetByPK(Correo);
+            List<Model_Rest.SolicitudVacaciones> returnList = new List<Model_Rest.SolicitudVacaciones>();
+            foreach (Model.SolicitudVacaciones req in requestList) {
+                string status = this.GetTicketStatus(req.Ticket_id);
+                Model_Rest.SolicitudVacaciones newReq = 
+                    new Model_Rest.SolicitudVacaciones(req.Id,req.Fecha_Inicio,req.Duracion,req.Ticket_id,status);
+                returnList.Add(newReq);
+            }
+            return returnList.AsQueryable();
         }
 
 
