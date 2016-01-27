@@ -82,11 +82,19 @@ namespace Backend.Logic
             foreach (Model.SolicitudVacaciones req in requestList) {
                 string status = this.GetTicketStatus(req.Ticket_id);
                 Model_Rest.SolicitudVacaciones newReq = 
-                    new Model_Rest.SolicitudVacaciones(req.Id,req.Fecha_Inicio,req.Duracion,req.Ticket_id,status);
+                    new Model_Rest.SolicitudVacaciones(req.Id,req.Fecha_Inicio,req.Duracion,req.Ticket_id,status,req.Fecha_Fin);
                 returnList.Add(newReq);
             }
             return returnList.AsQueryable();
         }
+
+        public int GetCount(String Correo)
+        {
+
+            IQueryable<Model.SolicitudVacaciones> requestList = this.MyDao.GetByPK(Correo);
+            return requestList.Count();
+        }
+
 
 
 

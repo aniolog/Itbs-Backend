@@ -18,6 +18,7 @@ namespace Backend.Model
         public System.DateTime Fecha_Inicio { get; set; }
         public short Duracion { get; set; }
         public string Ticket_id { get; set; }
+        public System.DateTime Fecha_Fin { get; set; }
     
         public virtual User User { get; set; }
     }

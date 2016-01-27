@@ -95,6 +95,7 @@
     <Property Name="Fecha_Inicio" Type="datetime" Nullable="false" />
     <Property Name="Duracion" Type="smallint" Nullable="false" />
     <Property Name="Ticket_id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fecha_Fin" Type="datetime" Nullable="false" />
     <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -320,6 +321,7 @@
           <Property Name="Duracion" Type="Int16" Nullable="false" />
           <Property Name="Ticket_id" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Modelbackup.UserSolicitudVacaciones" FromRole="SolicitudVacaciones" ToRole="User" />
+          <Property Name="Fecha_Fin" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -455,6 +457,7 @@
           <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
           <ScalarProperty Name="Duracion" ColumnName="Duracion" />
           <ScalarProperty Name="Ticket_id" ColumnName="Ticket_id" />
+          <ScalarProperty Name="Fecha_Fin" ColumnName="Fecha_Fin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
