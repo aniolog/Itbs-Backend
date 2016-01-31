@@ -29,6 +29,15 @@ namespace Backend.Controllers
             return Logic.GetCount(HttpContext.Current.User.Identity.Name);
         }
 
+        [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
+        [Route("create")]
+        [Queryable]
+        public String SaveRequest()
+        {
+            Logic.LogicSolicitudVacaciones Logic = new Backend.Logic.LogicSolicitudVacaciones();
+            return Logic.LogServiceRequest();
+        }
+
 
     }
 }

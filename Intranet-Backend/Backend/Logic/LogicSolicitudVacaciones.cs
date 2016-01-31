@@ -20,7 +20,11 @@ namespace Backend.Logic
             MyDao = Dao.DaoFabric.getDaoSolicitudVacaciones();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Email"></param>
+        /// <returns></returns>
         public List<Model.SolicitudVacaciones> GetVacationRequest(String Email) {
           return  this.MyDao.GetByPK(Email);
         }
@@ -45,7 +49,7 @@ namespace Backend.Logic
 
                 // Initialize Extended Settings such as Response Format (XML, JSON)
                 extParams.responseFormat = "JSON";
-
+                
                 // Invoke the GET service
                 DefaultServiceResponse serviceResponse = request.getServiceRequest(credentials, extParams, ticketID);
 
@@ -72,9 +76,12 @@ namespace Backend.Logic
 
 
 }
-
-
-
+      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo"></param>
+        /// <returns></returns>
         public IQueryable<Model_Rest.SolicitudVacaciones> GetRquests(String Correo) {
 
             IQueryable<Model.SolicitudVacaciones> requestList=this.MyDao.GetByPK(Correo);
@@ -88,6 +95,11 @@ namespace Backend.Logic
             return returnList.AsQueryable();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Correo"></param>
+        /// <returns></returns>
         public int GetCount(String Correo)
         {
 
@@ -96,15 +108,55 @@ namespace Backend.Logic
         }
 
 
+        public String LogServiceRequest() {
+            try
+            {
+                var request = new CACSMSR.ServiceRequest();
+
+                Credentials credentials = new Credentials();
+                ExtendedSettings extParams = new ExtendedSettings();
+                
+                credentials.userName = "wsConnect40121";
+                credentials.userPassword = "Itbs123!";
+                extParams.responseFormat = "JSON";
+
+                ServiceRequest1 sqr = new ServiceRequest1();
+                sqr.ticket_description = "prueba";
+                sqr.description_long = "details";
+                sqr.requester_name = "Lozano, Anibal";
+                sqr.ccti_class = "Servicios de TI";
+                sqr.ccti_category = "Solicitud";
+                sqr.ccti_type = "Vacaciones";
+                
+                DefaultServiceResponse serviceResponse = request.logServiceRequest(credentials,extParams,sqr);
+
+              
+                if (serviceResponse.responseStatus == "OK")
+                {
 
 
+                    var jss = new JavaScriptSerializer();
+                    var table = jss.Deserialize<dynamic>(serviceResponse.responseText);
+                    var returner = table[0];
+                    return returner["ticket_identifier"];
+           
 
-        /*
+                } 
+                else {
+                    throw new IntranetException.ItbsException(HttpStatusCode.InternalServerError, IntranetException.ExceptionResource.CsmTicketError + " Razon:" + serviceResponse.statusMessage);
+                }
 
+            }
+            catch (Exception e)
+            {
+                throw new IntranetException.ItbsException(HttpStatusCode.InternalServerError, IntranetException.ExceptionResource.CsmTicketError + " Razon:" + e.Message);
+            }
+        }
+ 
         public Boolean InsertVacationRequest(Model.SolicitudVacaciones Request) {
             Logic.LogicDiaFeriado DiasFeriadosLogic = new Logic.LogicDiaFeriado();
-            DateTime Fecha_Fin = Request.Fecha_Inicio;
-            DateTime Fecha_Ingreso = (new LogicEmpleado())
+            DateTime EndDate = Request.Fecha_Inicio;
+            DateTime DateEntered = (new LogicEmpleado())
                 .GetEmpleado(Request.User.Correo).First().fecha_ing; 
 
             if (Request.User == null)
@@ -115,18 +167,26 @@ namespace Backend.Logic
 
             if (Request.Fecha_Inicio<=DateTime.Now) {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, 
-                    IntranetException.ExceptionResource.FechaInicioInvalida);
+                    "hola");
             }
 
             if (Request.Duracion <= 0) {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, 
-                    IntranetException.ExceptionResource.FechaInicioInvalida);
+                    "hola");
+            }
+            var YearsInItbs =(DateTime.Today -DateEntered).TotalDays/ 365.2425;
+            if (!(YearsInItbs > 0)) {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,
+                   "hola");
             }
 
-            while (DiasFeriadosLogic.isFeriado(Request.Fecha_Inicio)) {
-                Request.Fecha_Inicio=Request.Fecha_Inicio.AddDays(1);
-            }
-
+            /*
+            while ((DiasFeriadosLogic.isFeriado(Request.Fecha_Inicio))||
+                    (Request.Fecha_Inicio.DayOfWeek==DayOfWeek.Saturday)||
+                      (Request.Fecha_Inicio.DayOfWeek == DayOfWeek.Sunday)){
+                        Request.Fecha_Inicio=Request.Fecha_Inicio.AddDays(1);
+                     }
+            
             for (int Arreglo = 0; Arreglo < Request.Duracion; Arreglo++) {
                 Fecha_Fin = Fecha_Fin.AddDays(1);
                 while (DiasFeriadosLogic.isFeriado(Fecha_Fin))
@@ -135,8 +195,9 @@ namespace Backend.Logic
                 }
             }
 
-            return this.MyDao.Insert(Request);
-        }*/
+            return this.MyDao.Insert(Request);*/
+            return true;
+        }
 
     }
 }
