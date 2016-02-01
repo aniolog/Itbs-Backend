@@ -15,9 +15,10 @@ namespace Backend.Controllers
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
         [Route("")]
         [Queryable]
-        public IQueryable<Model_Rest.SolicitudVacaciones> GetRequest() {
+        public IQueryable<Model.SolicitudVacaciones> GetRequest() {
             Logic.LogicSolicitudVacaciones Logic = new Backend.Logic.LogicSolicitudVacaciones();
-            return Logic.GetRquests(HttpContext.Current.User.Identity.Name);
+            Logic.UpdateRequestStatus(HttpContext.Current.User.Identity.Name);
+            return Logic.GetRequests(HttpContext.Current.User.Identity.Name);
         }
 
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
@@ -34,8 +35,10 @@ namespace Backend.Controllers
         [Queryable]
         public String SaveRequest()
         {
-            Logic.LogicSolicitudVacaciones Logic = new Backend.Logic.LogicSolicitudVacaciones();
-            return Logic.LogServiceRequest();
+            //Logic.LogicSolicitudVacaciones Logic = new Backend.Logic.LogicSolicitudVacaciones();
+           // Logic.UpdateRequestStatus(HttpContext.Current.User.Identity.Name);
+           // return Logic.LogServiceRequest();
+           return "";
         }
 
 

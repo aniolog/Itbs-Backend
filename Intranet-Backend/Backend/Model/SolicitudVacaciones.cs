@@ -19,6 +19,7 @@ namespace Backend.Model
         public short Duracion { get; set; }
         public string Ticket_id { get; set; }
         public System.DateTime Fecha_Fin { get; set; }
+        public string Estatus { get; set; }
     
         public virtual User User { get; set; }
     }

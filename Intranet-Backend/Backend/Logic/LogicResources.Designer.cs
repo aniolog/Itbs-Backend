@@ -61,24 +61,65 @@ namespace Backend.Logic {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;
-        ///&lt;head&gt;
-        ///	&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
-        ///	&lt;style&gt;body {padding-top: 2.5cm; padding-left: 3cm;padding-right: 3cm;padding-bottom: 2.5cm;} &lt;/style&gt;
-        ///&lt;/head&gt;
-        ///	&lt;body&gt;
-        ///    &lt;img src=&quot;itbslogo.png&quot;/&gt;
-        ///    &lt;h5&gt;RIF. J-29357390-4&lt;/h5&gt;
-        ///    &lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
-        ///		&lt;h1 style=&quot;text-align:center;&quot;&gt;A QUIEN PUDE INTERESAR&lt;/h1&gt;
-        ///    &lt;/br&gt;&lt;/br&gt;&lt;/br&gt;
-        ///    &lt;p align=&quot;justify&quot;&gt;
-        ///      Se  hace  constar  que  {Genero} &lt;strong&gt;{NombreCompleto}.&lt;/strong&gt;
-        ///      Titular   de    la    c [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Solicitud.
         /// </summary>
-        internal static string CvHtml {
+        internal static string CctiCategory {
             get {
-                return ResourceManager.GetString("CvHtml", resourceCulture);
+                return ResourceManager.GetString("CctiCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Servicios de TI.
+        /// </summary>
+        internal static string CctiClass {
+            get {
+                return ResourceManager.GetString("CctiClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vacaciones.
+        /// </summary>
+        internal static string CctiType {
+            get {
+                return ResourceManager.GetString("CctiType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Itbs123!.
+        /// </summary>
+        internal static string CsmPassword {
+            get {
+                return ResourceManager.GetString("CsmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wsConnect40121.
+        /// </summary>
+        internal static string CsmUsername {
+            get {
+                return ResourceManager.GetString("CsmUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON.
+        /// </summary>
+        internal static string ResponseFormat {
+            get {
+                return ResourceManager.GetString("ResponseFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ticket_identifier.
+        /// </summary>
+        internal static string TicketIdentifier {
+            get {
+                return ResourceManager.GetString("TicketIdentifier", resourceCulture);
             }
         }
     }

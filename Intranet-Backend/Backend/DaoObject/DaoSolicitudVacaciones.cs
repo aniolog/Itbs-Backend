@@ -87,7 +87,13 @@ namespace Backend.Dao
         /// <returns></returns>
         public override bool Update(object Obj)
         {
-            throw new NotImplementedException();
+            try {
+                this.context.SaveChanges();
+                return true; }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
