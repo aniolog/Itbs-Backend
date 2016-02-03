@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace Backend.Controllers
@@ -11,11 +12,13 @@ namespace Backend.Controllers
     public class DocumentosController : ApiController
     {
         [Authorize(Roles ="Administrador")]
-        [Route("cv")]
-        public string Post([FromBody] Model_Rest.CtRequest Request)
+        [Route("cv/{Email}")]
+        public string Post([FromUri] string Email)
         {
-         
-            return (new Logic.LogicDocumentos()).CreateConstanciaTrabajo(Request.EmpleadoCorreo, Request.JefeCorreo);
+            Logic.LogicDocumentos Logic = new Logic.LogicDocumentos();
+
+            return Logic.CreateConstanciaTrabajo(Email,
+                HttpContext.Current.User.Identity.Name);
         }
       
     }

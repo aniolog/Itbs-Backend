@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Backend.Model_Rest
 {
-    public class SolicitudVacaciones
+    public class RestSolicitudVacaciones
     {
         /// <summary>
         /// 
@@ -16,6 +16,8 @@ namespace Backend.Model_Rest
         public short Duracion { get; set; }
         public string Ticket_id { get; set; }
         public string Status { get; set; }
+        public string Observacion { get; set; }
+        public Model.User User { get; set; }
 
         /// <summary>
         /// 
@@ -25,7 +27,7 @@ namespace Backend.Model_Rest
         /// <param name="Duracion"></param>
         /// <param name="Ticket_Id"></param>
         /// <param name="Status"></param>
-        public SolicitudVacaciones(int Id,DateTime Fecha_Inicio,short Duracion,string Ticket_Id,string Status,DateTime Fecha_Fin)
+        public RestSolicitudVacaciones(int Id,DateTime Fecha_Inicio,short Duracion,string Ticket_Id,string Status,DateTime Fecha_Fin)
         {
             this.Id = Id;
             this.Fecha_Inicio = Fecha_Inicio;

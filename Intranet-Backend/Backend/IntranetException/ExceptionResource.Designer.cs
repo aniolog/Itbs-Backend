@@ -70,11 +70,56 @@ namespace Backend.IntranetException {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La duracion de la solicitud debe ser mayor a 0.
+        /// </summary>
+        internal static string DuracionErronea {
+            get {
+                return ResourceManager.GetString("DuracionErronea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ususario no existe, verifique el correo electronico.
         /// </summary>
         internal static string EmpleadoInexistente {
             get {
                 return ResourceManager.GetString("EmpleadoInexistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario no ha ingresado a itbs en la fecha de inicio de la solicitud, por favor ingrese otra fecha.
+        /// </summary>
+        internal static string FechaDeInicioErronea {
+            get {
+                return ResourceManager.GetString("FechaDeInicioErronea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La fecha de inicio es un dia feriado, por favor ingrese otra fecha.
+        /// </summary>
+        internal static string FechaDeInicioEsUnDiaFeriado {
+            get {
+                return ResourceManager.GetString("FechaDeInicioEsUnDiaFeriado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La fecha de inicio es un dia de un fin de semana, por favor ingrese otra fecha.
+        /// </summary>
+        internal static string FechaDeInicioEsUnFinDeSemana {
+            get {
+                return ResourceManager.GetString("FechaDeInicioEsUnFinDeSemana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La fecha de inicio debe ser mayor que la fecha actual, por favor ingrese otra fecha.
+        /// </summary>
+        internal static string FechaDeInicioMenorQueFechaActual {
+            get {
+                return ResourceManager.GetString("FechaDeInicioMenorQueFechaActual", resourceCulture);
             }
         }
         
@@ -129,6 +174,33 @@ namespace Backend.IntranetException {
         internal static string UsuarioInvalido {
             get {
                 return ResourceManager.GetString("UsuarioInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La cantidad de dias que usted dispone es menor que la solicitada.
+        /// </summary>
+        internal static string UsuarioNoDisponeDeDias {
+            get {
+                return ResourceManager.GetString("UsuarioNoDisponeDeDias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario no tiene no tiene un año dentro de itbs.
+        /// </summary>
+        internal static string UsuarioNoPuedeSolicitarVacaciones {
+            get {
+                return ResourceManager.GetString("UsuarioNoPuedeSolicitarVacaciones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usted ya posee una solicitud de vacaciones abiertas, Comuniquese con su supervisor para actualizar el status.
+        /// </summary>
+        internal static string UsuarioTieneSolicitudAbierta {
+            get {
+                return ResourceManager.GetString("UsuarioTieneSolicitudAbierta", resourceCulture);
             }
         }
     }

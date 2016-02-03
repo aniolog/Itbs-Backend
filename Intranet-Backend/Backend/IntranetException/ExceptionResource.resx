@@ -121,8 +121,28 @@
     <value>Error tratando de obtener el status de la solicitud de vacaciones</value>
     <comment>Status Code: InternalError</comment>
   </data>
+  <data name="DuracionErronea" xml:space="preserve">
+    <value>La duracion de la solicitud debe ser mayor a 0</value>
+    <comment>Status Code: BadRequest</comment>
+  </data>
   <data name="EmpleadoInexistente" xml:space="preserve">
     <value>Ususario no existe, verifique el correo electronico</value>
+    <comment>Status Code: BadRequest</comment>
+  </data>
+  <data name="FechaDeInicioErronea" xml:space="preserve">
+    <value>El usuario no ha ingresado a itbs en la fecha de inicio de la solicitud, por favor ingrese otra fecha</value>
+    <comment>Status Code: BadRequest</comment>
+  </data>
+  <data name="FechaDeInicioEsUnDiaFeriado" xml:space="preserve">
+    <value>La fecha de inicio es un dia feriado, por favor ingrese otra fecha</value>
+    <comment>Status Code: BadRequest</comment>
+  </data>
+  <data name="FechaDeInicioEsUnFinDeSemana" xml:space="preserve">
+    <value>La fecha de inicio es un dia de un fin de semana, por favor ingrese otra fecha</value>
+    <comment>Status Code: BadRequest</comment>
+  </data>
+  <data name="FechaDeInicioMenorQueFechaActual" xml:space="preserve">
+    <value>La fecha de inicio debe ser mayor que la fecha actual, por favor ingrese otra fecha</value>
     <comment>Status Code: BadRequest</comment>
   </data>
   <data name="RolInexistente" xml:space="preserve">
@@ -147,6 +167,18 @@
   </data>
   <data name="UsuarioInvalido" xml:space="preserve">
     <value>Usuario debe ser obligatorio</value>
+    <comment>Status Code: BadRequest</comment>
+  </data>
+  <data name="UsuarioNoDisponeDeDias" xml:space="preserve">
+    <value>La cantidad de dias que usted dispone es menor que la solicitada</value>
+    <comment>Status Code: BadRequest</comment>
+  </data>
+  <data name="UsuarioNoPuedeSolicitarVacaciones" xml:space="preserve">
+    <value>El usuario no tiene no tiene un año dentro de itbs</value>
+    <comment>Status Code: BadRequest</comment>
+  </data>
+  <data name="UsuarioTieneSolicitudAbierta" xml:space="preserve">
+    <value>Usted ya posee una solicitud de vacaciones abiertas, Comuniquese con su supervisor para actualizar el status</value>
     <comment>Status Code: BadRequest</comment>
   </data>
 </root>

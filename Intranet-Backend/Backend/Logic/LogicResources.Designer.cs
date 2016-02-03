@@ -106,11 +106,47 @@ namespace Backend.Logic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ct.html.
+        /// </summary>
+        internal static string CtFile {
+            get {
+                return ResourceManager.GetString("CtFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .pdf.
+        /// </summary>
+        internal static string DocumentsOutPutFormat {
+            get {
+                return ResourceManager.GetString("DocumentsOutPutFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\xampp\htdocs\temp\documentos\.
+        /// </summary>
+        internal static string DocumentsUrl {
+            get {
+                return ResourceManager.GetString("DocumentsUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JSON.
         /// </summary>
         internal static string ResponseFormat {
             get {
                 return ResourceManager.GetString("ResponseFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\xampp\htdocs\temp\templates\.
+        /// </summary>
+        internal static string TemplatesURL {
+            get {
+                return ResourceManager.GetString("TemplatesURL", resourceCulture);
             }
         }
         

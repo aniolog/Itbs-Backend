@@ -132,8 +132,20 @@
   <data name="CsmUsername" xml:space="preserve">
     <value>wsConnect40121</value>
   </data>
+  <data name="CtFile" xml:space="preserve">
+    <value>ct.html</value>
+  </data>
+  <data name="DocumentsOutPutFormat" xml:space="preserve">
+    <value>.pdf</value>
+  </data>
+  <data name="DocumentsUrl" xml:space="preserve">
+    <value>C:\xampp\htdocs\temp\documentos\</value>
+  </data>
   <data name="ResponseFormat" xml:space="preserve">
     <value>JSON</value>
+  </data>
+  <data name="TemplatesURL" xml:space="preserve">
+    <value>C:\xampp\htdocs\temp\templates\</value>
   </data>
   <data name="TicketIdentifier" xml:space="preserve">
     <value>ticket_identifier</value>

@@ -21,7 +21,7 @@ namespace Backend.Logic
         }
 
         public Boolean isFeriado(DateTime Dia) {
-            List<Model.snferiado> DiasFeriados= this.MyDao.GetAll();
+            IQueryable<Model.snferiado> DiasFeriados= this.MyDao.GetAll();
             foreach (Model.snferiado looper in DiasFeriados) {
                 if (looper.fecha.Date == Dia.Date) {
                     return true;

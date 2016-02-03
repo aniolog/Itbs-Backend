@@ -13,6 +13,7 @@ namespace Backend.Controllers
     public class SolicitudDeVacacionesController : ApiController
     {
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
+        [HttpGet]
         [Route("")]
         [Queryable]
         public IQueryable<Model.SolicitudVacaciones> GetRequest() {
@@ -20,8 +21,9 @@ namespace Backend.Controllers
             Logic.UpdateRequestStatus(HttpContext.Current.User.Identity.Name);
             return Logic.GetRequests(HttpContext.Current.User.Identity.Name);
         }
-
+        
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
+        [HttpGet]
         [Route("count")]
         [Queryable]
         public int GetCount()
@@ -31,14 +33,14 @@ namespace Backend.Controllers
         }
 
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
+        [HttpPost]
         [Route("create")]
         [Queryable]
-        public String SaveRequest()
+        public String SaveRequest([FromBody]Model_Rest.RestSolicitudVacaciones Request)
         {
-            //Logic.LogicSolicitudVacaciones Logic = new Backend.Logic.LogicSolicitudVacaciones();
-           // Logic.UpdateRequestStatus(HttpContext.Current.User.Identity.Name);
-           // return Logic.LogServiceRequest();
-           return "";
+            Logic.LogicSolicitudVacaciones Logic = new Backend.Logic.LogicSolicitudVacaciones();
+            return Logic.SubmitVacationRequest(Request);
+          
         }
 
 

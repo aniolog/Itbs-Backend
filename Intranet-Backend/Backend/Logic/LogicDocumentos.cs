@@ -24,7 +24,7 @@ namespace Backend.Logic
             if ((Jefe==null)||(User==null)) {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, 
                     IntranetException.ExceptionResource.EmpleadoInexistente); }
-            var Html = System.IO.File.ReadAllText(@"C:\Users\alozano\Desktop\templates\ct.html");
+            var Html = System.IO.File.ReadAllText(LogicResources.TemplatesURL+LogicResources.CtFile);
             Html=Html.Replace("{Titulo}",(Empleado.sexo=="M" ? "el Sr" : "la Sra"));
             Html=Html.Replace("{Nacionalidad}", (Empleado.nac == 1 ? "V" : "E"));
             Html=Html.Replace("{Cedula}",Empleado.ci);
@@ -49,10 +49,11 @@ namespace Backend.Logic
 
             byte[] pdfBytes=this.generatePDF(Html); ;
             System.IO.FileStream _FileStream =
-            new System.IO.FileStream(@"C:\Users\alozano\Desktop\cv"+Empleado.ci+".pdf", System.IO.FileMode.Create, System.IO.FileAccess.Write);
+            new System.IO.FileStream(Logic.LogicResources.DocumentsUrl+Empleado.correo_e+Logic.LogicResources.DocumentsOutPutFormat,
+            System.IO.FileMode.Create, System.IO.FileAccess.Write);
             _FileStream.Write(pdfBytes, 0, pdfBytes.Length);
             _FileStream.Close();
-            return (@"C:\Users\alozano\Desktop\cv" + Empleado.ci + ".pdf");
+            return (Empleado.correo_e + Logic.LogicResources.DocumentsOutPutFormat);
 
         }
 

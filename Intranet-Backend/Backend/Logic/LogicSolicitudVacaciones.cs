@@ -105,7 +105,7 @@ namespace Backend.Logic
         /// 
         /// </summary>
         /// <returns></returns>
-        public String LogServiceRequest(Model.SolicitudVacaciones req) {
+        public String LogServiceRequest(Model_Rest.RestSolicitudVacaciones req) {
             try
             {
                 var request = new CACSMSR.ServiceRequest();
@@ -118,13 +118,26 @@ namespace Backend.Logic
                 extParams.responseFormat = Logic.LogicResources.ResponseFormat;
 
                 ServiceRequest1 sqr = new ServiceRequest1();
-                sqr.ticket_description = "prueba";
+                sqr.ticket_description = req.Observacion;
                 sqr.description_long = "details";
                 sqr.requester_name = "Lozano, Anibal";
+                sqr.person1_alt_email = req.User.Correo;
                 sqr.ccti_class = Logic.LogicResources.CctiClass;
                 sqr.ccti_category =Logic.LogicResources.CctiCategory;
                 sqr.ccti_type = Logic.LogicResources.CctiType;
                 
+                List<CustomAttribute> CustomAtrributes = new List<CustomAttribute>();
+                var Fecha_Inicio = new CustomAttribute();
+                Fecha_Inicio.attribute_name = "Fecha de Inicio del periodo Vacacional";
+                Fecha_Inicio.attribute_value = req.Fecha_Inicio.ToString();
+                var Fecha_Fin = new CustomAttribute();
+                Fecha_Fin.attribute_name = "Fecha fin del periodo Vacacional";
+                Fecha_Fin.attribute_value = req.Fecha_Fin.ToString();
+                CustomAtrributes.Add(Fecha_Inicio);
+                CustomAtrributes.Add(Fecha_Fin);
+                sqr.custom_attributes = CustomAtrributes.ToArray();
+                
+
                 DefaultServiceResponse serviceResponse = request.logServiceRequest(credentials,extParams,sqr);
 
               
@@ -155,7 +168,7 @@ namespace Backend.Logic
         /// </summary>
         /// <param name="Request"></param>
         /// <returns></returns>
-        public Boolean SubmitVacationRequest(Model.SolicitudVacaciones Request) {
+        public string SubmitVacationRequest(Model_Rest.RestSolicitudVacaciones Request) {
             Logic.LogicDiaFeriado DiasFeriadosLogic = new Logic.LogicDiaFeriado();
             DateTime EndDate = Request.Fecha_Inicio;
             DateTime DateEntered = (new LogicEmpleado())
@@ -169,43 +182,60 @@ namespace Backend.Logic
 
             if (Request.Fecha_Inicio<=DateTime.Now) {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, 
-                    "hola");
+                    IntranetException.ExceptionResource.FechaDeInicioMenorQueFechaActual);
             }
 
             if (Request.Duracion <= 0) {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, 
-                    "hola");
+                   IntranetException.ExceptionResource.DuracionErronea);
             }
             var YearsInItbs =(DateTime.Today -DateEntered).TotalDays/ 365.2425;
             if (!(YearsInItbs > 0)) {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,
-                   "hola");
+                   IntranetException.ExceptionResource.UsuarioNoPuedeSolicitarVacaciones);
             }
 
             if (Request.Fecha_Inicio < DateEntered) {
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,
-                   "hola");
+                   IntranetException.ExceptionResource.FechaDeInicioErronea);
             }
 
+            if (DiasFeriadosLogic.isFeriado(Request.Fecha_Inicio)){
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,
+                   IntranetException.ExceptionResource.FechaDeInicioEsUnDiaFeriado);
+            }
 
+            if ((Request.Fecha_Inicio.DayOfWeek == DayOfWeek.Saturday)||
+                (Request.Fecha_Inicio.DayOfWeek == DayOfWeek.Sunday))   {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,
+                   IntranetException.ExceptionResource.FechaDeInicioEsUnFinDeSemana);
+            }
+            if (DaysAvailable(Request, DateEntered) < Request.Duracion) {
+                throw new IntranetException.ItbsException(HttpStatusCode.BadRequest,
+                   IntranetException.ExceptionResource.UsuarioNoDisponeDeDias);
+            }
 
-            /*
-            while ((DiasFeriadosLogic.isFeriado(Request.Fecha_Inicio))||
-                    (Request.Fecha_Inicio.DayOfWeek==DayOfWeek.Saturday)||
-                      (Request.Fecha_Inicio.DayOfWeek == DayOfWeek.Sunday)){
-                        Request.Fecha_Inicio=Request.Fecha_Inicio.AddDays(1);
-                     }
-            
-            for (int Arreglo = 0; Arreglo < Request.Duracion; Arreglo++) {
-                Fecha_Fin = Fecha_Fin.AddDays(1);
-                while (DiasFeriadosLogic.isFeriado(Fecha_Fin))
+            for (int Arreglo = 0; Arreglo < Request.Duracion-1; Arreglo++) {
+                EndDate = EndDate.AddDays(1);
+                while (DiasFeriadosLogic.isFeriado(EndDate)
+                    ||(EndDate.DayOfWeek==DayOfWeek.Saturday)
+                    ||(EndDate.DayOfWeek==DayOfWeek.Sunday))
                 {
-                    Fecha_Fin = Fecha_Fin.AddDays(1);
+                    EndDate = EndDate.AddDays(1);
                 }
             }
+            Model.SolicitudVacaciones Saver = new Model.SolicitudVacaciones();
 
-            return this.MyDao.Insert(Request);*/
-            return true;
+            Saver.Duracion = Request.Duracion;
+            Saver.Fecha_Inicio = Request.Fecha_Inicio;
+            Saver.User = (new Logic.LogicUser()).GetUser(Request.User.Correo);
+            Saver.Ticket_id = this.LogServiceRequest(Request);
+            Saver.Estatus = "";
+            Saver.Fecha_Fin = EndDate;
+           
+
+            this.MyDao.Insert(Saver);
+            return Saver.Ticket_id;
         }
 
         /// <summary>
@@ -226,27 +256,35 @@ namespace Backend.Logic
             this.MyDao.Update(null);
         }
 
-
-
-        private int DaysAvailable(Model.SolicitudVacaciones Request, DateTime DateEntered) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Request"></param>
+        /// <param name="DateEntered"></param>
+        /// <returns></returns>
+        private int DaysAvailable(Model_Rest.RestSolicitudVacaciones Request, DateTime DateEntered) {
             int Available = 0;
             int DaysRequested = 0;
             var YearsIn= (Request.Fecha_Inicio- DateEntered).TotalDays / 365.2425;
+
             for (int Year = 0; Year < YearsIn-1; Year++) {
                 Available = Available + Year + 15;
             }
 
             IQueryable<Model.SolicitudVacaciones> DaysRequestedList = MyDao.GetByPK(Request.User.Correo);
+            DateTime LimitDate =
+                new DateTime(Request.Fecha_Inicio.Year,DateEntered.Month,DateEntered.Day);
+
             foreach (Model.SolicitudVacaciones Requested in DaysRequestedList)
             {
-                if (Requested.Estatus == "Vacaciones Aprobadas")
-                {
-                    var p=1 + 1;
+                if (Requested.Estatus == "Vacaciones Aprobadas") {
+                    if (Requested.Fecha_Inicio < LimitDate) {
+                        DaysRequested += Requested.Duracion;
+                    }
+
                 }
             }
 
-            return Available;
-        }
-
-    }
+            return Available-DaysRequested;
+        }    }
 }

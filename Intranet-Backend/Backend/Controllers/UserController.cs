@@ -16,6 +16,7 @@ namespace Backend.Controllers
     {
         string root = Path.Combine(@"C:\temp\", "fotos");
 
+
         [Authorize(Roles = "Administrador")]
         [Queryable]
         [Route("{ItbsEmail}")]
