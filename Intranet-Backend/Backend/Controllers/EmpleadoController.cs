@@ -22,7 +22,7 @@ namespace Backend.Controllers
             return MyLogic.GetEmpleado(HttpContext.Current.User.Identity.Name);
         }
         
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador,RecursosHumanos")]
         [Queryable]
         [Route("{ItbsEmail}")]
         public IQueryable<Model.snemple> Get([FromUri] string ItbsEmail)
@@ -31,7 +31,7 @@ namespace Backend.Controllers
             return MyLogic.GetEmpleado(ItbsEmail);
         }
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador,RecursosHumanos")]
         [Queryable]
         [Route("")]
         public IQueryable<Model.snemple> Get()
@@ -47,5 +47,15 @@ namespace Backend.Controllers
             Logic.LogicEmpleado MyLogic = new Backend.Logic.LogicEmpleado();
             return MyLogic.ModifyEmpleado(Employee);
         }
+
+        [Authorize(Roles = "Administrador,RecursosHumanos")]
+        [Queryable]
+        [Route("count")]
+        public int GetCount()
+        {
+            Logic.LogicEmpleado MyLogic = new Backend.Logic.LogicEmpleado();
+            return MyLogic.HowManyEmployess();
+        }
+
     }
 }

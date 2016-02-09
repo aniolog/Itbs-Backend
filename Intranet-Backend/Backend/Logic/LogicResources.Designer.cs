@@ -115,6 +115,15 @@ namespace Backend.Logic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cv.html.
+        /// </summary>
+        internal static string CvFile {
+            get {
+                return ResourceManager.GetString("CvFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .pdf.
         /// </summary>
         internal static string DocumentsOutPutFormat {

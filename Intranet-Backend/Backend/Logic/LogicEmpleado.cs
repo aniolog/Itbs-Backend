@@ -59,7 +59,8 @@ namespace Backend.Logic
         /// </summary>
         /// <returns></returns>
         public int HowManyEmployess() {
-            return this.MyDao.HowMany();
+           IQueryable<Model.snemple> List=this.MyDao.GetAll();
+            return List.Count();
         }
 
 

@@ -57,6 +57,22 @@ namespace Backend.Logic
 
         }
 
+        public string CreateCurriculum(string User)
+        {
+
+            Model.snemple Empleado = ((new Logic.LogicEmpleado()).GetEmpleado(User.ToUpper()).First());
+            var Html = System.IO.File.ReadAllText(LogicResources.TemplatesURL + LogicResources.CvFile);
+            byte[] pdfBytes = this.generatePDF(Html); ;
+            System.IO.FileStream _FileStream =
+            new System.IO.FileStream(Logic.LogicResources.DocumentsUrl + Empleado.correo_e + Logic.LogicResources.DocumentsOutPutFormat,
+            System.IO.FileMode.Create, System.IO.FileAccess.Write);
+            _FileStream.Write(pdfBytes, 0, pdfBytes.Length);
+            _FileStream.Close();
+            return (Empleado.correo_e + Logic.LogicResources.DocumentsOutPutFormat);
+
+        }
+
+
 
 
 

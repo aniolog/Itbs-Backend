@@ -17,7 +17,7 @@ namespace Backend.Controllers
         string root = Path.Combine(@"C:\temp\", "fotos");
 
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador,RecursosHumanos")]
         [Queryable]
         [Route("{ItbsEmail}")]
         public IQueryable<Model.User> Get([FromUri] string ItbsEmail)
@@ -28,7 +28,7 @@ namespace Backend.Controllers
             return returner.AsQueryable();
         }
 
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Administrador,RecursosHumanos")]
         [Queryable]
         [Route("")]
         public IQueryable<Model.User> Get()

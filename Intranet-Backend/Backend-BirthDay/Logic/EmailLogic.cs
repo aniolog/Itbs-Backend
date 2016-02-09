@@ -25,15 +25,13 @@ namespace Backend_BirthDay.Logic
                     string password = "LG3523348!";
                     string emailTo = "anibal.lozano@itbscorp.com".ToLower();
                 string subject = "Feliz Cumpleaños";
-                    string body = "¡Feliz Cumpleaños! " + (BirthDayEmployee.sexo == "M" ? "Sr. " : "Sra. ") + 
-                    BirthDayEmployee.nombres.Split(' ')[0].ToLower()+
-                    "\n (Este correo ha sido generado por un codigo de prueba)";
+                    string body = System.IO.File.ReadAllText(LogicResource.TemplateUrl + LogicResource.BirthdayTemplate); 
 
                     mail.From = new MailAddress(emailFrom);
                     mail.To.Add(emailTo);
                     mail.Subject = subject;
                     mail.Body = body;
-                    mail.IsBodyHtml = false;
+                    mail.IsBodyHtml = true;
                     // Can set to false, if you are sending pure text.
 
                     //   mail.Attachments.Add(new Attachment("C:\\SomeFile.txt"));
@@ -62,20 +60,17 @@ namespace Backend_BirthDay.Logic
                 string password = "LG3523348!";
                 string emailTo = "anibal.lozano@itbscorp.com".ToLower();
                 string subject = "Recordatorio";
-                string body = "Itbs te recuerda que "+ (BirthDayEmployee.sexo == "M" ? "nuestro compañero " : "nuestra compañera ") +" "+
-                BirthDayEmployee.nombres.Split(' ')[0].ToLower() + " " + BirthDayEmployee.apellidos.Split(' ')[0].ToLower() +" se encuentra de cumpleaños el dia de hoy, no te olvides "+
-                 (BirthDayEmployee.sexo == "M" ? "felicitarlo " : "felicitarla ")+
-                "\n (Este correo ha sido generado por un codigo de prueba)";
+                string body = System.IO.File.ReadAllText(LogicResource.TemplateUrl + LogicResource.NotificationTemplate);
+                body = body.Replace("{sexo}", (BirthDayEmployee.sexo == "M" ? "nuestro compañero " : "nuestra compañera "));
+                body = body.Replace("{nombre}", BirthDayEmployee.nombres.Split(' ')[0]);
+                body = body.Replace("{apellido}", BirthDayEmployee.apellidos.Split(' ')[0]);
 
                 mail.From = new MailAddress(emailFrom);
                 mail.To.Add(emailTo);
                 mail.Subject = subject;
                 mail.Body = body;
-                mail.IsBodyHtml = false;
-                // Can set to false, if you are sending pure text.
+                mail.IsBodyHtml = true;
 
-                //   mail.Attachments.Add(new Attachment("C:\\SomeFile.txt"));
-                //   mail.Attachments.Add(new Attachment("C:\\SomeZip.zip"));
 
                 using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
                 {

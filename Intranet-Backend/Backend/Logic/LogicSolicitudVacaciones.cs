@@ -119,8 +119,8 @@ namespace Backend.Logic
 
                 ServiceRequest1 sqr = new ServiceRequest1();
                 sqr.ticket_description = req.Observacion;
-                sqr.description_long = "details";
-                sqr.requester_name = "Lozano, Anibal";
+                sqr.description_long = "Solicitud de vacaciones";
+                //sqr.requester_name = "Lozano, Anibal";
                 sqr.person1_alt_email = req.User.Correo;
                 sqr.ccti_class = Logic.LogicResources.CctiClass;
                 sqr.ccti_category =Logic.LogicResources.CctiCategory;

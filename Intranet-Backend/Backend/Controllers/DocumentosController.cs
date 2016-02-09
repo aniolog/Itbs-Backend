@@ -12,15 +12,26 @@ namespace Backend.Controllers
     public class DocumentosController : ApiController
     {
         [Authorize(Roles ="Administrador")]
-        [Route("cv/{Email}")]
-        public string Post([FromUri] string Email)
+        [Route("ct/{ItbsEmail}")]
+        [HttpGet]
+        public string GenerateCT([FromUri] string ItbsEmail)
         {
             Logic.LogicDocumentos Logic = new Logic.LogicDocumentos();
 
-            return Logic.CreateConstanciaTrabajo(Email,
+            return Logic.CreateConstanciaTrabajo(ItbsEmail,
                 HttpContext.Current.User.Identity.Name);
         }
-      
+
+        [Authorize(Roles = "Administrador")]
+        [Route("cv/{ItbsEmail}")]
+        [HttpGet]
+        public string GenerateCV([FromUri] string ItbsEmail)
+        {
+            Logic.LogicDocumentos Logic = new Logic.LogicDocumentos();
+
+            return Logic.CreateCurriculum(ItbsEmail);
+        }
+
     }
     
 }

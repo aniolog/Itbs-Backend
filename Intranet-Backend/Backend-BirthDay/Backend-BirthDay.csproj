@@ -57,6 +57,11 @@
     <Compile Include="Dao\DaoEmployee.cs" />
     <Compile Include="Logic\BirthDayLogic.cs" />
     <Compile Include="Logic\EmailLogic.cs" />
+    <Compile Include="Logic\LogicResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LogicResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,7 +94,12 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Logic\LogicResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LogicResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
