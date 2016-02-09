@@ -70,7 +70,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Institucion" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ano_Finalizacion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ano_Finalizacion" Type="datetime" Nullable="false" />
     <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -81,7 +81,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ano_Inicio" Type="datetime" Nullable="false" />
     <Property Name="Desempeno" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ano_Finalizacion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ano_Finalizacion" Type="datetime" Nullable="true" />
     <Property Name="Empresa" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="User_Usename" Type="nvarchar(max)" Nullable="false" />
@@ -128,8 +128,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Ano_Inicio" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Ano_Fin" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ano_Inicio" Type="datetime" Nullable="false" />
+    <Property Name="Ano_Fin" Type="datetime" Nullable="true" />
     <Property Name="Empresa" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserUsename" Type="nvarchar(max)" Nullable="false" />
@@ -298,7 +298,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titulo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Institucion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Ano_Finalizacion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ano_Finalizacion" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Modelbackup.UserEstudio" FromRole="Estudio" ToRole="User" />
         </EntityType>
         <EntityType Name="ExprecienciaLaboral">
@@ -308,7 +308,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ano_Inicio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Desempeno" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Ano_Finalizacion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ano_Finalizacion" Type="DateTime" Nullable="true" />
           <Property Name="Empresa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Modelbackup.UserExprecienciaLaboral" FromRole="ExprecienciaLaboral" ToRole="User" />
@@ -360,8 +360,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ano_Inicio" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Ano_Fin" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ano_Inicio" Type="DateTime" Nullable="false" />
+          <Property Name="Ano_Fin" Type="DateTime" Nullable="true" />
           <Property Name="Empresa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Modelbackup.UserProyectos" FromRole="Proyectos" ToRole="User" />

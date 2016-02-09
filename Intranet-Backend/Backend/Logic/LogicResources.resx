@@ -144,6 +144,21 @@
   <data name="DocumentsUrl" xml:space="preserve">
     <value>C:\xampp\htdocs\temp\documentos\</value>
   </data>
+  <data name="ExperienciaLaboralTemplate" xml:space="preserve">
+    <value>experiencia-laboral.html</value>
+  </data>
+  <data name="FormacionAcademicaTemplate" xml:space="preserve">
+    <value>formacion-academica.html</value>
+  </data>
+  <data name="FormacionProfesionalTemplate" xml:space="preserve">
+    <value>formacion-profesional.html</value>
+  </data>
+  <data name="FotosURL" xml:space="preserve">
+    <value>C:\xampp\htdocs\temp\fotos\</value>
+  </data>
+  <data name="ProyectosTemplate" xml:space="preserve">
+    <value>proyectos.html</value>
+  </data>
   <data name="ResponseFormat" xml:space="preserve">
     <value>JSON</value>
   </data>

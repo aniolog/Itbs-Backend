@@ -17,7 +17,7 @@ namespace Backend.Model
         public int Id { get; set; }
         public System.DateTime Ano_Inicio { get; set; }
         public string Desempeno { get; set; }
-        public string Ano_Finalizacion { get; set; }
+        public Nullable<System.DateTime> Ano_Finalizacion { get; set; }
         public string Empresa { get; set; }
         public string Descripcion { get; set; }
     

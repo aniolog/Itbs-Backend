@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/31/2016 20:37:41
+-- Date Created: 02/09/2016 16:00:47
 -- Generated from EDMX file: C:\Users\alozano\Desktop\ASP\Itbs-Backend\Intranet-Backend\Backend\Model\Modelbackup.edmx
 -- --------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE [dbo].[EstudioSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Titulo] nvarchar(max)  NOT NULL,
     [Institucion] nvarchar(max)  NOT NULL,
-    [Ano_Finalizacion] nvarchar(max)  NOT NULL,
+    [Ano_Finalizacion] datetime  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
     [User_Id] int  NOT NULL
 );
@@ -108,7 +108,7 @@ CREATE TABLE [dbo].[ExprecienciaLaboralSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Ano_Inicio] datetime  NOT NULL,
     [Desempeno] nvarchar(max)  NOT NULL,
-    [Ano_Finalizacion] nvarchar(max)  NOT NULL,
+    [Ano_Finalizacion] datetime  NULL,
     [Empresa] nvarchar(max)  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL,
     [User_Usename] nvarchar(max)  NOT NULL,
@@ -154,8 +154,8 @@ GO
 -- Creating table 'ProyectosSet'
 CREATE TABLE [dbo].[ProyectosSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Ano_Inicio] nvarchar(max)  NOT NULL,
-    [Ano_Fin] nvarchar(max)  NOT NULL,
+    [Ano_Inicio] datetime  NOT NULL,
+    [Ano_Fin] datetime  NULL,
     [Empresa] nvarchar(max)  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL,
     [UserUsename] nvarchar(max)  NOT NULL,

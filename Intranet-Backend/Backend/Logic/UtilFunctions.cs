@@ -10,6 +10,9 @@ namespace Backend.Logic
     public class UtilFunctions
     {
         static public string NameToFormat(string name) {
+            if (name == null) {
+                return "";
+            }
             var returner = "";
             for (int letter=0;letter<name.Length;letter++) {
                 if (letter != 0)

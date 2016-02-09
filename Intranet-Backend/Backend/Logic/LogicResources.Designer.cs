@@ -142,6 +142,51 @@ namespace Backend.Logic {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to experiencia-laboral.html.
+        /// </summary>
+        internal static string ExperienciaLaboralTemplate {
+            get {
+                return ResourceManager.GetString("ExperienciaLaboralTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to formacion-academica.html.
+        /// </summary>
+        internal static string FormacionAcademicaTemplate {
+            get {
+                return ResourceManager.GetString("FormacionAcademicaTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to formacion-profesional.html.
+        /// </summary>
+        internal static string FormacionProfesionalTemplate {
+            get {
+                return ResourceManager.GetString("FormacionProfesionalTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\xampp\htdocs\temp\fotos\.
+        /// </summary>
+        internal static string FotosURL {
+            get {
+                return ResourceManager.GetString("FotosURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to proyectos.html.
+        /// </summary>
+        internal static string ProyectosTemplate {
+            get {
+                return ResourceManager.GetString("ProyectosTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JSON.
         /// </summary>
         internal static string ResponseFormat {

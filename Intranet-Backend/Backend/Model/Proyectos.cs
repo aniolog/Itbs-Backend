@@ -15,8 +15,8 @@ namespace Backend.Model
     public partial class Proyectos
     {
         public int Id { get; set; }
-        public string Ano_Inicio { get; set; }
-        public string Ano_Fin { get; set; }
+        public System.DateTime Ano_Inicio { get; set; }
+        public Nullable<System.DateTime> Ano_Fin { get; set; }
         public string Empresa { get; set; }
         public string Descripcion { get; set; }
         public string UserUsename { get; set; }
