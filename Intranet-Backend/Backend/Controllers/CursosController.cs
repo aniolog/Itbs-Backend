@@ -10,6 +10,9 @@ namespace Backend.Controllers
     [RoutePrefix("api/cursos")]
     public class CursosController : ApiController
     {
+
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
         [Queryable]
         [Route("{ItbsEmail}")]
@@ -18,6 +21,8 @@ namespace Backend.Controllers
             Logic.LogicCurso MyLogic = new Backend.Logic.LogicCurso ();
             return MyLogic.GetCursos(ItbsEmail);
         }
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
         [Route("create")]
         public Boolean Post([FromBody] Model.Curso Course)

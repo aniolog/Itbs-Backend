@@ -16,6 +16,8 @@ namespace Backend.Controllers
 
         string root = Path.Combine(@"C:\xampp\htdocs\temp", "fotos");
 
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
         [Route("create")]
         public async Task<object> upload()

@@ -392,6 +392,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\Filter.cs" />
     <Compile Include="App_Start\AuthTokenOperation.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -402,6 +403,7 @@
     <Compile Include="Controllers\EstudiosController.cs" />
     <Compile Include="Controllers\ExperienciaLaboralController.cs" />
     <Compile Include="Controllers\FotoController.cs" />
+    <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Controllers\SolicitudDeVacacionesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DaoObject\Dao.cs" />
@@ -413,7 +415,9 @@
     <Compile Include="DaoObject\DaoEstudio.cs" />
     <Compile Include="DaoObject\DaoExperienciaLaboral.cs" />
     <Compile Include="DaoObject\DaoFabric.cs" />
+    <Compile Include="DaoObject\DaoLog.cs" />
     <Compile Include="DaoObject\DaoPago.cs" />
+    <Compile Include="DaoObject\DaoProyecto.cs" />
     <Compile Include="DaoObject\DaoRol.cs" />
     <Compile Include="DaoObject\DaoSolicitudVacaciones.cs" />
     <Compile Include="DaoObject\DaoUser.cs" />
@@ -437,6 +441,7 @@
     <Compile Include="Logic\LogicExperienciaLaboral.cs" />
     <Compile Include="Logic\LogicLogin.cs" />
     <Compile Include="Logic\LogicPago.cs" />
+    <Compile Include="Logic\LogicProyectos.cs" />
     <Compile Include="Logic\LogicResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -448,6 +453,7 @@
     <Compile Include="Logic\SoapInterceptor\TraceExtension.cs" />
     <Compile Include="Logic\UtilFunctions.cs" />
     <Compile Include="Model-Rest\CtRequest.cs" />
+    <Compile Include="Model-Rest\CvRequest.cs" />
     <Compile Include="Model-Rest\RestSolicitudVacaciones.cs" />
     <Compile Include="Model-Rest\UserEmpleado.cs" />
     <Compile Include="Model-Rest\Error.cs" />
@@ -461,6 +467,9 @@
       <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ExprecienciaLaboral.cs">
+      <DependentUpon>Modelbackup.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Log.cs">
       <DependentUpon>Modelbackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Model1.Context.cs">

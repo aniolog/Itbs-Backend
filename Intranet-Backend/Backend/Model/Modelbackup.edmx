@@ -14,6 +14,7 @@
     <EntitySet Name="RolSet1" EntityType="Modelbackup.Store.RolSet1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserSet" EntityType="Modelbackup.Store.UserSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProyectosSet" EntityType="Modelbackup.Store.ProyectosSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogSet" EntityType="Modelbackup.Store.LogSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="UserCertificado" Association="Modelbackup.Store.UserCertificado">
       <End Role="User" EntitySet="UserSet" />
       <End Role="Certificado" EntitySet="CertificadoSet" />
@@ -39,6 +40,10 @@
       <End Role="User" EntitySet="UserSet" />
     </AssociationSet>
     <AssociationSet Name="UserProyectos" Association="Modelbackup.Store.UserProyectos">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Proyectos" EntitySet="ProyectosSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserProyectos1" Association="Modelbackup.Store.UserProyectos1">
       <End Role="User" EntitySet="UserSet" />
       <End Role="Proyectos" EntitySet="ProyectosSet" />
     </AssociationSet>
@@ -105,7 +110,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Id" Type="nvarchar(max)" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="UserSet">
     <Key>
@@ -121,7 +126,7 @@
     <Property Name="Foto" Type="nvarchar(max)" Nullable="true" />
     <Property Name="CorreoPersonal" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Rol_Id" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rol_Id" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="ProyectosSet">
     <Key>
@@ -134,6 +139,18 @@
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserUsename" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LogSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserCorreo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Metodo" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Hora" Type="datetime" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <Association Name="UserCertificado">
     <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="1" />
@@ -231,6 +248,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="UserProyectos1">
+    <End Role="User" Type="Modelbackup.Store.UserSet" Multiplicity="1" />
+    <End Role="Proyectos" Type="Modelbackup.Store.ProyectosSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Usename" />
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="UserUsename" />
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -269,6 +300,11 @@
             <End Role="User" EntitySet="UserSet" />
           </AssociationSet>
           <AssociationSet Name="UserProyectos" Association="Modelbackup.UserProyectos">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Proyectos" EntitySet="ProyectosSet" />
+          </AssociationSet>
+          <EntitySet Name="LogSet" EntityType="Modelbackup.Log" />
+          <AssociationSet Name="UserProyectos1" Association="Modelbackup.UserProyectos1">
             <End Role="User" EntitySet="UserSet" />
             <End Role="Proyectos" EntitySet="ProyectosSet" />
           </AssociationSet>
@@ -330,7 +366,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="User" Relationship="Modelbackup.RolUser" FromRole="Rol" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
@@ -353,7 +389,7 @@
           <NavigationProperty Name="ExprecienciaLaboral" Relationship="Modelbackup.UserExprecienciaLaboral" FromRole="User" ToRole="ExprecienciaLaboral" />
           <NavigationProperty Name="SolicitudVacaciones" Relationship="Modelbackup.UserSolicitudVacaciones" FromRole="User" ToRole="SolicitudVacaciones" />
           <NavigationProperty Name="Rol" Relationship="Modelbackup.RolUser" FromRole="User" ToRole="Rol" />
-          <NavigationProperty Name="Proyectos" Relationship="Modelbackup.UserProyectos" FromRole="User" ToRole="Proyectos" />
+          <NavigationProperty Name="Proyectos" Relationship="Modelbackup.UserProyectos1" FromRole="User" ToRole="Proyectos" />
         </EntityType>
         <EntityType Name="Proyectos">
           <Key>
@@ -364,7 +400,7 @@
           <Property Name="Ano_Fin" Type="DateTime" Nullable="true" />
           <Property Name="Empresa" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="Modelbackup.UserProyectos" FromRole="Proyectos" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Modelbackup.UserProyectos1" FromRole="Proyectos" ToRole="User" />
           <Property Name="UserUsename" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
@@ -393,6 +429,32 @@
           <End Type="Modelbackup.User" Role="User" Multiplicity="*" />
         </Association>
         <Association Name="UserProyectos">
+          <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
+          <End Type="Modelbackup.Proyectos" Role="Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Usename" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="UserUsename" />
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserCorreo" Type="String" Nullable="false" />
+          <Property Name="Url" Type="String" Nullable="true" />
+          <Property Name="Metodo" Type="String" Nullable="true" />
+          <Property Name="Hora" Type="DateTime" Nullable="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="true" />
+        </EntityType>
+        <Association Name="UserProyectos1">
           <End Type="Modelbackup.User" Role="User" Multiplicity="1" />
           <End Type="Modelbackup.Proyectos" Role="Proyectos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -497,6 +559,19 @@
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="UserUsename" ColumnName="UserUsename" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelbackup.Log)">
+        <MappingFragment StoreEntitySet="LogSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserCorreo" ColumnName="UserCorreo" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Metodo" ColumnName="Metodo" />
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

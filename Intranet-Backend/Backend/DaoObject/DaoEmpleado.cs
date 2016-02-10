@@ -40,7 +40,7 @@ namespace Backend.Dao
         public override dynamic GetAll()
         {
             var Empleados = from empleados in context.snemple where empleados.fecha_egr == null select empleados;
-            return Empleados;
+            return Empleados.OrderBy(emp => emp.ci);
         }
 
         /// <summary>

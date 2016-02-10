@@ -98,6 +98,9 @@ namespace Backend.Logic
         {
 
             IQueryable<Model.SolicitudVacaciones> requestList = this.MyDao.GetByPK(Correo);
+            if (requestList == null) {
+                return 0;
+            }
             return requestList.Count();
         }
 

@@ -12,18 +12,14 @@ namespace Backend.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Rol
+    public partial class Log
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rol()
-        {
-            this.User = new HashSet<User>();
-        }
-    
-        public string Nombre { get; set; }
-        public short Id { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
+        public int Id { get; set; }
+        public string UserCorreo { get; set; }
+        public string Url { get; set; }
+        public string Metodo { get; set; }
+        public System.DateTime Hora { get; set; }
+        public string Tipo { get; set; }
+        public string Descripcion { get; set; }
     }
 }

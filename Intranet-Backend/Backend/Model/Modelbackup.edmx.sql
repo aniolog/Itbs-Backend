@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/09/2016 16:00:47
+-- Date Created: 02/10/2016 15:10:27
 -- Generated from EDMX file: C:\Users\alozano\Desktop\ASP\Itbs-Backend\Intranet-Backend\Backend\Model\Modelbackup.edmx
 -- --------------------------------------------------
 
@@ -38,6 +38,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserProyectos]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ProyectosSet] DROP CONSTRAINT [FK_UserProyectos];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserProyectos1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProyectosSet] DROP CONSTRAINT [FK_UserProyectos1];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -66,6 +69,9 @@ IF OBJECT_ID(N'[dbo].[UserSet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[ProyectosSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ProyectosSet];
+GO
+IF OBJECT_ID(N'[dbo].[LogSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LogSet];
 GO
 
 -- --------------------------------------------------
@@ -132,7 +138,7 @@ GO
 -- Creating table 'RolSet1'
 CREATE TABLE [dbo].[RolSet1] (
     [Nombre] nvarchar(max)  NOT NULL,
-    [Id] nvarchar(max)  NOT NULL
+    [Id] smallint IDENTITY(1,1) NOT NULL
 );
 GO
 
@@ -147,7 +153,7 @@ CREATE TABLE [dbo].[UserSet] (
     [Foto] nvarchar(max)  NULL,
     [CorreoPersonal] nvarchar(max)  NULL,
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Rol_Id] nvarchar(max)  NOT NULL
+    [Rol_Id] smallint  NOT NULL
 );
 GO
 
@@ -160,6 +166,18 @@ CREATE TABLE [dbo].[ProyectosSet] (
     [Descripcion] nvarchar(max)  NOT NULL,
     [UserUsename] nvarchar(max)  NOT NULL,
     [UserId] int  NOT NULL
+);
+GO
+
+-- Creating table 'LogSet'
+CREATE TABLE [dbo].[LogSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [UserCorreo] nvarchar(max)  NOT NULL,
+    [Url] nvarchar(max)  NULL,
+    [Metodo] nvarchar(max)  NULL,
+    [Hora] datetime  NOT NULL,
+    [Tipo] nvarchar(max)  NOT NULL,
+    [Descripcion] nvarchar(max)  NULL
 );
 GO
 
@@ -212,6 +230,12 @@ GO
 -- Creating primary key on [Id] in table 'ProyectosSet'
 ALTER TABLE [dbo].[ProyectosSet]
 ADD CONSTRAINT [PK_ProyectosSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'LogSet'
+ALTER TABLE [dbo].[LogSet]
+ADD CONSTRAINT [PK_LogSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -320,6 +344,21 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserProyectos'
 CREATE INDEX [IX_FK_UserProyectos]
+ON [dbo].[ProyectosSet]
+    ([UserUsename], [UserId]);
+GO
+
+-- Creating foreign key on [UserUsename], [UserId] in table 'ProyectosSet'
+ALTER TABLE [dbo].[ProyectosSet]
+ADD CONSTRAINT [FK_UserProyectos1]
+    FOREIGN KEY ([UserUsename], [UserId])
+    REFERENCES [dbo].[UserSet]
+        ([Usename], [Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserProyectos1'
+CREATE INDEX [IX_FK_UserProyectos1]
 ON [dbo].[ProyectosSet]
     ([UserUsename], [UserId]);
 GO

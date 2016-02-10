@@ -13,11 +13,11 @@ namespace Backend.Controllers
     [RoutePrefix("api/certificados")]
     public class CertificadosController : ApiController
     {
-        string root = Path.Combine(@"C:\temp\", "certificados");
-        
+        string root = Path.Combine(@"C:\xampp\htdocs\temp", "certificados");
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
         [Route("create")]
-
         public async Task<object> upload()
         {
             // Check if the request contains multipart/form-data.
@@ -43,7 +43,7 @@ namespace Backend.Controllers
 
                 var logic = new Logic.LogicCertificado();
                 var Cer = new Model.Certificado();
-                Cer.Url = DateTime.Now.ToString() + provider.FormData["flowFilename"];
+                Cer.Url = filename;
                 Cer.Nombre = provider.FormData["flowFilename"];
                 Cer.User = (new Logic.LogicUser()).GetUser(HttpContext.Current.User.Identity.Name);
                 logic.InsertCertificado(Cer);
@@ -119,6 +119,20 @@ namespace Backend.Controllers
                 }
             }
         }
+
+        [ActionFilters.Filter]
+        [Authorize(Roles = "Administrador")]
+        [Route("get/{IbtsEmail}")]
+        public List<Model.Certificado> Get([FromUri]string IbtsEmail) {
+
+            Model.User Usuario = (new Logic.LogicUser()).GetUser(IbtsEmail);
+            if (Usuario.Certificado == null) {
+                return null;
+            }
+            return Usuario.Certificado.ToList();
+        }
+
+
 
     }
 }

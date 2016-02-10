@@ -10,7 +10,8 @@ namespace Backend.Controllers
     [RoutePrefix("api/estudios")]
     public class EstudiosController : ApiController
     {
-        /*
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
         [Queryable]
         [Route("{ItbsEmail}")]
@@ -19,12 +20,14 @@ namespace Backend.Controllers
             Logic.LogicEstudio MyLogic = new Backend.Logic.LogicEstudio();
             return MyLogic.GetStudys(ItbsEmail);
         }
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Empleado,Administrador,RecursosHumanos")]
         [Route("create")]
         public Boolean Post([FromBody] Model.Estudio Study)
         {
             Logic.LogicEstudio MyLogic = new Backend.Logic.LogicEstudio();
             return MyLogic.InsertStudy(Study);
-        }*/
+        }
     }
 }

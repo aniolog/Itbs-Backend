@@ -33,5 +33,6 @@ namespace Backend.Model
         public virtual DbSet<Rol> RolSet1 { get; set; }
         public virtual DbSet<User> UserSet { get; set; }
         public virtual DbSet<Proyectos> ProyectosSet { get; set; }
+        public virtual DbSet<Log> LogSet { get; set; }
     }
 }

@@ -65,6 +65,17 @@ namespace Backend.Dao
         /// </summary>
         /// <returns></returns>
         static public Dao getDaoRol() { return new DaoRol(); }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        static public Dao getDaoProyecto() { return new DaoProyecto(); }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        static public Dao getDaoLog() { return new DaoLog(); }
+
 
 
 

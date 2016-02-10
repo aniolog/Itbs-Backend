@@ -13,6 +13,7 @@ namespace Backend.Controllers
     public class EmpleadoController : ApiController
     {
 
+        [ActionFilters.Filter]
         [Queryable]
         [Route("perfil")]
         [Authorize]
@@ -21,7 +22,9 @@ namespace Backend.Controllers
             Logic.LogicEmpleado MyLogic = new Backend.Logic.LogicEmpleado();
             return MyLogic.GetEmpleado(HttpContext.Current.User.Identity.Name);
         }
-        
+
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Administrador,RecursosHumanos")]
         [Queryable]
         [Route("{ItbsEmail}")]
@@ -31,6 +34,8 @@ namespace Backend.Controllers
             return MyLogic.GetEmpleado(ItbsEmail);
         }
 
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Administrador,RecursosHumanos")]
         [Queryable]
         [Route("")]
@@ -40,6 +45,8 @@ namespace Backend.Controllers
             return MyLogic.GetAllEmpleados();
         }
 
+
+        [ActionFilters.Filter]
         [Authorize]
         [Route("update")]
         public Boolean Put([FromBody]Model.snemple Employee)
@@ -48,6 +55,8 @@ namespace Backend.Controllers
             return MyLogic.ModifyEmpleado(Employee);
         }
 
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Administrador,RecursosHumanos")]
         [Queryable]
         [Route("count")]

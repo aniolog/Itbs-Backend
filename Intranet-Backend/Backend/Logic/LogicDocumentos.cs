@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NReco.PdfGenerator;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -25,7 +26,8 @@ namespace Backend.Logic
                 throw new IntranetException.ItbsException(HttpStatusCode.BadRequest, 
                     IntranetException.ExceptionResource.EmpleadoInexistente); }
             var Html = System.IO.File.ReadAllText(LogicResources.TemplatesURL+LogicResources.CtFile);
-            Html=Html.Replace("{Titulo}",(Empleado.sexo=="M" ? "el Sr" : "la Sra"));
+            #region Datos
+            Html =Html.Replace("{Titulo}",(Empleado.sexo=="M" ? "el Sr" : "la Sra"));
             Html=Html.Replace("{Nacionalidad}", (Empleado.nac == 1 ? "V" : "E"));
             Html=Html.Replace("{Cedula}",Empleado.ci);
             var Cargo = ((Model.sncargo)(new Dao.DaoCargo()).GetByPK(Empleado.co_cargo)).des_cargo;
@@ -46,6 +48,7 @@ namespace Backend.Logic
             Html = Html.Replace("{JefeCedula}", Jefe.ci);
             Html = Html.Replace("{DiaIngreso}", UtilFunctions.DateTimeFormat(Empleado.fecha_ing));
             Html = Html.Replace("{DiaExpedicion}", UtilFunctions.DateTimeFormat(DateTime.Now.AddMonths(3)));
+            #endregion
 
             byte[] pdfBytes=this.generatePDF(Html); ;
             System.IO.FileStream _FileStream =
@@ -222,7 +225,7 @@ namespace Backend.Logic
                 else {
                     ProyectoAppender =
                     ProyectoAppender.Replace("{anofin}",
-                    ((DateTime)proyecto.Ano_Fin).Year.ToString());
+                    "-"+((DateTime)proyecto.Ano_Fin).Year.ToString());
                 }
 
                     ProyectoAppender =
@@ -236,21 +239,11 @@ namespace Backend.Logic
             }
             #endregion
 
-
-
-
-
-
-
-
-
-
-
             Html = Html.Replace("{experiencialaboral}", ExperienciaLaboralHtml);
             Html = Html.Replace("{formacionacademica}", FormacionAcademicaHtml);
             Html = Html.Replace("{proyecto}", ProyectoHtml);
             Html = Html.Replace("{formacionprofesional}", FormacionProfesionalHtml);
-            byte[] pdfBytes = this.generatePDF(Html); ;
+            byte[] pdfBytes = this.generatePDF(Html); 
             System.IO.FileStream _FileStream =
             new System.IO.FileStream(Logic.LogicResources.DocumentsUrl + Empleado.correo_e + Logic.LogicResources.DocumentsOutPutFormat,
             System.IO.FileMode.Create, System.IO.FileAccess.Write);

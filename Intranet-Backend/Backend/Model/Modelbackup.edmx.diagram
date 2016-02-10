@@ -19,7 +19,8 @@
         <AssociationConnector Association="Modelbackup.UserExprecienciaLaboral" />
         <AssociationConnector Association="Modelbackup.UserSolicitudVacaciones" />
         <AssociationConnector Association="Modelbackup.RolUser" />
-        <AssociationConnector Association="Modelbackup.UserProyectos" />
+        <EntityTypeShape EntityType="Modelbackup.Log" Width="1.5" PointX="0.875" PointY="12.375" />
+        <AssociationConnector Association="Modelbackup.UserProyectos1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

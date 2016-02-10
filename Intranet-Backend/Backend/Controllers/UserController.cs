@@ -17,6 +17,7 @@ namespace Backend.Controllers
         string root = Path.Combine(@"C:\temp\", "fotos");
 
 
+        [ActionFilters.Filter]
         [Authorize(Roles = "Administrador,RecursosHumanos")]
         [Queryable]
         [Route("{ItbsEmail}")]
@@ -28,6 +29,8 @@ namespace Backend.Controllers
             return returner.AsQueryable();
         }
 
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Administrador,RecursosHumanos")]
         [Queryable]
         [Route("")]
@@ -37,6 +40,8 @@ namespace Backend.Controllers
             return MyLogic.GetUsers();
         }
 
+
+        [ActionFilters.Filter]
         [Authorize(Roles = "Administrador")]
         [Route("create")]
         public Boolean Post([FromBody]Model.User NewUser)
@@ -45,6 +50,8 @@ namespace Backend.Controllers
             return MyLogic.InsertUser(NewUser);
         }
 
+
+        [ActionFilters.Filter]
         [Authorize]
         [Route("update")]
         public Boolean Put([FromBody]Model_Rest.UserEmpleado Request)
@@ -70,6 +77,8 @@ namespace Backend.Controllers
             return UserLogic.ModifyUser(UpdateUser) && EmployeeLogic.ModifyEmpleado(UpdateEmployee) ;
         }
 
+
+        [ActionFilters.Filter]
         [Queryable]
         [Route("perfil")]
         [Authorize]
@@ -81,6 +90,8 @@ namespace Backend.Controllers
             return returner.AsQueryable();
           }
 
+
+        [ActionFilters.Filter]
         [Route("emailnotinuse")]
         [Authorize(Roles = "Administrador")]
         public List<string> GetNotInUseEmail()
