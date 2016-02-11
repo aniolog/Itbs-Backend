@@ -65,7 +65,8 @@ namespace Backend.Controllers
             UpdateUser.PlacaVehiculo = Request.PlacaVehiculo;
             UpdateUser.CorreoPersonal = Request.CorreoPersonal;
             UpdateUser.Rol = Request.rol;
-          
+            UpdateUser.Foto=(new Logic.LogicUser()).GetUser(HttpContext.Current.User.Identity.Name).Foto;
+            
 
             Model.snemple UpdateEmployee= new Model.snemple();
             UpdateEmployee.correo_e = Request.correo_e;

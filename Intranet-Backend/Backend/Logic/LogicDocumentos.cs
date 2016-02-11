@@ -72,8 +72,17 @@ namespace Backend.Logic
             Html = Html.Replace("{apellido}", Empleado.apellidos);
             Html = Html.Replace("{direccion}",Empleado.direccion);
             Html = Html.Replace("{telefono}",Empleado.telefono);
-            Html = Html.Replace("{itbscorreo}",Empleado.correo_e);
-            Html = Html.Replace("{correopersonal}", Usuario.CorreoPersonal);
+            Html = Html.Replace("{itbscorreo}", Empleado.correo_e);
+            if (Usuario != null)
+            {
+                Html = Html.Replace("{correopersonal}", Usuario.CorreoPersonal);
+                Html = Html.Replace("{fotoperfil}", Logic.LogicResources.FotosURL + Usuario.Foto);
+            }
+            else {
+                Html = Html.Replace("{correopersonal}", "");
+            }
+           
+            
             Html = Html.Replace("{fechanacimiento}", 
                 UtilFunctions.DateTimeFormat(Empleado.fecha_nac).Split(',')[1]);
             Html = Html.Replace("{lugarnac}", UtilFunctions.NameToFormat(Empleado.lugar_nac));
@@ -96,7 +105,7 @@ namespace Backend.Logic
                     Html = Html.Replace("{edocivil}", "Casada");
                 }
             }
-            Html = Html.Replace("{fotoperfil}", Logic.LogicResources.FotosURL+Usuario.Foto);
+            
             #endregion
 
             #region ExperienciaLaboral

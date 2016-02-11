@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
-
+using System.Threading;
 
 namespace Backend_BirthDay.Logic
 {
@@ -42,7 +42,8 @@ namespace Backend_BirthDay.Logic
                         smtp.Credentials = new NetworkCredential(emailFrom, password);
                         smtp.EnableSsl = enableSSL;
                         smtp.Send(mail);
-                    }
+                        Thread.Sleep(1000);
+                }
                 }
                 return true; 
         }
@@ -77,6 +78,7 @@ namespace Backend_BirthDay.Logic
                     smtp.Credentials = new NetworkCredential(emailFrom, password);
                     smtp.EnableSsl = enableSSL;
                     smtp.Send(mail);
+                    Thread.Sleep(1000);
                 }
             }
             return true;
